@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_search_medicine_to_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_search_medicine_to_medicine_detail"
+            app:destination="@id/navigation_medicine_detail" />
     </fragment>
 
     <!-- 하단바 지도-->
@@ -99,6 +102,9 @@
         android:label="HeadacheFragment"
         tools:layout="@layout/fragment_headache_medicine">
 
+        <action
+            android:id="@+id/action_view_card_headache_area_to_medicine_detail"
+            app:destination="@id/navigation_medicine_detail" />
     </fragment>
 
     <!--muscle pain 근육통 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
@@ -110,12 +116,19 @@
 
 
         <!--bruise 타박상 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
+        <action
+            android:id="@+id/action_view_card_muscle_area_to_medicine_detail"
+            app:destination="@id/navigation_medicine_detail" />
     </fragment>
     <fragment
         android:id="@+id/view_card_bruise_area"
         android:name="com.example.app_helper_fe.ui.bruise.BruiseMedicineFragment"
         android:label="BruiseFragment"
-        tools:layout="@layout/fragment_bruise_medicine" />
+        tools:layout="@layout/fragment_bruise_medicine" >
+        <action
+            android:id="@+id/action_view_card_bruise_area_to_medicine_detail"
+            app:destination="@id/navigation_medicine_detail" />
+    </fragment>
 
 
     <!--stomach 복통 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
@@ -123,7 +136,11 @@
         android:id="@+id/view_card_stomach_area"
         android:name="com.example.app_helper_fe.ui.stomach.StomachMedicineFragment"
         android:label="StomachFragment"
-        tools:layout="@layout/fragment_stomach_medicine" />
+        tools:layout="@layout/fragment_stomach_medicine" >
+        <action
+            android:id="@+id/action_view_card_stomach_area_to_medicine_detail"
+            app:destination="@id/navigation_medicine_detail" />
+    </fragment>
 
 
     <!--fever 온열 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
@@ -131,7 +148,11 @@
         android:id="@+id/view_card_fever_area"
         android:name="com.example.app_helper_fe.ui.fever.FeverMedicineFragment"
         android:label="FeverFragment"
-        tools:layout="@layout/fragment_fever_medicine" />
+        tools:layout="@layout/fragment_fever_medicine" >
+        <action
+            android:id="@+id/action_view_card_fever_area_to_medicine_detail"
+            app:destination="@id/navigation_medicine_detail" />
+    </fragment>
 
 
     <!--tooth 온열 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
@@ -139,7 +160,13 @@
         android:id="@+id/view_card_tooth_area"
         android:name="com.example.app_helper_fe.ui.tooth.ToothMedicineFragment"
         android:label="ToothFragment"
-        tools:layout="@layout/fragment_tooth_medicine" />
+        tools:layout="@layout/fragment_tooth_medicine" >
+        <action
+            android:id="@+id/action_view_card_tooth_area_to_medicine_detail"
+            app:destination="@id/navigation_medicine_detail" />
+    </fragment>
+
+    <!--medicine detail page -->
     <activity
         android:id="@+id/navigation_medicine_detail"
         android:name="com.example.app_helper_fe.ui.detail.MedicineDetailActivity"

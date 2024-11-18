@@ -50,7 +50,6 @@ class ColdItemViewHolder(
 
  */
 
-
         }
         with(binding) {
             ivColdImage.setImageResource(cold.medicineResourceId)

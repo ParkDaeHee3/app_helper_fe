@@ -5,18 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_helper_fe.data.Stomach
 import com.example.app_helper_fe.databinding.ItemStomachListBinding
+import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class StomachListAdapter(
     private val items: List<Stomach>,
-    private val listener: StomachItemClickListener
+    private val stomachClicklistener: StomachItemClickListener,
+    private val detailClickListener: MedicineDetailClickListener
+
 ) : RecyclerView.Adapter<StomachItemViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): StomachItemViewHolder {
-        return StomachItemViewHolder.from(parent,listener)
+        return StomachItemViewHolder.from(parent, stomachClicklistener, detailClickListener)
     }
 
     override fun onBindViewHolder(holder: StomachItemViewHolder, position: Int) {
@@ -31,12 +34,15 @@ class StomachListAdapter(
 
 class StomachItemViewHolder(
     private val binding: ItemStomachListBinding,
-    private val listener: StomachItemClickListener
+    private val stomachClicklistener: StomachItemClickListener,
+    private val detailClickListener: MedicineDetailClickListener
+
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(stomach:Stomach) {
+    fun bind(stomach: Stomach) {
         itemView.setOnClickListener {
-            listener.onStomachClick(stomach)
+            stomachClicklistener.onStomachClick(stomach)
+            detailClickListener.onMedicineDetailClick()
         }
         with(binding) {
             ivStomachImage.setImageResource(stomach.medicineResourceId)
@@ -47,15 +53,18 @@ class StomachItemViewHolder(
     }
 
     companion object {
-        fun from(parent: ViewGroup, listener: StomachItemClickListener): StomachItemViewHolder {
-            return StomachItemViewHolder(
-                ItemStomachListBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                ),
-                listener
+        fun from(
+            parent: ViewGroup,
+            stomachClicklistener: StomachItemClickListener,
+            detailClickListener: MedicineDetailClickListener
+        ): StomachItemViewHolder {
+
+            val binding = ItemStomachListBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
             )
+            return StomachItemViewHolder(binding, stomachClicklistener, detailClickListener)
         }
     }
 }
