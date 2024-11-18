@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_transfer_account"
+        style="@style/AppToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/appbar_title_transfer_screen" />
+
+    <!--Title 시작 -->
+    <View
+        android:id="@+id/view_title_medicine_search_area"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@drawable/background_lime7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_transfer_account" />
+
+    <ImageView
+        android:id="@+id/image_vi_title_polygon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="300dp"
+        android:src="@drawable/ic_polygon"
+        app:layout_constraintBottom_toBottomOf="@id/view_title_medicine_search_area"
+        app:layout_constraintEnd_toEndOf="@id/view_title_medicine_search_area"
+        app:layout_constraintStart_toStartOf="@id/view_title_medicine_search_area"
+        app:layout_constraintTop_toTopOf="@id/view_title_medicine_search_area" />
+
+    <ImageView
+        android:id="@+id/image_vi_title_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/ic_list"
+        app:layout_constraintBottom_toBottomOf="@id/image_vi_title_polygon"
+        app:layout_constraintEnd_toEndOf="@id/image_vi_title_polygon"
+        app:layout_constraintStart_toStartOf="@id/image_vi_title_polygon"
+        app:layout_constraintTop_toTopOf="@id/image_vi_title_polygon" />
+
+    <TextView
+        android:id="@+id/tv_title_search"
+        style="@style/DetailCardDisease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="약품 검색"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title_medicine_search_area"
+        app:layout_constraintEnd_toEndOf="@id/view_title_medicine_search_area"
+        app:layout_constraintStart_toStartOf="@id/view_title_medicine_search_area"
+        app:layout_constraintTop_toTopOf="@id/view_title_medicine_search_area" />
+
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="@drawable/border_green"
+        android:focusable="false"
+        app:closeIcon="@drawable/ic_clear"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_title_medicine_search_area"
+        app:queryHint="Search..."
+        app:searchHintIcon="@null"
+        app:searchIcon="@drawable/ic_search" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_search_medicine_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_bar"
+        tools:listitem="@layout/item_all_medicine" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

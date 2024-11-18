@@ -36,8 +36,10 @@ android {
         jvmTarget = "1.8"
     }
     //viewBinding의 설정
+    //dataBinding의 설정 -> 상세정보에 있는 tab을 사용 할 수 있음
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="App.TextTitle26" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="App.TextTitle16" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="AppToolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/AppTextTitle.S18</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="AppToolbar.Navigation">
+        <item name="navigationIcon">@drawable/ic_arrow_back</item>
+    </style>
+
+    <style name="AppBottomSheetDialog" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppBottomSheetModal</item>
+    </style>
+
+    <style name="AppBottomSheetModal" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="behavior_peekHeight">340dp</item>
+    </style>
+
+    <!--카드 섹션 상세 -->
+    <style name="DetailCardDisease">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+<!--홈페이지 제목  -->
+    <style name="TitleTextBody">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <style name="AppEditText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gray_700</item>
+        <item name="android:textColorHint">@color/gray_300</item>
+        <item name="android:background">@drawable/selector_text_input_background</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingTop">11dp</item>
+        <item name="android:paddingBottom">11dp</item>
+    </style>
+
+    <style name="AppButtonPrimary" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/selector_button_background</item>
+        <item name="android:textColor">@color/selector_button_text_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AppButtonOnPrimary" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/background_button_on_primary</item>
+        <item name="android:textAppearance">@style/AppTextOnPrimary.S14</item>
+    </style>
+
+    <style name="AppButtonCancel" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/background_gray100</item>
+        <item name="android:textAppearance">@style/AppTextLabel.S16.Bold</item>
+    </style>
+
+    <style name="AppButtonKeyPad" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/selector_keypad_background</item>
+    </style>
+
+    <style name="AppButtonKeyPad.Text">
+        <item name="android:textAppearance">@style/AppTextTitle.S20</item>
+    </style>
+
+    <!--app image corner size - 앱 코너 -->
+    <style name="AppRoundedImage">
+        <item name="cornerSize">13dp</item>
+    </style>
+
+    <!--app text title  -->
+    <style name="AppTextTitle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gray_700</item>
+    </style>
+    <!--app text title size -->
+    <style name="AppTextTitle.S40">
+        <item name="android:textSize">40sp</item>
+    </style>
+
+    <style name="AppTextTitle.S24">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="AppTextTitle.S20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTextTitle.S18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTextTitle.S14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!--app text body -->
+    <style name="AppTextBody">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gray_700</item>
+    </style>
+    <!--app text body size -->
+    <style name="AppTextBody.S20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTextBody.S18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTextBody.S16">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AppTextBody.S14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!--app text label  -->
+    <style name="AppTextLabel">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gray_800</item>
+    </style>
+
+    <!--app text label size -->
+    <style name="AppTextLabel.S16">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AppTextLabel.S16.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTextLabel.S14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!--app text caption -->
+    <style name="AppTextCaption">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gray_300</item>
+    </style>
+    <!--app text caption size -->
+    <style name="AppTextCaption.S14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AppTextCaption.S12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- app text primary-->
+    <style name="AppTextPrimary">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/blue_500</item>
+    </style>
+    <!-- app text primary size-->
+    <style name="AppTextPrimary.S14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AppTextPrimary.S14.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- app text on primary-->
+    <style name="AppTextOnPrimary">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <!-- app text on primary size-->
+    <style name="AppTextOnPrimary.S14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AppTextOnPrimary.S14.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTextOnPrimary.S24">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="AppTextOnPrimary.S24.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- app text place holder -->
+    <style name="AppTextPlaceHolder">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gray_150</item>
+    </style>
+
+    <style name="AppTextPlaceHolder.S40">
+        <item name="android:textSize">40sp</item>
+    </style>
+</resources>

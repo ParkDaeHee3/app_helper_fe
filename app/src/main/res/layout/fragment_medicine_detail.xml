@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_payment_method"
+            style="@style/AppToolbar.Navigation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/appbar_title_medicine_detail_screen" />
+
+        <TextView
+            android:id="@+id/tv_label_card_number"
+            style="@style/AppTextLabel.S14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/label_payment_card_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_payment_method" />
+
+        <EditText
+            android:id="@+id/et_input_card_number"
+            style="@style/AppEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:hint="@string/hint_input_card_number"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:nextFocusDown="@id/et_input_valid_date"
+            app:layout_constraintEnd_toEndOf="@id/tv_label_card_number"
+            app:layout_constraintStart_toStartOf="@id/tv_label_card_number"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_card_number" />
+
+        <TextView
+            android:id="@+id/tv_label_valid_date"
+            style="@style/AppTextLabel.S14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/label_valid_date"
+            app:layout_constraintEnd_toStartOf="@id/tv_label_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_input_card_number" />
+
+        <EditText
+            android:id="@+id/et_input_valid_date"
+            style="@style/AppEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:hint="@string/hint_input_valid_date"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:nextFocusDown="@id/et_input_password"
+            app:layout_constraintEnd_toEndOf="@id/tv_label_valid_date"
+            app:layout_constraintStart_toStartOf="@id/tv_label_valid_date"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_valid_date" />
+
+        <TextView
+            android:id="@+id/tv_label_password"
+            style="@style/AppTextLabel.S14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/label_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_label_valid_date"
+            app:layout_constraintTop_toTopOf="@id/tv_label_valid_date" />
+
+        <EditText
+            android:id="@+id/et_input_password"
+            style="@style/AppEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_input_password"
+            android:importantForAutofill="no"
+            android:inputType="numberPassword"
+            android:nextFocusDown="@id/et_input_card_name"
+            app:layout_constraintEnd_toEndOf="@id/tv_label_password"
+            app:layout_constraintStart_toStartOf="@id/tv_label_password"
+            app:layout_constraintTop_toTopOf="@id/et_input_valid_date" />
+
+        <TextView
+            android:id="@+id/tv_label_card_name"
+            style="@style/AppTextLabel.S14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/label_card_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_input_valid_date" />
+
+        <EditText
+            android:id="@+id/et_input_card_name"
+            style="@style/AppEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:hint="@string/hint_input_card_name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@id/tv_label_card_name"
+            app:layout_constraintStart_toStartOf="@id/tv_label_card_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_card_name" />
+
+        <Button
+            android:id="@+id/btn_submit_card_info"
+            style="@style/AppButtonPrimary"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="40dp"
+            android:enabled="false"
+            android:text="@string/btn_label_confirm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_input_card_name"
+            app:layout_constraintVertical_bias="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

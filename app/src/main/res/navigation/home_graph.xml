@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_graph.xml"
+    app:startDestination="@id/navigation_home">
+
+    <!-- home -->
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.app_helper_fe.ui.home.HomeFragment"
+        android:label="@string/label_home_screen"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_view_card_cold_area"
+            app:destination="@id/view_card_cold_area" />
+        <action
+            android:id="@+id/action_home_to_map"
+            app:destination="@id/navigation_map" />
+        <action
+            android:id="@+id/action_home_to_view_card_muscle_area"
+            app:destination="@id/view_card_muscle_area" />
+        <action
+            android:id="@+id/action_home_to_view_card_headache_area"
+            app:destination="@id/view_card_headache_area" />
+        <action
+            android:id="@+id/action_home_to_view_card_bruise_area"
+            app:destination="@id/view_card_bruise_area" />
+        <action
+            android:id="@+id/action_home_to_view_card_stomach_area"
+            app:destination="@id/view_card_stomach_area" />
+        <action
+            android:id="@+id/action_home_to_view_card_fever_area"
+            app:destination="@id/view_card_fever_area" />
+        <action
+            android:id="@+id/action_home_to_view_card_tooth_area"
+            app:destination="@id/view_card_tooth_area" />
+        <action
+            android:id="@+id/action_home_to_maypage"
+            app:destination="@id/navigation_maypage" />
+        <action
+            android:id="@+id/action_home_to_search_medicine"
+            app:destination="@id/navigation_search_medicine" />
+    </fragment>
+
+
+    <!--하단바에 있는 검색을 누르면 검색 페이지로 이동 -->
+    <fragment
+        android:id="@+id/navigation_search_medicine"
+        android:name="com.example.app_helper_fe.ui.search.SearchFragment"
+        android:label="@string/label_search_screen"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_search_medicine_to_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <!-- 하단바 지도-->
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.example.app_helper_fe.ui.map.MapFragment"
+        android:label="@string/label_map_screen"
+        tools:layout="@layout/fragment_map">
+
+        <action
+            android:id="@+id/action_map_to_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <!-- 하단바 mypage-->
+    <fragment
+        android:id="@+id/navigation_maypage"
+        android:name="com.example.app_helper_fe.ui.mypage.MypageFragment"
+        android:label="@string/label_mypage_screen"
+        tools:layout="@layout/fragment_mypage">
+
+        <action
+            android:id="@+id/action_maypage_to_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+<!--
+    <fragment
+        android:id="@+id/navigation_medicine_detail2"
+        android:name="com.example.app_helper_fe.ui.payment.MedicineDetailFragment"
+        android:label="PaymentMethodFragment"
+        tools:layout="@layout/fragment_medicine_detail">
+        <action
+            android:id="@+id/action_payment_method_to_payment_registration"
+            app:destination="@id/navigation_payment_registration" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_payment_registration"
+        android:name="com.example.app_helper_fe.ui.payment.PaymentRegistrationFragment"
+        android:label="PaymentRegistrationFragment"
+        tools:layout="@layout/fragment_payment_registration">
+        <argument
+            android:name="paymentMethod"
+            app:argType="com.onemillionlines.payapp.data.PaymentMethod" />
+        <action
+            android:id="@+id/action_payment_registration_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_transfer"
+        android:name="com.example.app_helper_fe.ui.transfer.TransferFragment"
+        android:label="TransferFragment"
+        tools:layout="@layout/fragment_transfer">
+        <argument
+            android:name="account"
+            app:argType="com.onemillionlines.payapp.data.Account" />
+        <action
+            android:id="@+id/action_transfer_to_confirm_dialog"
+            app:destination="@id/navigation_transfer_confirm_dialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/navigation_transfer_confirm_dialog"
+        android:name="com.example.app_helper_fe.ui.transfer.TransferConfirmDialogFragment"
+        android:label="TransferConfirmDialogFragment"
+        tools:layout="@layout/fragment_transfer_confirm_dialog">
+        <argument
+            android:name="account"
+            app:argType="com.onemillionlines.payapp.data.Account" />
+        <argument
+            android:name="amount"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_transfer_confirm_dialog_to_result"
+            app:destination="@id/navigation_transfer_result" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/navigation_transfer_result"
+        android:name="com.example.app_helper_fe.ui.transfer.TransferResultFragment"
+        android:label="TransferResultFragment"
+        tools:layout="@layout/fragment_transfer_result">
+        <argument
+            android:name="account"
+            app:argType="com.onemillionlines.payapp.data.Account" />
+        <argument
+            android:name="amount"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_transfer_result_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_transfer_detail"
+        android:name="com.example.app_helper_fe.ui.transferdetail.TransferDetailFragment"
+        android:label="TransferDetailFragment"
+        tools:layout="@layout/fragment_transfer_detail">
+        <argument
+            android:name="transfer"
+            app:argType="com.onemillionlines.payapp.data.Transfer" />
+    </fragment>
+-->
+
+    <!--감기 약 카드 -->
+    <fragment
+        android:id="@+id/view_card_cold_area"
+        android:name="com.example.app_helper_fe.ui.cold.ColdMedicineFragment"
+        android:label="ColdFragment"
+        tools:layout="@layout/fragment_cold_medicine">
+
+        <action
+            android:id="@+id/action_view_card_cold_area_to_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_view_card_cold_area_to_medicine_detail"
+            app:destination="@id/navigation_medicine_detail" />
+    </fragment>
+
+    <!--headache 두통 약 카드 -->
+    <fragment
+        android:id="@+id/view_card_headache_area"
+        android:name="com.example.app_helper_fe.ui.headache.HeadacheMedicineFragment"
+        android:label="HeadacheFragment"
+        tools:layout="@layout/fragment_headache_medicine">
+
+    </fragment>
+
+    <!--muscle pain 근육통 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
+    <fragment
+        android:id="@+id/view_card_muscle_area"
+        android:name="com.example.app_helper_fe.ui.muscle.MuscleMedicineFragment"
+        android:label="MuscleFragment"
+        tools:layout="@layout/fragment_muscle_medicine">
+        >
+        <!--bruise 타박상 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
+    </fragment>
+    <fragment
+        android:id="@+id/view_card_bruise_area"
+        android:name="com.example.app_helper_fe.ui.bruise.BruiseMedicineFragment"
+        android:label="BruiseFragment"
+        tools:layout="@layout/fragment_bruise_medicine"/>
+
+    <!--stomach 복통 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
+    <fragment
+        android:id="@+id/view_card_stomach_area"
+        android:name="com.example.app_helper_fe.ui.stomach.StomachMedicineFragment"
+        android:label="StomachFragment"
+        tools:layout="@layout/fragment_stomach_medicine"/>
+    <!--fever 온열 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
+    <fragment
+        android:id="@+id/view_card_fever_area"
+        android:name="com.example.app_helper_fe.ui.fever.FeverMedicineFragment"
+        android:label="FeverFragment"
+        tools:layout="@layout/fragment_fever_medicine"/>
+
+
+    <!--tooth 온열 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
+    <fragment
+        android:id="@+id/view_card_tooth_area"
+        android:name="com.example.app_helper_fe.ui.tooth.ToothMedicineFragment"
+        android:label="ToothFragment"
+        tools:layout="@layout/fragment_tooth_medicine"
+        />
+    <activity
+        android:id="@+id/navigation_medicine_detail"
+        android:name="com.example.app_helper_fe.ui.detail.MedicineDetailActivity"
+        android:label="MedicineDetailActivity"
+        tools:layout="@layout/activity_medicine_detail"/>
+
+
+</navigation>

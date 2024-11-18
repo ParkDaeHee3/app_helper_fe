@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_muscle_section"
+        style="@style/AppToolbar.Navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/appbar_title_muscle_medicine" />
+
+    <!--Title 시작 -->
+    <View
+        android:id="@+id/view_title_muscle_area"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@drawable/background_lime7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_muscle_section" />
+
+    <ImageView
+        android:id="@+id/image_vi_title_polygon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="300dp"
+        android:src="@drawable/ic_polygon"
+        app:layout_constraintBottom_toBottomOf="@id/view_title_muscle_area"
+        app:layout_constraintEnd_toEndOf="@id/view_title_muscle_area"
+        app:layout_constraintStart_toStartOf="@id/view_title_muscle_area"
+        app:layout_constraintTop_toTopOf="@id/view_title_muscle_area" />
+
+    <ImageView
+        android:id="@+id/image_vi_title_muscle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/ic_muscle_pain"
+        app:layout_constraintBottom_toBottomOf="@id/image_vi_title_polygon"
+        app:layout_constraintEnd_toEndOf="@id/image_vi_title_polygon"
+        app:layout_constraintStart_toStartOf="@id/image_vi_title_polygon"
+        app:layout_constraintTop_toTopOf="@id/image_vi_title_polygon" />
+
+    <TextView
+        android:id="@+id/tv_title_muscle"
+        style="@style/DetailCardDisease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="근육통 약  "
+        app:layout_constraintBottom_toBottomOf="@+id/view_title_muscle_area"
+        app:layout_constraintEnd_toEndOf="@id/view_title_muscle_area"
+        app:layout_constraintStart_toStartOf="@id/view_title_muscle_area"
+        app:layout_constraintTop_toTopOf="@id/view_title_muscle_area" />
+    <!--Title 끝-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_muscle_medicine_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_title_muscle_area"
+        tools:listitem="@layout/item_muscle_list" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<item의 목록을 2열로 나열하는 방법>
+     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+     app:spanCount="2"
+    -->

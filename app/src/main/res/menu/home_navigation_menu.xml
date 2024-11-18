@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/label_home_screen" />
+    <item
+        android:id="@+id/navigation_search_medicine"
+        android:icon="@drawable/ic_search"
+        android:title="@string/label_search_screen" />
+    <item
+        android:id="@+id/navigation_map"
+        android:icon="@drawable/ic_map"
+        android:title="@string/label_map_screen" />
+    <item
+        android:id="@+id/navigation_maypage"
+        android:icon="@drawable/ic_mypage2"
+        android:title="@string/label_mypage_screen" />
+</menu>

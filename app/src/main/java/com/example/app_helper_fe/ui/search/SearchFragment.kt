@@ -1,0 +1,90 @@
+package com.example.app_helper_fe.ui.search
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.app_helper_fe.data.Medicine
+import com.example.app_helper_fe.data.Storage_medicine
+import com.example.app_helper_fe.databinding.FragmentSearchBinding
+import java.util.Locale
+
+class SearchFragment : Fragment(), SearchMedicineItemClickListener {
+
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var adapter: SearchMedicineListAdapter //검색 기능 추가
+    private lateinit var filteredList: ArrayList<Medicine> //검색 기능 추가
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    /*
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.rvTransferAccountList.adapter = TransferAccountListAdapter(Storage.accountList, this)
+    }
+*/
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Initialize the filtered list with the full medicine list
+        filteredList = ArrayList(Storage_medicine.medicineList)
+
+        // Set up RecyclerView with initial data
+        adapter = SearchMedicineListAdapter(filteredList, this)
+        binding.rvSearchMedicineList.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvSearchMedicineList.adapter = adapter
+
+        // Set up SearchView
+        binding.searchBar.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterMedicines(newText)
+                return true
+            }
+        })
+    }
+
+    // search에서 - 검색 기능(모든 약품 페이지)
+    private fun filterMedicines(query: String?) {
+        val searchText = query?.lowercase(Locale.getDefault()).orEmpty()
+        filteredList.clear()
+
+        if (searchText.isNotEmpty()) {
+            filteredList.addAll(Storage_medicine.medicineList.filter { medicine ->
+                medicine.medicineName.lowercase(Locale.getDefault()).contains(searchText) //||
+                // account.bankName.lowercase(Locale.getDefault()).contains(searchText) ||
+                // account.accountNumber.lowercase(Locale.getDefault()).contains(searchText)
+            })
+        } else {
+            filteredList.addAll(Storage_medicine.medicineList)
+        }
+
+        // Notify the adapter of data changes
+        adapter.notifyDataSetChanged()
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onSearchMedicineClick(medicine: Medicine) {
+
+    }
+}

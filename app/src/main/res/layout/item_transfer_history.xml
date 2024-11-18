@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingTop="15dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="15dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_transfer_account_image"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:contentDescription="@string/description_transfer_account_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/AppRoundedImage"
+        tools:background="@color/gray_300" />
+
+    <TextView
+        android:id="@+id/tv_transfer_account_name"
+        style="@style/AppTextTitle.S14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_transfer_date"
+        app:layout_constraintEnd_toStartOf="@id/tv_transfer_history_amount"
+        app:layout_constraintStart_toEndOf="@id/iv_transfer_account_image"
+        app:layout_constraintTop_toTopOf="@id/iv_transfer_account_image"
+        tools:text="아이비" />
+
+    <TextView
+        android:id="@+id/tv_transfer_date"
+        style="@style/AppTextCaption.S12"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/tv_transfer_history_balance"
+        app:layout_constraintStart_toStartOf="@id/tv_transfer_account_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_transfer_account_name"
+        tools:text="2023.10.08 19:23:06" />
+
+    <TextView
+        android:id="@+id/tv_transfer_history_amount"
+        style="@style/AppTextPrimary.S14.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/tv_transfer_history_balance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="10,000원" />
+
+    <TextView
+        android:id="@+id/tv_transfer_history_balance"
+        style="@style/AppTextCaption.S12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_transfer_history_amount"
+        tools:text="7,490,000원" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

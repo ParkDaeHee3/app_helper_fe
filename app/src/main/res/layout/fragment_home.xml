@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_home"
+            style="@style/AppToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="@string/app_name" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_add_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="view_card_area,tv_add_card,iv_view_card_map" />
+
+            <View
+                android:id="@+id/view_card_area"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:background="@drawable/background_lime8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/Logo_helper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="300dp"
+                android:layout_marginBottom="90dp"
+                android:contentDescription="@string/description_main_logo"
+                android:src="@drawable/logo_helper"
+                app:layout_constraintBottom_toBottomOf="@+id/view_card_area"
+                app:layout_constraintEnd_toEndOf="@+id/view_card_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_area" />
+
+            <TextView
+                android:id="@+id/tv_title_Logo"
+                style="@style/DetailCardDisease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="120dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/text_mainpage_title"
+                app:layout_constraintBottom_toTopOf="@+id/iv_view_card_map"
+                app:layout_constraintEnd_toEndOf="@id/view_card_area"
+                app:layout_constraintStart_toEndOf="@id/Logo_helper"
+                app:layout_constraintTop_toTopOf="@id/view_card_area" />
+
+            <TextView
+                android:id="@+id/tv_add_card"
+                style="@style/TitleTextBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/text_mainpage_body"
+                app:layout_constraintBottom_toBottomOf="@id/view_card_area"
+                app:layout_constraintEnd_toEndOf="@id/view_card_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_area" />
+
+
+            <!--메이페이지 지도 그림-->
+            <ImageView
+                android:id="@+id/iv_view_card_map"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="116dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/description_pharmacy_map_image"
+                android:src="@drawable/btn_banner_map2"
+                app:layout_constraintBottom_toTopOf="@+id/tv_question_condition"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view_card_area"
+                app:layout_constraintVertical_chainStyle="packed" />
+            <!--메이페이지 지도 그림 끝-->
+
+
+            <!--카드섹션 질문  -->
+            <TextView
+                android:id="@+id/tv_question_condition"
+                style="@style/AppTextTitle.S14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="210dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/text_mainpage_card_section"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 카드 섹션 증상1 시작 -->
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_card_cold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="view_card_cold_area,tv_card_cold,
+         btn_cold,image_vi_cold_polygon"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/view_card_cold_area"
+                android:layout_width="168dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/background_home_card"
+                app:layout_constraintEnd_toStartOf="@+id/view_card_headache_area"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_question_condition" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_cold"
+                style="@style/AppButtonOnPrimary"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:text="감기"
+                app:layout_constraintEnd_toEndOf="@id/view_card_cold_area"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="@id/view_card_cold_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_cold_area" />
+
+            <TextView
+                android:id="@+id/tv_card_cold"
+                style="@style/AppTextOnPrimary.S14.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="22dp"
+                android:text="@string/text_card_cough_body"
+                app:layout_constraintEnd_toEndOf="@id/view_card_cold_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_cold_area"
+                app:layout_constraintTop_toBottomOf="@id/btn_cold" />
+
+            <ImageView
+                android:id="@+id/image_vi_cold_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:src="@drawable/ic_polygon"
+                app:layout_constraintBottom_toBottomOf="@id/view_card_cold_area"
+                app:layout_constraintEnd_toEndOf="@id/view_card_cold_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_cold_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_cold_area" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_cold"
+                app:layout_constraintBottom_toBottomOf="@+id/image_vi_cold_polygon"
+                app:layout_constraintEnd_toEndOf="@+id/image_vi_cold_polygon"
+                app:layout_constraintStart_toStartOf="@+id/image_vi_cold_polygon"
+                app:layout_constraintTop_toTopOf="@+id/image_vi_cold_polygon" />
+
+            <!-- 카드 섹션 증상1 끝 -->
+
+            <!-- 카드 섹션 증상2  시작 -->
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_card_headache"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="view_card_headache_area,tv_card_headache,
+         btn_headache,image_vi_headache_polygon"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/view_card_headache_area"
+                android:layout_width="168dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/background_home_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/view_card_cold_area"
+                app:layout_constraintTop_toBottomOf="@+id/tv_question_condition" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_headache"
+                style="@style/AppButtonOnPrimary"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:text="두통"
+                app:layout_constraintEnd_toEndOf="@id/view_card_headache_area"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="@id/view_card_headache_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_headache_area" />
+
+            <TextView
+                android:id="@+id/tv_card_headache"
+                style="@style/AppTextOnPrimary.S14.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="22dp"
+                android:text="머리가 아파요"
+                app:layout_constraintEnd_toEndOf="@id/view_card_headache_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_headache_area"
+                app:layout_constraintTop_toBottomOf="@id/btn_headache" />
+
+            <ImageView
+                android:id="@+id/image_vi_headache_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:src="@drawable/ic_polygon"
+                app:layout_constraintBottom_toBottomOf="@id/view_card_headache_area"
+                app:layout_constraintEnd_toEndOf="@id/view_card_headache_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_headache_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_headache_area" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="2dp"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_headache"
+                app:layout_constraintBottom_toBottomOf="@+id/image_vi_headache_polygon"
+                app:layout_constraintEnd_toEndOf="@+id/image_vi_headache_polygon"
+                app:layout_constraintStart_toStartOf="@+id/image_vi_headache_polygon"
+                app:layout_constraintTop_toTopOf="@+id/image_vi_headache_polygon" />
+
+            <!-- 카드 섹션 증상2 끝 -->
+
+            <!-- 카드 섹션 증상3  시작 -->
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_card_muscle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="view_card_muscle_area,tv_card_muscle,
+         btn_muscle,image_vi_muscle_polygon"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/view_card_muscle_area"
+                android:layout_width="168dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_home_card"
+                app:layout_constraintEnd_toStartOf="@+id/view_card_bruise_area"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_card_cold_area" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_muscle"
+                style="@style/AppButtonOnPrimary"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:text="근육통"
+                app:layout_constraintEnd_toEndOf="@id/view_card_muscle_area"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="@id/view_card_muscle_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_muscle_area" />
+
+            <TextView
+                android:id="@+id/tv_card_muscle"
+                style="@style/AppTextOnPrimary.S14.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="22dp"
+                android:text="근육이 아파요"
+                app:layout_constraintEnd_toEndOf="@id/view_card_muscle_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_muscle_area"
+                app:layout_constraintTop_toBottomOf="@id/btn_muscle" />
+
+            <ImageView
+                android:id="@+id/image_vi_muscle_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:src="@drawable/ic_polygon"
+                app:layout_constraintBottom_toBottomOf="@id/view_card_muscle_area"
+                app:layout_constraintEnd_toEndOf="@id/view_card_muscle_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_muscle_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_muscle_area" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_muscle_pain"
+                app:layout_constraintBottom_toBottomOf="@+id/image_vi_muscle_polygon"
+                app:layout_constraintEnd_toEndOf="@+id/image_vi_muscle_polygon"
+                app:layout_constraintStart_toStartOf="@+id/image_vi_muscle_polygon"
+                app:layout_constraintTop_toTopOf="@+id/image_vi_muscle_polygon" />
+
+            <!-- 카드 섹션 증상3 끝 -->
+
+            <!-- 카드 섹션 증상4  시작 -->
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_card_bruise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="view_card_bruise_area,tv_card_bruise,
+         btn_bruise,image_vi_bruise_polygon"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/view_card_bruise_area"
+                android:layout_width="168dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/background_home_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/view_card_muscle_area"
+                app:layout_constraintTop_toBottomOf="@+id/view_card_headache_area" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_bruise"
+                style="@style/AppButtonOnPrimary"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:text="타박상"
+                app:layout_constraintEnd_toEndOf="@id/view_card_bruise_area"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="@id/view_card_bruise_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_bruise_area" />
+
+            <TextView
+                android:id="@+id/tv_card_bruise"
+                style="@style/AppTextOnPrimary.S14.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="22dp"
+                android:text="처치가 필요해요"
+                app:layout_constraintEnd_toEndOf="@id/view_card_bruise_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_bruise_area"
+                app:layout_constraintTop_toBottomOf="@id/btn_bruise" />
+
+            <ImageView
+                android:id="@+id/image_vi_bruise_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:src="@drawable/ic_polygon"
+                app:layout_constraintBottom_toBottomOf="@id/view_card_bruise_area"
+                app:layout_constraintEnd_toEndOf="@id/view_card_bruise_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_bruise_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_bruise_area" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_bruise"
+                app:layout_constraintBottom_toBottomOf="@+id/image_vi_bruise_polygon"
+                app:layout_constraintEnd_toEndOf="@+id/image_vi_bruise_polygon"
+                app:layout_constraintStart_toStartOf="@+id/image_vi_bruise_polygon"
+                app:layout_constraintTop_toTopOf="@+id/image_vi_bruise_polygon" />
+
+            <!-- 카드 섹션 증상4 끝 -->
+
+            <!-- 카드 섹션 증상5 시작 -->
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_card_stomach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="view_card_stomach_area,tv_card_stomach,
+         btn_stomach,image_vi_stomach_polygon"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/view_card_stomach_area"
+                android:layout_width="168dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_home_card"
+                app:layout_constraintEnd_toStartOf="@+id/view_card_fever_area"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_card_muscle_area" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_stomach"
+                style="@style/AppButtonOnPrimary"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:text="복통"
+                app:layout_constraintEnd_toEndOf="@id/view_card_stomach_area"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="@id/view_card_stomach_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_stomach_area" />
+
+            <TextView
+                android:id="@+id/tv_card_stomach"
+                style="@style/AppTextOnPrimary.S14.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="22dp"
+                android:text="배가 아파요"
+                app:layout_constraintEnd_toEndOf="@id/view_card_stomach_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_stomach_area"
+                app:layout_constraintTop_toBottomOf="@id/btn_stomach" />
+
+            <ImageView
+                android:id="@+id/image_vi_stomach_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:src="@drawable/ic_polygon"
+                app:layout_constraintBottom_toBottomOf="@id/view_card_stomach_area"
+                app:layout_constraintEnd_toEndOf="@id/view_card_stomach_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_stomach_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_stomach_area" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="8dp"
+
+                android:src="@drawable/ic_stomach"
+
+                app:layout_constraintBottom_toBottomOf="@+id/image_vi_stomach_polygon"
+                app:layout_constraintEnd_toEndOf="@+id/image_vi_stomach_polygon"
+                app:layout_constraintStart_toStartOf="@+id/image_vi_stomach_polygon"
+                app:layout_constraintTop_toTopOf="@+id/image_vi_stomach_polygon" />
+
+            <!-- 카드 섹션 증상5 끝 -->
+
+            <!-- 카드 섹션 증상6  시작 -->
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_card_fever"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="view_card_fever_area,tv_card_fever,
+         btn_fever,image_vi_fever_polygon"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/view_card_fever_area"
+                android:layout_width="168dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/background_home_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/view_card_stomach_area"
+                app:layout_constraintTop_toBottomOf="@+id/view_card_bruise_area" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_fever"
+                style="@style/AppButtonOnPrimary"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:text="온열"
+                app:layout_constraintEnd_toEndOf="@id/view_card_fever_area"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="@id/view_card_fever_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_fever_area" />
+
+            <TextView
+                android:id="@+id/tv_card_fever"
+                style="@style/AppTextOnPrimary.S14.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="22dp"
+                android:text="몸이 뜨거워요"
+                app:layout_constraintEnd_toEndOf="@id/view_card_fever_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_fever_area"
+                app:layout_constraintTop_toBottomOf="@id/btn_fever" />
+
+            <ImageView
+                android:id="@+id/image_vi_fever_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:src="@drawable/ic_polygon"
+                app:layout_constraintBottom_toBottomOf="@id/view_card_fever_area"
+                app:layout_constraintEnd_toEndOf="@id/view_card_fever_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_fever_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_fever_area" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/ic_fever"
+                app:layout_constraintBottom_toBottomOf="@+id/image_vi_fever_polygon"
+                app:layout_constraintEnd_toEndOf="@+id/image_vi_fever_polygon"
+                app:layout_constraintStart_toStartOf="@+id/image_vi_fever_polygon"
+                app:layout_constraintTop_toTopOf="@+id/image_vi_fever_polygon" />
+
+            <!-- 카드 섹션 증상6 끝 -->
+
+            <!-- 카드 섹션 증상7  시작 -->
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_card_tooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="view_card_tooth_area,tv_card_tooth,
+         btn_tooth,image_vi_tooth_polygon"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/view_card_tooth_area"
+                android:layout_width="168dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_home_card"
+                app:layout_constraintEnd_toStartOf="@+id/view_card_other_area"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_card_stomach_area" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_tooth"
+                style="@style/AppButtonOnPrimary"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:text="치통"
+                app:layout_constraintEnd_toEndOf="@id/view_card_tooth_area"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="@id/view_card_tooth_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_tooth_area" />
+
+            <TextView
+                android:id="@+id/tv_card_tooth"
+                style="@style/AppTextOnPrimary.S14.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="22dp"
+                android:text="이가 시려요"
+                app:layout_constraintEnd_toEndOf="@id/view_card_tooth_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_tooth_area"
+                app:layout_constraintTop_toBottomOf="@id/btn_tooth" />
+
+            <ImageView
+                android:id="@+id/image_vi_tooth_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:src="@drawable/ic_polygon"
+                app:layout_constraintBottom_toBottomOf="@id/view_card_tooth_area"
+                app:layout_constraintEnd_toEndOf="@id/view_card_tooth_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_tooth_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_tooth_area" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/ic_tooth"
+                app:layout_constraintBottom_toBottomOf="@+id/image_vi_tooth_polygon"
+                app:layout_constraintEnd_toEndOf="@+id/image_vi_tooth_polygon"
+                app:layout_constraintStart_toStartOf="@+id/image_vi_tooth_polygon"
+                app:layout_constraintTop_toTopOf="@+id/image_vi_tooth_polygon" />
+
+            <!-- 카드 섹션 증상7 끝 -->
+
+            <!-- 카드 섹션 증상8  시작 -->
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_card_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="view_card_other_area,tv_card_other,
+         btn_other,image_vi_other_polygon"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/view_card_other_area"
+                android:layout_width="168dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/background_home_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/view_card_tooth_area"
+                app:layout_constraintTop_toBottomOf="@+id/view_card_fever_area" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_other"
+                style="@style/AppButtonOnPrimary"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:text="기타"
+                app:layout_constraintEnd_toEndOf="@id/view_card_other_area"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="@id/view_card_other_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_other_area" />
+
+            <TextView
+                android:id="@+id/tv_card_other"
+                style="@style/AppTextOnPrimary.S14.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="22dp"
+                android:text="다른 곳이 아파요"
+                app:layout_constraintEnd_toEndOf="@id/view_card_other_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_other_area"
+                app:layout_constraintTop_toBottomOf="@id/btn_other" />
+
+            <ImageView
+                android:id="@+id/image_vi_other_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:src="@drawable/ic_polygon"
+                app:layout_constraintBottom_toBottomOf="@id/view_card_other_area"
+                app:layout_constraintEnd_toEndOf="@id/view_card_other_area"
+                app:layout_constraintStart_toStartOf="@id/view_card_other_area"
+                app:layout_constraintTop_toTopOf="@id/view_card_other_area" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_others"
+                app:layout_constraintBottom_toBottomOf="@+id/image_vi_other_polygon"
+                app:layout_constraintEnd_toEndOf="@+id/image_vi_other_polygon"
+                app:layout_constraintStart_toStartOf="@+id/image_vi_other_polygon"
+                app:layout_constraintTop_toTopOf="@+id/image_vi_other_polygon" />
+
+            <!-- 카드 섹션 증상8 끝 -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_transfer_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="352dp"
+                android:nestedScrollingEnabled="false"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_question_condition"
+                tools:listitem="@layout/item_transfer_history"
+                tools:visibility="visible" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

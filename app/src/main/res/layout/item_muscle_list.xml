@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingTop="7dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="7dp">
+
+    <View
+        android:id="@+id/border_line"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:background="@drawable/border_green"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_muscle_image"
+        android:layout_width="80dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="9dp"
+        android:contentDescription="@string/description_muscle_medicine_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/border_line"
+        app:shapeAppearanceOverlay="@style/AppRoundedImage"
+        tools:background="@color/gray_300" />
+
+    <TextView
+        android:id="@+id/tv_muscle_medicine_name"
+        style="@style/AppTextTitle.S14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@id/border_line"
+        app:layout_constraintStart_toEndOf="@id/iv_muscle_image"
+        app:layout_constraintTop_toTopOf="@id/border_line"
+        tools:text="약품명" />
+
+    <TextView
+        android:id="@+id/tv_pharmacy_name"
+        style="@style/AppTextCaption.S12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/border_line"
+        app:layout_constraintStart_toEndOf="@id/iv_muscle_image"
+        app:layout_constraintTop_toBottomOf="@id/tv_muscle_medicine_name"
+        tools:text="판매점 이름" />
+
+    <TextView
+        android:id="@+id/tv_pharmacy_number"
+        style="@style/AppTextCaption.S12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/border_line"
+        app:layout_constraintEnd_toEndOf="@id/border_line"
+        app:layout_constraintStart_toEndOf="@id/tv_pharmacy_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_muscle_medicine_name"
+        tools:text="000-111-222222" />
+
+    <ImageView
+        android:id="@+id/image_vi_muscle_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/description_pharmacy_location"
+        android:src="@drawable/ic_arrow_outward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
