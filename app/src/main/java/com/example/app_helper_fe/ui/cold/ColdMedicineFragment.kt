@@ -9,10 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.data.Cold
 import com.example.app_helper_fe.data.Storage_cold
 import com.example.app_helper_fe.databinding.FragmentColdMedicineBinding
+import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
-
-class ColdMedicineFragment : Fragment(),ColdItemClickListener {
+class ColdMedicineFragment : Fragment(),ColdItemClickListener, MedicineDetailClickListener {
 
     private var _binding: FragmentColdMedicineBinding? = null
     private val binding get() = _binding!!
@@ -29,7 +29,8 @@ class ColdMedicineFragment : Fragment(),ColdItemClickListener {
 //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvColdMedicineList.adapter = ColdListAdapter(Storage_cold.coldList, this)
+        binding.rvColdMedicineList.adapter = ColdListAdapter(Storage_cold.coldList, this, this
+        )
         setLayout()
     }
 
@@ -50,9 +51,16 @@ class ColdMedicineFragment : Fragment(),ColdItemClickListener {
         _binding = null
     }
 
-
+//cold list page  감기약  이동 기능
     override fun onColdClick(cold: Cold) {
 
+
+    }
+
+    // medicine detail page 약품 상세 정보 이동 기능
+    override fun onMedicineDetailClick() {
+        val action = ColdMedicineFragmentDirections.actionViewCardColdAreaToMedicineDetail()
+        findNavController().navigate(action)
 
     }
 }
