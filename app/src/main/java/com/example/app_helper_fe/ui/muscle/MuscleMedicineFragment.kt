@@ -9,9 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.data.Muscle
 import com.example.app_helper_fe.data.Storage_muscle
 import com.example.app_helper_fe.databinding.FragmentMuscleMedicineBinding
+import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
-class MuscleMedicineFragment : Fragment(), MuscleItemClickListener {
+
+class MuscleMedicineFragment : Fragment(), MuscleItemClickListener,MedicineDetailClickListener {
 
     private var _binding: FragmentMuscleMedicineBinding? = null
     private val binding get() = _binding!!
@@ -28,7 +30,7 @@ class MuscleMedicineFragment : Fragment(), MuscleItemClickListener {
     //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvMuscleMedicineList.adapter = MuscleListAdapter(Storage_muscle.muscleList, this)
+        binding.rvMuscleMedicineList.adapter = MuscleListAdapter(Storage_muscle.muscleList, this,this)
         setLayout()
     }
 
@@ -53,6 +55,15 @@ class MuscleMedicineFragment : Fragment(), MuscleItemClickListener {
     override fun onMuscleClick(muscle: Muscle) {
 
     }
+
+    // medicine detail page 약품 상세 정보 이동 기능
+    override fun onMedicineDetailClick() {
+        val action = MuscleMedicineFragmentDirections.actionViewCardMuscleAreaToMedicineDetail()
+        findNavController().navigate(action)
+
+    }
+
+
 
 }
 
