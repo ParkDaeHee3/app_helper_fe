@@ -9,9 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.data.Headache
 import com.example.app_helper_fe.data.Storage_headache
 import com.example.app_helper_fe.databinding.FragmentHeadacheMedicineBinding
+import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
-class HeadacheMedicineFragment : Fragment(), HeadacheItemClickListener {
+
+class HeadacheMedicineFragment : Fragment(), HeadacheItemClickListener,MedicineDetailClickListener {
 
     private var _binding: FragmentHeadacheMedicineBinding? = null
     private val binding get() = _binding!!
@@ -29,7 +31,7 @@ class HeadacheMedicineFragment : Fragment(), HeadacheItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvHeadacheMedicineList.adapter =
-            HeadacheListAdapter(Storage_headache.headacheList, this)
+            HeadacheListAdapter(Storage_headache.headacheList, this,this)
         setLayout()
     }
 
@@ -53,22 +55,16 @@ class HeadacheMedicineFragment : Fragment(), HeadacheItemClickListener {
 
 
     override fun onHeadacheClick(headache: Headache) {
-        /*
-        if (Storage_headache.paymentMethod != null) {
-            val action = TransferSearchFragmentDirections.actionTransferAccountToTransfer(headache)
-            findNavController().navigate(action)
-        } else {
-            Snackbar.make(
-                binding.root,
-                getString(R.string.guide_message_add_payment_method),
-                Snackbar.LENGTH_LONG
-            ).show()
-            val action = TransferSearchFragmentDirections.actionTransferAccountToPaymentMethod()
-            findNavController().navigate(action)
-        }
 
-         */
     }
+
+    // medicine detail page 약품 상세 정보 이동 기능
+    override fun onMedicineDetailClick() {
+        val action = HeadacheMedicineFragmentDirections.actionViewCardHeadacheAreaToMedicineDetail()
+        findNavController().navigate(action)
+
+    }
+
 
 }
 

@@ -9,9 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.data.Fever
 import com.example.app_helper_fe.data.Storage_fever
 import com.example.app_helper_fe.databinding.FragmentFeverMedicineBinding
+import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
-class FeverMedicineFragment : Fragment(), FeverItemClickListener {
+class FeverMedicineFragment : Fragment(), FeverItemClickListener,MedicineDetailClickListener {
 
     private var _binding: FragmentFeverMedicineBinding? = null
     private val binding get() = _binding!!
@@ -28,7 +29,7 @@ class FeverMedicineFragment : Fragment(), FeverItemClickListener {
     //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvFeverMedicineList.adapter = FeverListAdapter(Storage_fever.feverList, this)
+        binding.rvFeverMedicineList.adapter = FeverListAdapter(Storage_fever.feverList, this,this)
         setLayout()
     }
 
@@ -54,6 +55,15 @@ class FeverMedicineFragment : Fragment(), FeverItemClickListener {
     override fun onFeverClick(fever: Fever) {
 
     }
+
+    // medicine detail page 약품 상세 정보 이동 기능
+    override fun onMedicineDetailClick() {
+        val action = FeverMedicineFragmentDirections.actionViewCardFeverAreaToMedicineDetail()
+        findNavController().navigate(action)
+
+    }
+
+
 
 }
 

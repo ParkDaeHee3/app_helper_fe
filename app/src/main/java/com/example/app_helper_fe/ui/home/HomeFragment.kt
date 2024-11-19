@@ -137,14 +137,4 @@ private fun setMapCard() {
     }
 
 
-/*
-    override fun onTransferClick(transfer: Transfer) {
-        val action = HomeFragmentDirections.actionHomeToTransferDetail(transfer)
-        findNavController().navigate(action)
-    }
-
-
-
- */
-
 }

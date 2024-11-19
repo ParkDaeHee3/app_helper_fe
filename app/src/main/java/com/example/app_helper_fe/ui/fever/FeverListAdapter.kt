@@ -5,18 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_helper_fe.data.Fever
 import com.example.app_helper_fe.databinding.ItemFeverListBinding
+import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class FeverListAdapter(
     private val items: List<Fever>,
-    private val listener: FeverItemClickListener
+    private val feverClicklistener: FeverItemClickListener,
+    private val detailClickListener: MedicineDetailClickListener
+
 ) : RecyclerView.Adapter<FeverItemViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): FeverItemViewHolder {
-        return FeverItemViewHolder.from(parent,listener)
+        return FeverItemViewHolder.from(parent, feverClicklistener, detailClickListener)
     }
 
     override fun onBindViewHolder(holder: FeverItemViewHolder, position: Int) {
@@ -31,12 +34,15 @@ class FeverListAdapter(
 
 class FeverItemViewHolder(
     private val binding: ItemFeverListBinding,
-    private val listener: FeverItemClickListener
+    private val feverClicklistener: FeverItemClickListener,
+    private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(fever:Fever) {
+    fun bind(fever: Fever) {
         itemView.setOnClickListener {
-            listener.onFeverClick(fever)
+            feverClicklistener.onFeverClick(fever)
+            detailClickListener.onMedicineDetailClick()
+
         }
         with(binding) {
             ivFeverImage.setImageResource(fever.medicineResourceId)
@@ -47,15 +53,17 @@ class FeverItemViewHolder(
     }
 
     companion object {
-        fun from(parent: ViewGroup, listener: FeverItemClickListener): FeverItemViewHolder {
-            return FeverItemViewHolder(
-                ItemFeverListBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                ),
-                listener
+        fun from(
+            parent: ViewGroup,
+            feverClicklistener: FeverItemClickListener,
+            detailClickListener: MedicineDetailClickListener
+        ): FeverItemViewHolder {
+            val binding = ItemFeverListBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
             )
+            return FeverItemViewHolder(binding, feverClicklistener, detailClickListener)
         }
     }
 }

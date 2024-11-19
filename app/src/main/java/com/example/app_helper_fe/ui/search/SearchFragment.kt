@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.databinding.FragmentSearchBinding
+import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 import java.util.Locale
 
-class SearchFragment : Fragment(), SearchMedicineItemClickListener {
+class SearchFragment : Fragment(), SearchMedicineItemClickListener, MedicineDetailClickListener {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -41,7 +43,7 @@ class SearchFragment : Fragment(), SearchMedicineItemClickListener {
         filteredList = ArrayList(emptyList())
 
         // Set up RecyclerView with initial data
-        adapter = SearchMedicineListAdapter(filteredList, this)
+        adapter = SearchMedicineListAdapter(filteredList, this, this)
         binding.rvSearchMedicineList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvSearchMedicineList.adapter = adapter
 
@@ -87,4 +89,13 @@ class SearchFragment : Fragment(), SearchMedicineItemClickListener {
     override fun onSearchMedicineClick(medicine: Medicine) {
 
     }
+
+    // medicine detail page 약품 상세 정보 이동 기능
+    override fun onMedicineDetailClick() {
+        val action = SearchFragmentDirections.actionSearchMedicineToMedicineDetail()
+        findNavController().navigate(action)
+
+    }
+
+
 }

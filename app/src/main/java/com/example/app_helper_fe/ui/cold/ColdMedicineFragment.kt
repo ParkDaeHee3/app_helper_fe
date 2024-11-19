@@ -7,15 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.app_helper_fe.data.Cold
 import com.example.app_helper_fe.data.Medicine
-import com.example.app_helper_fe.data.Storage_cold
 import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.databinding.FragmentColdMedicineBinding
+import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
-
-class ColdMedicineFragment : Fragment(),ColdItemClickListener {
+class ColdMedicineFragment : Fragment(),ColdItemClickListener, MedicineDetailClickListener {
 
     private var _binding: FragmentColdMedicineBinding? = null
     private val binding get() = _binding!!
@@ -35,7 +33,7 @@ class ColdMedicineFragment : Fragment(),ColdItemClickListener {
         Storage_medicine.getColdData { medicine ->
             if (medicine != null && medicine.isNotEmpty()) {
                 Log.d("final", "Data loaded: ${medicine}")
-                binding.rvColdMedicineList.adapter = ColdListAdapter(medicine, this)
+                binding.rvColdMedicineList.adapter = ColdListAdapter(medicine, this, this)
             } else {
                 Log.d("final", "No data available or failed to fetch data")
             }
@@ -63,6 +61,13 @@ class ColdMedicineFragment : Fragment(),ColdItemClickListener {
 
     override fun onColdClick(medicine: Medicine.Body.Item) {
 
+
+    }
+
+    // medicine detail page 약품 상세 정보 이동 기능
+    override fun onMedicineDetailClick() {
+        val action = ColdMedicineFragmentDirections.actionViewCardColdAreaToMedicineDetail()
+        findNavController().navigate(action)
 
     }
 }

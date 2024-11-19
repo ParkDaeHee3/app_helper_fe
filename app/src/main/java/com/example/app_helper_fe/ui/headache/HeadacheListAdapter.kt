@@ -5,18 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_helper_fe.data.Headache
 import com.example.app_helper_fe.databinding.ItemHeadacheListBinding
+import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class HeadacheListAdapter(
     private val items: List<Headache>,
-    private val listener: HeadacheItemClickListener
+    private val headacheClicklistener: HeadacheItemClickListener,
+    private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.Adapter<HeadacheItemViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): HeadacheItemViewHolder {
-        return HeadacheItemViewHolder.from(parent,listener)
+        return HeadacheItemViewHolder.from(parent,headacheClicklistener,detailClickListener)
     }
 
     override fun onBindViewHolder(holder: HeadacheItemViewHolder, position: Int) {
@@ -31,12 +33,14 @@ class HeadacheListAdapter(
 
 class HeadacheItemViewHolder(
     private val binding: ItemHeadacheListBinding,
-    private val listener: HeadacheItemClickListener
+    private val headacheClicklistener: HeadacheItemClickListener,
+    private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(headache: Headache) {
         itemView.setOnClickListener {
-            listener.onHeadacheClick(headache)
+            headacheClicklistener.onHeadacheClick(headache)
+            detailClickListener.onMedicineDetailClick()
         }
         with(binding) {
             ivHeadacheImage.setImageResource(headache.medicineResourceId)
@@ -47,15 +51,17 @@ class HeadacheItemViewHolder(
     }
 
     companion object {
-        fun from(parent: ViewGroup, listener: HeadacheItemClickListener): HeadacheItemViewHolder {
-            return HeadacheItemViewHolder(
-                ItemHeadacheListBinding.inflate(
+        fun from(
+            parent: ViewGroup,
+            headacheClicklistener: HeadacheItemClickListener,
+            detailClickListener: MedicineDetailClickListener
+        ): HeadacheItemViewHolder {
+                val binding = ItemHeadacheListBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
-                ),
-                listener
-            )
+                )
+                return HeadacheItemViewHolder(binding, headacheClicklistener,detailClickListener)
         }
     }
 }

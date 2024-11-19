@@ -9,9 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.data.Tooth
 import com.example.app_helper_fe.data.Storage_tooth
 import com.example.app_helper_fe.databinding.FragmentToothMedicineBinding
+import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
-class ToothMedicineFragment : Fragment(), ToothItemClickListener {
+class ToothMedicineFragment : Fragment(), ToothItemClickListener,MedicineDetailClickListener {
 
     private var _binding: FragmentToothMedicineBinding? = null
     private val binding get() = _binding!!
@@ -28,7 +29,7 @@ class ToothMedicineFragment : Fragment(), ToothItemClickListener {
     //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvToothMedicineList.adapter = ToothListAdapter(Storage_tooth.toothList, this)
+        binding.rvToothMedicineList.adapter = ToothListAdapter(Storage_tooth.toothList, this,this)
         setLayout()
     }
 
@@ -52,6 +53,14 @@ class ToothMedicineFragment : Fragment(), ToothItemClickListener {
     override fun onToothClick(tooth: Tooth) {
 
     }
+
+    // medicine detail page 약품 상세 정보 이동 기능
+    override fun onMedicineDetailClick() {
+        val action = ToothMedicineFragmentDirections.actionViewCardToothAreaToMedicineDetail()
+        findNavController().navigate(action)
+
+    }
+
 
 }
 

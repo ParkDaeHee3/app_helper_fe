@@ -109,6 +109,8 @@
             </com.google.android.material.tabs.TabLayout>
 
 
+
+
             <TextView
                 android:id="@+id/tv_medicine_detail_content"
                 style="@style/AppTextBody.S18"

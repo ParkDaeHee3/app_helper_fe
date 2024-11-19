@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 class MapListAdapter() {
 
 }
+
   /*
     (
     private val items: List<Transfer>,
