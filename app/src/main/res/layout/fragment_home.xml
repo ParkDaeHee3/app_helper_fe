@@ -707,22 +707,6 @@
 
             <!-- 카드 섹션 증상8 끝 -->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_home_transfer_history"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="352dp"
-                android:nestedScrollingEnabled="false"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_question_condition"
-                tools:listitem="@layout/item_transfer_history"
-                tools:visibility="visible" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
