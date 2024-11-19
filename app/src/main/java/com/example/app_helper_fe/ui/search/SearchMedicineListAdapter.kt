@@ -37,10 +37,10 @@ class SearchMedicineItemViewHolder(
             listener.onSearchMedicineClick(medicine)
         }
         with(binding) {
-            ivAllMedicineImage.setImageResource(medicine.medicineResourceId)
-            tvMedicineName.text = medicine.medicineName
-            tvPharmacyName.text = medicine.pharmacyName
-            tvPharmacyNumber.text = medicine.pharmacyNumber
+            //ivAllMedicineImage.setImageResource(medicine.medicineResourceId)
+            //tvMedicineName.text = medicine.medicineName
+            //tvPharmacyName.text = medicine.pharmacyName
+            //tvPharmacyNumber.text = medicine.pharmacyNumber
         }
     }
 

@@ -38,7 +38,7 @@ class SearchFragment : Fragment(), SearchMedicineItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize the filtered list with the full medicine list
-        filteredList = ArrayList(Storage_medicine.medicineList)
+        filteredList = ArrayList(emptyList())
 
         // Set up RecyclerView with initial data
         adapter = SearchMedicineListAdapter(filteredList, this)
@@ -46,37 +46,37 @@ class SearchFragment : Fragment(), SearchMedicineItemClickListener {
         binding.rvSearchMedicineList.adapter = adapter
 
         // Set up SearchView
-        binding.searchBar.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                filterMedicines(newText)
-                return true
-            }
-        })
+//        binding.searchBar.setOnQueryTextListener(object :
+//            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                return true
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                filterMedicines(newText)
+//                return true
+//            }
+//        })
     }
 
     // search에서 - 검색 기능(모든 약품 페이지)
-    private fun filterMedicines(query: String?) {
-        val searchText = query?.lowercase(Locale.getDefault()).orEmpty()
-        filteredList.clear()
-
-        if (searchText.isNotEmpty()) {
-            filteredList.addAll(Storage_medicine.medicineList.filter { medicine ->
-                medicine.medicineName.lowercase(Locale.getDefault()).contains(searchText) //||
-                // account.bankName.lowercase(Locale.getDefault()).contains(searchText) ||
-                // account.accountNumber.lowercase(Locale.getDefault()).contains(searchText)
-            })
-        } else {
-            filteredList.addAll(Storage_medicine.medicineList)
-        }
-
-        // Notify the adapter of data changes
-        adapter.notifyDataSetChanged()
-    }
+//    private fun filterMedicines(query: String?) {
+//        val searchText = query?.lowercase(Locale.getDefault()).orEmpty()
+//        filteredList.clear()
+//
+//        if (searchText.isNotEmpty()) {
+//            filteredList.addAll(Storage_medicine.medicineList.filter { medicine ->
+//                medicine.medicineName.lowercase(Locale.getDefault()).contains(searchText) //||
+//                // account.bankName.lowercase(Locale.getDefault()).contains(searchText) ||
+//                // account.accountNumber.lowercase(Locale.getDefault()).contains(searchText)
+//            })
+//        } else {
+//            filteredList.addAll(Storage_medicine.medicineList)
+//        }
+//
+//        // Notify the adapter of data changes
+//        adapter.notifyDataSetChanged()
+//    }
 
 
     override fun onDestroyView() {

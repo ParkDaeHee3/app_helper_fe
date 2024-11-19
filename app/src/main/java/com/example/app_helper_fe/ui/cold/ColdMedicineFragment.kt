@@ -1,13 +1,16 @@
 package com.example.app_helper_fe.ui.cold
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.data.Cold
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.data.Storage_cold
+import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.databinding.FragmentColdMedicineBinding
 
 
@@ -29,7 +32,14 @@ class ColdMedicineFragment : Fragment(),ColdItemClickListener {
 //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvColdMedicineList.adapter = ColdListAdapter(Storage_cold.coldList, this)
+        Storage_medicine.getColdData { medicine ->
+            if (medicine != null && medicine.isNotEmpty()) {
+                Log.d("final", "Data loaded: ${medicine}")
+                binding.rvColdMedicineList.adapter = ColdListAdapter(medicine, this)
+            } else {
+                Log.d("final", "No data available or failed to fetch data")
+            }
+        }
         setLayout()
     }
 
@@ -51,7 +61,7 @@ class ColdMedicineFragment : Fragment(),ColdItemClickListener {
     }
 
 
-    override fun onColdClick(cold: Cold) {
+    override fun onColdClick(medicine: Medicine.Body.Item) {
 
 
     }
