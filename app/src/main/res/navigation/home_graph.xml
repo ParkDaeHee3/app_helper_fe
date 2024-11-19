@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_maypage_to_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_mypageFragment_to_myinfoFragment"
+            app:destination="@id/myinfoFragment" />
     </fragment>
 
 
@@ -209,6 +212,14 @@
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_introFragment"
+            app:destination="@id/introFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myinfoFragment"
+        android:name="com.example.app_helper_fe.ui.mypage.MyinfoFragment"
+        android:label="MyinfoFragment" >
+        <action
+            android:id="@+id/action_myinfoFragment_to_introFragment"
             app:destination="@id/introFragment" />
     </fragment>
 

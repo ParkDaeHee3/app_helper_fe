@@ -34,6 +34,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/home_navigation_menu" />
 
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--app:menu="@menu/home_navigation_menu" 을 통해 갖고 온다. 네비게이션 바를 -->
