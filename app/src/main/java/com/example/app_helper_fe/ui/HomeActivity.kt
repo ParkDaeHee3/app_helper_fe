@@ -32,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
                     binding.bottomNavigationHome.visibility = View.VISIBLE
                 }
                 else -> {
-                    binding.bottomNavigationHome.visibility = View.GONE
+                    binding.bottomNavigationHome.visibility = View.VISIBLE
                 }
             }
         }

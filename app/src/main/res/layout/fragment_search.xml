@@ -41,10 +41,10 @@
 
     <ImageView
         android:id="@+id/image_vi_title_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginStart="5dp"
-        android:src="@drawable/ic_list"
+        android:src="@drawable/ic_medicine"
         app:layout_constraintBottom_toBottomOf="@id/image_vi_title_polygon"
         app:layout_constraintEnd_toEndOf="@id/image_vi_title_polygon"
         app:layout_constraintStart_toStartOf="@id/image_vi_title_polygon"
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_title_medicine_search_area"
-        app:queryHint="Search..."
+        app:queryHint="약품 이름을 검색하세요..."
         app:searchHintIcon="@null"
         app:searchIcon="@drawable/ic_search" />
 
