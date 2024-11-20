@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.app_helper_fe.data.Cold
+import com.example.app_helper_fe.R
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.databinding.ItemColdListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class ColdListAdapter(
-    private val items: List<Cold>,
+    private val items: List<Medicine.Body.Item>,
     private val coldClickListener: ColdItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.Adapter<ColdItemViewHolder>() {
@@ -38,9 +39,11 @@ class ColdItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(cold: Cold) {
+    fun bind(medicine: Medicine.Body.Item) {
         itemView.setOnClickListener {
-           coldClickListener.onColdClick(cold)
+            coldClickListener.onColdClick(medicine)
+            //activity medicine detail를 통한
+           coldClickListener.onColdClick(medicine)
             detailClickListener.onMedicineDetailClick()
 
 /*
@@ -52,10 +55,10 @@ class ColdItemViewHolder(
 
         }
         with(binding) {
-            ivColdImage.setImageResource(cold.medicineResourceId)
-            tvColdMedicineName.text = cold.medicineName
-            tvPharmacyName.text = cold.pharmacyName
-            tvPharmacyNumber.text = cold.pharmacyNumber
+            ivColdImage.setImageResource(R.drawable.cold)
+            tvColdMedicineName.text = medicine.itemName
+            tvPharmacyName.text = medicine.entpName
+            tvPharmacyNumber.text = medicine.itemSeq
         }
     }
 

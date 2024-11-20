@@ -3,13 +3,15 @@ package com.example.app_helper_fe.ui.fever
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.app_helper_fe.R
 import com.example.app_helper_fe.data.Fever
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.databinding.ItemFeverListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class FeverListAdapter(
-    private val items: List<Fever>,
+    private val items: List<Medicine.Body.Item>,
     private val feverClicklistener: FeverItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 
@@ -38,17 +40,17 @@ class FeverItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(fever: Fever) {
+    fun bind(medicine: Medicine.Body.Item) {
         itemView.setOnClickListener {
-            feverClicklistener.onFeverClick(fever)
+            feverClicklistener.onFeverClick(medicine)
             detailClickListener.onMedicineDetailClick()
 
         }
         with(binding) {
-            ivFeverImage.setImageResource(fever.medicineResourceId)
-            tvFeverMedicineName.text = fever.medicineName
-            tvPharmacyName.text = fever.pharmacyName
-            tvPharmacyNumber.text = fever.pharmacyNumber
+            ivFeverImage.setImageResource(R.drawable.cold)
+            tvFeverMedicineName.text = medicine.itemName
+            tvPharmacyName.text = medicine.entpName
+            tvPharmacyNumber.text = medicine.itemSeq
         }
     }
 

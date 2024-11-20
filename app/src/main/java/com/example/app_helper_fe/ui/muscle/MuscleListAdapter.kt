@@ -3,13 +3,15 @@ package com.example.app_helper_fe.ui.muscle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.app_helper_fe.R
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.data.Muscle
 import com.example.app_helper_fe.databinding.ItemMuscleListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class MuscleListAdapter(
-    private val items: List<Muscle>,
+    private val items: List<Medicine.Body.Item>,
     private val muscleClicklistener: MuscleItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.Adapter<MuscleItemViewHolder>() {
@@ -37,16 +39,16 @@ class MuscleItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(muscle: Muscle) {
+    fun bind(medicine: Medicine.Body.Item) {
         itemView.setOnClickListener {
-            muscleClicklistener.onMuscleClick(muscle)
+            muscleClicklistener.onMuscleClick(medicine)
             detailClickListener.onMedicineDetailClick()
         }
         with(binding) {
-            ivMuscleImage.setImageResource(muscle.medicineResourceId)
-            tvMuscleMedicineName.text = muscle.medicineName
-            tvPharmacyName.text = muscle.pharmacyName
-            tvPharmacyNumber.text = muscle.pharmacyNumber
+            ivMuscleImage.setImageResource(R.drawable.muscle)
+            tvMuscleMedicineName.text = medicine.itemName
+            tvPharmacyName.text = medicine.entpName
+            tvPharmacyNumber.text = medicine.itemSeq
         }
     }
 
