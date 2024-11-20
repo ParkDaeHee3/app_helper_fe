@@ -31,12 +31,7 @@ class SearchFragment : Fragment(), SearchMedicineItemClickListener, MedicineDeta
         return binding.root
     }
 
-    /*
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.rvTransferAccountList.adapter = TransferAccountListAdapter(Storage.accountList, this)
-    }
-*/
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

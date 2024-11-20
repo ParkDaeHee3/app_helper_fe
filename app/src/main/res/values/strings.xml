@@ -78,6 +78,8 @@
     <string name="tab3">보관</string>
     <string name="tab4">주의</string>
     <string name="description_medicine_representative_image">약품 이미지 출력</string>
+
+
     <string name="description_all_medicine_image">모든 약품 검색 이미지 출력</string>
     <string name="appbar_title_search_screen">검색 페이지 타이틀\n</string>
 
