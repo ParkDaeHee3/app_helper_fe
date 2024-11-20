@@ -48,17 +48,31 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/Logo_helper"
+                android:id="@+id/polygon_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="300dp"
                 android:layout_marginBottom="90dp"
                 android:contentDescription="@string/description_main_logo"
-                android:src="@drawable/logo_helper"
+                android:src="@drawable/ic_polygon"
                 app:layout_constraintBottom_toBottomOf="@+id/view_card_area"
                 app:layout_constraintEnd_toEndOf="@+id/view_card_area"
                 app:layout_constraintStart_toStartOf="@id/view_card_area"
                 app:layout_constraintTop_toTopOf="@id/view_card_area" />
+
+
+            <ImageView
+                android:id="@+id/Logo_helper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/description_main_logo"
+                android:src="@drawable/ic_logo"
+                app:layout_constraintBottom_toBottomOf="@+id/polygon_logo"
+                app:layout_constraintEnd_toEndOf="@+id/polygon_logo"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toStartOf="@id/polygon_logo"
+                app:layout_constraintTop_toTopOf="@id/polygon_logo"
+                app:layout_constraintVertical_bias="0.4" />
 
             <TextView
                 android:id="@+id/tv_title_Logo"
@@ -67,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="120dp"
                 android:layout_marginBottom="30dp"
+                android:layout_marginStart="20dp"
                 android:text="@string/text_mainpage_title"
                 app:layout_constraintBottom_toTopOf="@+id/iv_view_card_map"
                 app:layout_constraintEnd_toEndOf="@id/view_card_area"
@@ -706,22 +721,6 @@
                 app:layout_constraintTop_toTopOf="@+id/image_vi_other_polygon" />
 
             <!-- 카드 섹션 증상8 끝 -->
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_home_transfer_history"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="352dp"
-                android:nestedScrollingEnabled="false"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_question_condition"
-                tools:listitem="@layout/item_transfer_history"
-                tools:visibility="visible" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
