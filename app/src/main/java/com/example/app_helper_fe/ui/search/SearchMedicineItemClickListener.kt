@@ -4,5 +4,5 @@ import com.example.app_helper_fe.data.Medicine
 
 interface SearchMedicineItemClickListener {
 
-    fun onSearchMedicineClick(medicine: Medicine)
+    fun onSearchMedicineClick(medicine: Medicine.Body.Item)
 }

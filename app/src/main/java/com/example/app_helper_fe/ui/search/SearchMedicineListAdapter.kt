@@ -3,12 +3,13 @@ package com.example.app_helper_fe.ui.search
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.app_helper_fe.R
 import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.databinding.ItemAllMedicineBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 class SearchMedicineListAdapter(
-    private val items: List<Medicine>,
+    private val items: List<Medicine.Body.Item>,
     private val searchmedicineClicklistener: SearchMedicineItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 
@@ -40,16 +41,16 @@ class SearchMedicineItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(medicine: Medicine) {
+    fun bind(medicine: Medicine.Body.Item) {
         itemView.setOnClickListener {
             searchmedicinelistener.onSearchMedicineClick(medicine)
             detailClickListener.onMedicineDetailClick()
         }
         with(binding) {
-            //ivAllMedicineImage.setImageResource(medicine.medicineResourceId)
-            //tvMedicineName.text = medicine.medicineName
-            //tvPharmacyName.text = medicine.pharmacyName
-            //tvPharmacyNumber.text = medicine.pharmacyNumber
+            ivAllMedicineImage.setImageResource(R.drawable.cold)
+            tvMedicineName.text = medicine.itemName
+            tvPharmacyName.text = medicine.entpName
+            tvPharmacyNumber.text = medicine.itemSeq
         }
     }
 

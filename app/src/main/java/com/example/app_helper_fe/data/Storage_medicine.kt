@@ -9,6 +9,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.URLEncoder
 
 
 object Storage_medicine {
@@ -51,6 +52,31 @@ object Storage_medicine {
     //감기 데이터
     fun getMedicineListData(num: Int,callback: (List<Medicine.Body.Item>?) -> Unit) {
         medService.getMedicineList(num).enqueue(object : Callback<Medicine> {
+            override fun onResponse(call: Call<Medicine>, response: Response<Medicine>) {
+                if (response.isSuccessful) {
+                    val items = response.body()?.body?.items
+                    if (!items.isNullOrEmpty()) {
+                        callback(items)
+                    } else {
+                        Log.d("abcde", "Items are empty")
+                        callback(null)
+                    }
+                } else {
+                    Log.d("abcde", "Response error: ${response.errorBody()?.string()}")
+                    callback(null)
+                }
+            }
+
+            override fun onFailure(call: Call<Medicine>, t: Throwable) {
+                Log.d("abcde", "Request failed: $t")
+                callback(null)
+            }
+        })
+    }
+
+    fun getQueryMedicineData(query: String,callback: (List<Medicine.Body.Item>?) -> Unit) {
+        val encodedQuery = URLEncoder.encode(query, "UTF-8")
+        medService.getQueryMedicineList(encodedQuery).enqueue(object : Callback<Medicine> {
             override fun onResponse(call: Call<Medicine>, response: Response<Medicine>) {
                 if (response.isSuccessful) {
                     val items = response.body()?.body?.items
