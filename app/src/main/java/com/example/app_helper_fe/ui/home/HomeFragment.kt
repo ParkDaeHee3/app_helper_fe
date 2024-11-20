@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment(), MapItemClickListener {
+class HomeFragment : Fragment(), MapClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
