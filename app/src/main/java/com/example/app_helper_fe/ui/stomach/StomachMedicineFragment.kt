@@ -8,13 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.data.Medicine
-import com.example.app_helper_fe.data.Stomach
 import com.example.app_helper_fe.data.Storage_medicine
-import com.example.app_helper_fe.data.Storage_stomach
 import com.example.app_helper_fe.databinding.FragmentStomachMedicineBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
-import com.example.app_helper_fe.ui.fever.FeverListAdapter
-
 
 class StomachMedicineFragment : Fragment(), StomachItemClickListener,MedicineDetailClickListener {
 

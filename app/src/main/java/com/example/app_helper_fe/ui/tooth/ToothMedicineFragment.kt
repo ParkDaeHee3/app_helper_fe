@@ -9,12 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.data.Storage_medicine
-import com.example.app_helper_fe.data.Tooth
-import com.example.app_helper_fe.data.Storage_tooth
 import com.example.app_helper_fe.databinding.FragmentToothMedicineBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
-import com.example.app_helper_fe.ui.fever.FeverListAdapter
-
 
 class ToothMedicineFragment : Fragment(), ToothItemClickListener,MedicineDetailClickListener {
 

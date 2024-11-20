@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_helper_fe.R
-import com.example.app_helper_fe.data.Bruise
 import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.databinding.ItemBruiseListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener

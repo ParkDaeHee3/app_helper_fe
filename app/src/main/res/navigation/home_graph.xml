@@ -174,4 +174,11 @@
         tools:layout="@layout/activity_medicine_detail" />
 
 
+    <fragment
+        android:id="@+id/navigation_medicine_detail_fragment"
+        android:name="com.example.app_helper_fe.ui.detail.MedicineDetailFragment"
+        android:label="fragment_medicine_detail"
+        tools:layout="@layout/fragment_medicine_detail" />
+
+
 </navigation>

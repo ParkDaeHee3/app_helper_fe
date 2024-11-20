@@ -7,15 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.app_helper_fe.data.Headache
 import com.example.app_helper_fe.data.Medicine
-import com.example.app_helper_fe.data.Storage_headache
 import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.databinding.FragmentHeadacheMedicineBinding
-import com.example.app_helper_fe.ui.cold.ColdListAdapter
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
-
-
 
 class HeadacheMedicineFragment : Fragment(), HeadacheItemClickListener,MedicineDetailClickListener {
 

@@ -4,11 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_helper_fe.R
-import com.example.app_helper_fe.data.Headache
 import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.databinding.ItemHeadacheListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
-
 
 class HeadacheListAdapter(
     private val items: List<Medicine.Body.Item>,

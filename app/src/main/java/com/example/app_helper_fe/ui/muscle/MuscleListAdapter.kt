@@ -5,10 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_helper_fe.R
 import com.example.app_helper_fe.data.Medicine
-import com.example.app_helper_fe.data.Muscle
 import com.example.app_helper_fe.databinding.ItemMuscleListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
-
 
 class MuscleListAdapter(
     private val items: List<Medicine.Body.Item>,
