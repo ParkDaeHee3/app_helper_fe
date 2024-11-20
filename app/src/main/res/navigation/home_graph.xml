@@ -190,7 +190,7 @@
     <!--intro page -->
     <fragment
         android:id="@+id/introFragment"
-        android:name="com.example.app_helper_fe.ui.login.IntroFragment"
+        android:name="com.example.app_helper_fe.ui.intro.IntroFragment"
         android:label="IntroFragment" >
         <action
             android:id="@+id/action_introFragment_to_loginFragment"
@@ -202,7 +202,7 @@
     <!--join page -->
     <fragment
         android:id="@+id/joinFragment"
-        android:name="com.example.app_helper_fe.ui.login.JoinFragment"
+        android:name="com.example.app_helper_fe.ui.join.JoinFragment"
         android:label="JoinFragment" />
     <!--splash page -->
     <fragment
