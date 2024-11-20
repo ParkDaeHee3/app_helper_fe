@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.databinding.ItemAllMedicineBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
-
 class SearchMedicineListAdapter(
     private val items: List<Medicine>,
     private val searchmedicineClicklistener: SearchMedicineItemClickListener,

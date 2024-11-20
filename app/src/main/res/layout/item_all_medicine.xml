@@ -27,7 +27,7 @@
         android:layout_height="53dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="9dp"
-        android:contentDescription="@string/description_transfer_account_image"
+        android:contentDescription="@string/description_all_medicine_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/border_line"
         app:shapeAppearanceOverlay="@style/AppRoundedImage"

@@ -2,7 +2,6 @@ package com.example.app_helper_fe.ui.cold
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_helper_fe.R
 import com.example.app_helper_fe.data.Medicine

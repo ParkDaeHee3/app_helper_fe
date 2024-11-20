@@ -5,10 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_helper_fe.R
 import com.example.app_helper_fe.data.Medicine
-import com.example.app_helper_fe.data.Tooth
 import com.example.app_helper_fe.databinding.ItemToothListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
-
 
 class ToothListAdapter(
     private val items: List<Medicine.Body.Item>,

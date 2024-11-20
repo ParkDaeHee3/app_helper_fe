@@ -8,11 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.app_helper_fe.data.Medicine
-import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.databinding.FragmentSearchBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
-import java.util.Locale
-
 class SearchFragment : Fragment(), SearchMedicineItemClickListener, MedicineDetailClickListener {
 
     private var _binding: FragmentSearchBinding? = null
