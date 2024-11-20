@@ -3,13 +3,15 @@ package com.example.app_helper_fe.ui.headache
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.app_helper_fe.R
 import com.example.app_helper_fe.data.Headache
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.databinding.ItemHeadacheListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class HeadacheListAdapter(
-    private val items: List<Headache>,
+    private val items: List<Medicine.Body.Item>,
     private val headacheClicklistener: HeadacheItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.Adapter<HeadacheItemViewHolder>() {
@@ -37,16 +39,17 @@ class HeadacheItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(headache: Headache) {
+    fun bind(medicine: Medicine.Body.Item) {
         itemView.setOnClickListener {
-            headacheClicklistener.onHeadacheClick(headache)
+            headacheClicklistener.onHeadacheClick(medicine)
+            headacheClicklistener.onHeadacheClick(medicine)
             detailClickListener.onMedicineDetailClick()
         }
         with(binding) {
-            ivHeadacheImage.setImageResource(headache.medicineResourceId)
-            tvHeadacheMedicineName.text = headache.medicineName
-            tvPharmacyName.text = headache.pharmacyName
-            tvPharmacyNumber.text = headache.pharmacyNumber
+            ivHeadacheImage.setImageResource(R.drawable.headache)
+            tvHeadacheMedicineName.text = medicine.itemName
+            tvPharmacyName.text = medicine.entpName
+            tvPharmacyNumber.text = medicine.itemSeq
         }
     }
 

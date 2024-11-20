@@ -3,13 +3,15 @@ package com.example.app_helper_fe.ui.tooth
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.app_helper_fe.R
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.data.Tooth
 import com.example.app_helper_fe.databinding.ItemToothListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class ToothListAdapter(
-    private val items: List<Tooth>,
+    private val items: List<Medicine.Body.Item>,
     private val toothClicklistener: ToothItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.Adapter<ToothItemViewHolder>() {
@@ -38,17 +40,17 @@ class ToothItemViewHolder(
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(tooth: Tooth) {
+    fun bind(medicine: Medicine.Body.Item) {
         itemView.setOnClickListener {
-            toothClicklistener.onToothClick(tooth)
+            toothClicklistener.onToothClick(medicine)
             detailClickListener.onMedicineDetailClick()
 
         }
         with(binding) {
-            ivToothImage.setImageResource(tooth.medicineResourceId)
-            tvToothMedicineName.text = tooth.medicineName
-            tvPharmacyName.text = tooth.pharmacyName
-            tvPharmacyNumber.text = tooth.pharmacyNumber
+            ivToothImage.setImageResource(R.drawable.tooth)
+            tvToothMedicineName.text = medicine.itemName
+            tvPharmacyName.text = medicine.entpName
+            tvPharmacyNumber.text = medicine.itemSeq
         }
     }
 

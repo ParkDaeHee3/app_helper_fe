@@ -1,14 +1,18 @@
 package com.example.app_helper_fe.ui.headache
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.data.Headache
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.data.Storage_headache
+import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.databinding.FragmentHeadacheMedicineBinding
+import com.example.app_helper_fe.ui.cold.ColdListAdapter
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
@@ -30,8 +34,14 @@ class HeadacheMedicineFragment : Fragment(), HeadacheItemClickListener,MedicineD
     //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvHeadacheMedicineList.adapter =
-            HeadacheListAdapter(Storage_headache.headacheList, this,this)
+        Storage_medicine.getMedicineListData(4) { medicine ->
+            if (medicine != null && medicine.isNotEmpty()) {
+                Log.d("final", "Data loaded: ${medicine}")
+                binding.rvHeadacheMedicineList.adapter = HeadacheListAdapter(medicine, this, this)
+            } else {
+                Log.d("final", "No data available or failed to fetch data")
+            }
+        }
         setLayout()
     }
 
@@ -54,7 +64,7 @@ class HeadacheMedicineFragment : Fragment(), HeadacheItemClickListener,MedicineD
     }
 
 
-    override fun onHeadacheClick(headache: Headache) {
+    override fun onHeadacheClick(medicine: Medicine.Body.Item) {
 
     }
 
