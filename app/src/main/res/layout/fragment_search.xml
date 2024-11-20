@@ -55,7 +55,7 @@
         style="@style/DetailCardDisease"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="약품 검색"
+        android:text="@string/searchbar_hint"
         app:layout_constraintBottom_toBottomOf="@+id/view_title_medicine_search_area"
         app:layout_constraintEnd_toEndOf="@id/view_title_medicine_search_area"
         app:layout_constraintStart_toStartOf="@id/view_title_medicine_search_area"

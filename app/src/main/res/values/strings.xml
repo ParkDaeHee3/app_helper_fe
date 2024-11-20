@@ -15,11 +15,6 @@
     <string name="label_mypage_screen">마이페이지</string>
 
     <!--  Home  -->
-    <string name="label_add_card">결제 수단을 등록해주세요</string>
-    <string name="description_add_card">카드 추가를 안내하는 이미지</string>
-    <string name="btn_label_payment">결제하기</string>
-    <string name="label_transfer_history">송금내역</string>
-    <string name="guide_message_empty_transfer_history">아직 거래 내역이 없어요</string>
     <string name="description_main_logo">메인 페이지의 로고 이미지</string>
     <string name="text_mainpage_title">상비약 처방은 헬 퍼</string>
     <!-- Home body -->
@@ -37,7 +32,7 @@
     <!--  Transfer Search -->
     <string name="appbar_title_transfer_screen">MEDICINE LIST(약품 목록)</string>
     <string name="description_transfer_account_image">송금할 계좌의 프로필 이미지</string>
-    <string name="guide_message_add_payment_method">결제 수단을 등록해주세요</string>
+
 
     <!--  Transfer  -->
     <string name="appbar_title_transfer">얼마를 보낼까요?</string>
