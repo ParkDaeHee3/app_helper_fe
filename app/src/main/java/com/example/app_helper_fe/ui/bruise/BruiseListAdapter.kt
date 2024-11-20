@@ -3,13 +3,15 @@ package com.example.app_helper_fe.ui.bruise
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.app_helper_fe.R
 import com.example.app_helper_fe.data.Bruise
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.databinding.ItemBruiseListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class BruiseListAdapter(
-    private val items: List<Bruise>,
+    private val items: List<Medicine.Body.Item>,
     private val bruiseClicklistener: BruiseItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 
@@ -38,16 +40,16 @@ class BruiseItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(bruise: Bruise) {
+    fun bind(medicine: Medicine.Body.Item) {
         itemView.setOnClickListener {
-            bruiseClicklistener.onBruiseClick(bruise) // click listener를 통해 타박상으로 이동
+            bruiseClicklistener.onBruiseClick(medicine) // click listener를 통해 타박상으로 이동
             detailClickListener.onMedicineDetailClick() // click listener를 통해약품 상세로 이동
         }
         with(binding) {
-            ivBruiseImage.setImageResource(bruise.medicineResourceId)
-            tvBruiseMedicineName.text = bruise.medicineName
-            tvPharmacyName.text = bruise.pharmacyName
-            tvPharmacyNumber.text = bruise.pharmacyNumber
+            ivBruiseImage.setImageResource(R.drawable.muscle)
+            tvBruiseMedicineName.text = medicine.itemName
+            tvPharmacyName.text = medicine.entpName
+            tvPharmacyNumber.text = medicine.itemSeq
         }
     }
 

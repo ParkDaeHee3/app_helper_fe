@@ -1,16 +1,19 @@
 package com.example.app_helper_fe.ui.muscle
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.data.Muscle
+import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.data.Storage_muscle
 import com.example.app_helper_fe.databinding.FragmentMuscleMedicineBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
-
+import com.example.app_helper_fe.ui.fever.FeverListAdapter
 
 
 class MuscleMedicineFragment : Fragment(), MuscleItemClickListener,MedicineDetailClickListener {
@@ -30,7 +33,14 @@ class MuscleMedicineFragment : Fragment(), MuscleItemClickListener,MedicineDetai
     //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvMuscleMedicineList.adapter = MuscleListAdapter(Storage_muscle.muscleList, this,this)
+        Storage_medicine.getMedicineListData(2) { medicine ->
+            if (medicine != null && medicine.isNotEmpty()) {
+                Log.d("final", "Data loaded: ${medicine}")
+                binding.rvMuscleMedicineList.adapter = MuscleListAdapter(medicine, this, this)
+            } else {
+                Log.d("final", "No data available or failed to fetch data")
+            }
+        }
         setLayout()
     }
 
@@ -52,7 +62,7 @@ class MuscleMedicineFragment : Fragment(), MuscleItemClickListener,MedicineDetai
     }
 
 
-    override fun onMuscleClick(muscle: Muscle) {
+    override fun onMuscleClick(medicine: Medicine.Body.Item) {
 
     }
 

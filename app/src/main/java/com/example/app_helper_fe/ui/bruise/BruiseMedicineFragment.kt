@@ -1,14 +1,18 @@
 package com.example.app_helper_fe.ui.bruise
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.app_helper_fe.data.Bruise
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.data.Storage_bruise
+import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.databinding.FragmentBruiseMedicineBinding
+import com.example.app_helper_fe.ui.cold.ColdListAdapter
 import com.example.app_helper_fe.ui.cold.ColdMedicineFragmentDirections
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
@@ -30,7 +34,14 @@ class BruiseMedicineFragment : Fragment(), BruiseItemClickListener,MedicineDetai
     //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvBruiseMedicineList.adapter = BruiseListAdapter(Storage_bruise.bruiseList, this,this)
+        Storage_medicine.getMedicineListData(1) { medicine ->
+            if (medicine != null && medicine.isNotEmpty()) {
+                Log.d("final", "Data loaded: ${medicine}")
+                binding.rvBruiseMedicineList.adapter = BruiseListAdapter(medicine, this, this)
+            } else {
+                Log.d("final", "No data available or failed to fetch data")
+            }
+        }
         setLayout()
     }
 
@@ -52,7 +63,7 @@ class BruiseMedicineFragment : Fragment(), BruiseItemClickListener,MedicineDetai
     }
 
 
-    override fun onBruiseClick(bruise: Bruise) {
+    override fun onBruiseClick(medicine: Medicine.Body.Item) {
 
     }
 

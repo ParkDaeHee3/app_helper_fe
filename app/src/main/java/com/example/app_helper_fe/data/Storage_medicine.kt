@@ -2,6 +2,7 @@ package com.example.app_helper_fe.data
 
 import android.util.Log
 import com.example.app_helper_fe.R
+import com.example.app_helper_fe.service.BaseUrl
 import com.onemillionlines.payapp.service.MedicineService
 import retrofit2.Call
 import retrofit2.Callback
@@ -12,15 +13,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object Storage_medicine {
 
+
+    val url: String = BaseUrl().baseUrl
+
+
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://10.0.2.2:8080")
+        .baseUrl(url)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     val medService = retrofit.create(MedicineService::class.java)
 
     //단일 약품 데이터
-    fun getOneData(callback: (List<Medicine.Body.Item>?) -> Unit) {
-        medService.getMedicine().enqueue(object : Callback<Medicine> {
+    fun getOneData(itemSeq : Int,callback: (List<Medicine.Body.Item>?) -> Unit) {
+        medService.getMedicine(itemSeq).enqueue(object : Callback<Medicine> {
             override fun onResponse(call: Call<Medicine>, response: Response<Medicine>) {
                 if (response.isSuccessful) {
                     val items = response.body()?.body?.items
@@ -44,8 +49,8 @@ object Storage_medicine {
     }
 
     //감기 데이터
-    fun getColdData(callback: (List<Medicine.Body.Item>?) -> Unit) {
-        medService.getColdList().enqueue(object : Callback<Medicine> {
+    fun getMedicineListData(num: Int,callback: (List<Medicine.Body.Item>?) -> Unit) {
+        medService.getMedicineList(num).enqueue(object : Callback<Medicine> {
             override fun onResponse(call: Call<Medicine>, response: Response<Medicine>) {
                 if (response.isSuccessful) {
                     val items = response.body()?.body?.items

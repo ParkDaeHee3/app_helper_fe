@@ -7,9 +7,12 @@ import retrofit2.http.Query
 
 interface MedicineService {
     @GET("/getmedicine")
-    fun getMedicine(): Call<Medicine>
+    fun getMedicine(
+        @Query("itemSeq") itemSeq: Int? = null,
+    ): Call<Medicine>
 
-    @GET("/getcold")
-    fun getColdList(
+    @GET("/getmedicinelist")
+    fun getMedicineList(
+        @Query("eff") eff: Int? = null,
     ): Call<Medicine>
 }

@@ -1,15 +1,19 @@
 package com.example.app_helper_fe.ui.tooth
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.app_helper_fe.data.Medicine
+import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.data.Tooth
 import com.example.app_helper_fe.data.Storage_tooth
 import com.example.app_helper_fe.databinding.FragmentToothMedicineBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
+import com.example.app_helper_fe.ui.fever.FeverListAdapter
 
 
 class ToothMedicineFragment : Fragment(), ToothItemClickListener,MedicineDetailClickListener {
@@ -29,7 +33,14 @@ class ToothMedicineFragment : Fragment(), ToothItemClickListener,MedicineDetailC
     //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvToothMedicineList.adapter = ToothListAdapter(Storage_tooth.toothList, this,this)
+        Storage_medicine.getMedicineListData(6) { medicine ->
+            if (medicine != null && medicine.isNotEmpty()) {
+                Log.d("final", "Data loaded: ${medicine}")
+                binding.rvToothMedicineList.adapter = ToothListAdapter(medicine, this, this)
+            } else {
+                Log.d("final", "No data available or failed to fetch data")
+            }
+        }
         setLayout()
     }
 
@@ -50,7 +61,7 @@ class ToothMedicineFragment : Fragment(), ToothItemClickListener,MedicineDetailC
         _binding = null
     }
 
-    override fun onToothClick(tooth: Tooth) {
+    override fun onToothClick(medicine: Medicine.Body.Item)  {
 
     }
 

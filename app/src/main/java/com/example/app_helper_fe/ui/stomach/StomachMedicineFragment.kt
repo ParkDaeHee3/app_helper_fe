@@ -1,15 +1,19 @@
 package com.example.app_helper_fe.ui.stomach
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.data.Stomach
+import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.data.Storage_stomach
 import com.example.app_helper_fe.databinding.FragmentStomachMedicineBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
+import com.example.app_helper_fe.ui.fever.FeverListAdapter
 
 
 class StomachMedicineFragment : Fragment(), StomachItemClickListener,MedicineDetailClickListener {
@@ -29,7 +33,14 @@ class StomachMedicineFragment : Fragment(), StomachItemClickListener,MedicineDet
     //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvStomachMedicineList.adapter = StomachListAdapter(Storage_stomach.stomachList, this,this)
+        Storage_medicine.getMedicineListData(5) { medicine ->
+            if (medicine != null && medicine.isNotEmpty()) {
+                Log.d("final", "Data loaded: ${medicine}")
+                binding.rvStomachMedicineList.adapter = StomachListAdapter(medicine, this, this)
+            } else {
+                Log.d("final", "No data available or failed to fetch data")
+            }
+        }
         setLayout()
     }
 
@@ -51,7 +62,7 @@ class StomachMedicineFragment : Fragment(), StomachItemClickListener,MedicineDet
     }
 
 
-    override fun onStomachClick(stomach: Stomach) {
+    override fun onStomachClick(medicine: Medicine.Body.Item) {
 
     }
 
