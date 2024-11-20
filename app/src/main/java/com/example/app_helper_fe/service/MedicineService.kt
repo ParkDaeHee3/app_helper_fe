@@ -15,4 +15,9 @@ interface MedicineService {
     fun getMedicineList(
         @Query("eff") eff: Int? = null,
     ): Call<Medicine>
+
+    @GET("/getquerymedicine")
+    fun getQueryMedicineList(
+        @Query("query") query: String? = null,
+    ): Call<Medicine>
 }
