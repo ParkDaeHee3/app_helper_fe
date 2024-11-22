@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App_helper_fe"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.kakao.vectormap.KAKAO_MAP_KEY"
+            android:value="KAKAO_MAP_KEY"/>
         <activity
             android:name=".ui.HomeActivity"
             android:exported="true">
