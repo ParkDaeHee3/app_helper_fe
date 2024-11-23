@@ -62,6 +62,7 @@ android {
 }
 
 dependencies {
+    implementation("org.locationtech.proj4j:proj4j:1.1.1")
     implementation ("com.kakao.maps.open:android:2.9.5")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
