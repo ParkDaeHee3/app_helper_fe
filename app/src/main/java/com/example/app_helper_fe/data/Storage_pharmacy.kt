@@ -24,8 +24,8 @@ object Storage_pharmacy {
     val phaService = retrofit.create(PharmacyService::class.java)
 
     // 단일 약품 데이터
-    fun getPharmacyList(callback: PharmacyListCallback) {
-        phaService.getPharmacyList().enqueue(object : Callback<List<Pharmacy>> {
+    fun getPharmacyList(lat: Double,lon: Double,callback: PharmacyListCallback) {
+        phaService.getPharmacyList(lat,lon).enqueue(object : Callback<List<Pharmacy>> {
             override fun onResponse(call: Call<List<Pharmacy>>, response: Response<List<Pharmacy>>) {
                 if (response.isSuccessful) {
                     val items = response.body()
