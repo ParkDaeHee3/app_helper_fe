@@ -25,9 +25,9 @@ class Pharmacy (
     val road_address: String,
 
     @SerializedName("lat")
-    val lat: String,
+    val lat: Double,
 
     @SerializedName("lon")
-    val lon: String
+    val lon: Double
 
 )
