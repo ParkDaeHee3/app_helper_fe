@@ -11,7 +11,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         //카카오api 추가
-        maven(url = uri("https://devrepo.kakao.com/nexus/repository/kakaomap-releases/"))
+        maven(url = "https://devrepo.kakao.com/nexus/repository/kakaomap-releases/")
     }
 }
 

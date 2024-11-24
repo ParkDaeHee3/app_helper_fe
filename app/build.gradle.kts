@@ -4,8 +4,9 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("androidx.navigation.safeargs.kotlin")
+    id("androidx.navigation.safeargs")
     id("kotlin-parcelize")
+
 }
 
 //카카오 맵 api키 부르기 위한 변수
@@ -63,7 +64,7 @@ android {
 
 dependencies {
     implementation("org.locationtech.proj4j:proj4j:1.1.1")
-    implementation ("com.kakao.maps.open:android:2.9.5")
+    implementation ("com.kakao.maps.open:android:2.11.9")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("androidx.core:core-ktx:1.13.1")
