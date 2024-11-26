@@ -111,7 +111,7 @@ public class MapFragment extends Fragment {
                     if (pharmacies != null) {
                         for (Pharmacy pharmacy : pharmacies) {
                             Pair<Double,Double> a = transformCoordinates(pharmacy.getLon(),pharmacy.getLat());
-                            Log.e("LONLAT", pharmacy.getName());
+                            Log.e("Name", pharmacy.getName());
                             LabelTextBuilder labelTextBuilder = new LabelTextBuilder();
                             labelTextBuilder.setTexts(pharmacy.getName());
                             LabelOptions options = LabelOptions.from(LatLng.from(a.first, a.second))
@@ -163,7 +163,8 @@ public class MapFragment extends Fragment {
     public static Pair<Double, Double> transformCoordinates(double x, double y) {
         // CRS 설정
         CRSFactory crsFactory = new CRSFactory();
-        CoordinateReferenceSystem sourceCRS = crsFactory.createFromName("EPSG:2097"); // TM 중부 좌표계
+        String epsg2097 = "+proj=tmerc +lat_0=38 +lon_0=127 +k=1.0 +x_0=200000 +y_0=500000 +ellps=bessel +units=m";
+        CoordinateReferenceSystem sourceCRS = crsFactory.createFromParameters("EPSG:2097",epsg2097); // TM 중부 좌표계
         CoordinateReferenceSystem targetCRS = crsFactory.createFromName("EPSG:4326"); // WGS84 (위도/경도)
 
         // 변환기 생성
@@ -177,8 +178,18 @@ public class MapFragment extends Fragment {
         // 변환 수행
         transform.transform(srcCoord, destCoord);
 
+        // 보정값 계산
+        double latOffset = 0.69747461314009;  // 위도 보정값
+        double lngOffset = -0.84281021637214; // 경도 보정값
+
+        // 보정 적용
+        double correctedLat = destCoord.y + latOffset;
+        double correctedLng = destCoord.x + lngOffset;
+
+        Log.e("LONLAT", correctedLat + "::" + correctedLng);
+
         // 결과 반환 (위도, 경도)
-        return new Pair<>(destCoord.y, destCoord.x); // WGS84: (위도, 경도)
+        return new Pair<>(correctedLat, correctedLng); // WGS84: (위도, 경도)
     }
 
     @Override
