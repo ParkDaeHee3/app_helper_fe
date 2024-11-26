@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_graph.xml"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/introFragment">
+
 
     <!-- home -->
     <fragment
@@ -78,6 +79,9 @@
         <action
             android:id="@+id/action_maypage_to_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_mypageFragment_to_myinfoFragment"
+            app:destination="@id/myinfoFragment" />
     </fragment>
 
 
@@ -172,6 +176,45 @@
         android:name="com.example.app_helper_fe.ui.detail.MedicineDetailActivity"
         android:label="MedicineDetailActivity"
         tools:layout="@layout/activity_medicine_detail" />
+
+    <!--login page -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.app_helper_fe.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <!--intro page -->
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.example.app_helper_fe.ui.intro.IntroFragment"
+        android:label="IntroFragment"
+        tools:layout="@layout/fragment_intro">
+        <action
+            android:id="@+id/action_introFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_introFragment_to_joinFragment"
+            app:destination="@id/joinFragment" />
+
+    </fragment>
+    <!--join page -->
+    <fragment
+        android:id="@+id/joinFragment"
+        android:name="com.example.app_helper_fe.ui.join.JoinFragment"
+        android:label="JoinFragment" />
+
+    <fragment
+        android:id="@+id/myinfoFragment"
+        android:name="com.example.app_helper_fe.ui.mypage.MyinfoFragment"
+        android:label="MyinfoFragment" >
+        <action
+            android:id="@+id/action_myinfoFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
 
     <fragment
