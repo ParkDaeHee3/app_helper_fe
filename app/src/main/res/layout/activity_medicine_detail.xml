@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -30,7 +29,6 @@
                     android:background="@drawable/selector_bookmark_menu" />
 
             </com.google.android.material.appbar.MaterialToolbar>
-
 
             <ImageView
                 android:id="@+id/iv_medicine_detail_image"
@@ -59,7 +57,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_medicine_detail_image"
                 android:text="질병 종류 - 감기" />
-
 
             <TextView
                 android:id="@+id/tv_medicine_detail_title"
@@ -114,34 +111,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toBottomOf="@id/tabs_medicine_detail"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintBottom_toTopOf="@id/recycler_medicine_detail" />
 
-            <TextView
-                android:id="@+id/tv_medicine_detail_content"
-                style="@style/AppTextBody.S18"
-                android:layout_width="0dp"
+            <!-- RecyclerView 추가 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_medicine_detail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="10dp"
-                android:text="이 약은 삠, 타박상, 근육통, 관절통, 골절통, 요(허리)통, 어깨결림, 신경통, 류마티스통증, 피부 가려움, 벌레 물린데, 동창(언 상처)의 진통·소염(항염)에 사용합니다"
-                app:layout_constraintEnd_toEndOf="@id/tabs_medicine_detail"
-                app:layout_constraintStart_toStartOf="@id/tabs_medicine_detail"
-                app:layout_constraintTop_toBottomOf="@id/tabs_medicine_detail" />
-
-            <TextView
-                android:id="@+id/tv_medicine_detail_content_2"
-                style="@style/AppTextBody.S18"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:text="발진ㆍ발적(충혈되어 붉어짐), 가려움, 부종(부기) 등이 나타나는 경우 사용을 즉각 중지하고 의사 또는 약사와 상의하십시오."
+                app:layout_constraintTop_toBottomOf="@id/viewpager_medicine_detail"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/tv_medicine_detail_content"
-                app:layout_constraintStart_toStartOf="@id/tv_medicine_detail_content"
-                app:layout_constraintTop_toBottomOf="@id/tv_medicine_detail_content" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/item_medicine_detail" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
