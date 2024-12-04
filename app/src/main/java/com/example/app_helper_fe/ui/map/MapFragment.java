@@ -102,7 +102,7 @@ public class MapFragment extends Fragment {
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(lat,lon));//35.967922, 126.958637));
                 kakaoMap.moveCamera(cameraUpdate);
 
-                LabelStyle style = LabelStyle.from(R.drawable.cold)
+                LabelStyle style = LabelStyle.from(R.drawable.map_marker)
                         .setTextStyles(LabelTextStyle.from(37, Color.parseColor("#DB5461"), 2, Color.DKGRAY))
                         .setApplyDpScale(true);
 
