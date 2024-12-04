@@ -10,7 +10,7 @@ import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class FeverListAdapter(
-    private val items: List<Medicine.Body.Item>,
+    private val items: List<Medicine>,
     private val feverClicklistener: FeverItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 
@@ -39,7 +39,7 @@ class FeverItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(medicine: Medicine.Body.Item) {
+    fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             feverClicklistener.onFeverClick(medicine)
             detailClickListener.onMedicineDetailClick()
@@ -49,7 +49,7 @@ class FeverItemViewHolder(
             ivFeverImage.setImageResource(R.drawable.cold)
             tvFeverMedicineName.text = medicine.itemName
             tvPharmacyName.text = medicine.entpName
-            tvPharmacyNumber.text = medicine.itemSeq
+            tvPharmacyNumber.text = medicine.id.toString()
         }
     }
 

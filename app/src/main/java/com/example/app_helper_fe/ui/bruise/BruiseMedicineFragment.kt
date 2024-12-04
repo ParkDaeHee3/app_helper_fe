@@ -59,7 +59,7 @@ class BruiseMedicineFragment : Fragment(), BruiseItemClickListener,MedicineDetai
     }
 
 
-    override fun onBruiseClick(medicine: Medicine.Body.Item) {
+    override fun onBruiseClick(medicine: Medicine) {
 
     }
 

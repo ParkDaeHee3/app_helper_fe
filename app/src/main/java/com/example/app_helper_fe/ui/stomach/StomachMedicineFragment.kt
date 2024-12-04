@@ -58,7 +58,7 @@ class StomachMedicineFragment : Fragment(), StomachItemClickListener,MedicineDet
     }
 
 
-    override fun onStomachClick(medicine: Medicine.Body.Item) {
+    override fun onStomachClick(medicine: Medicine) {
 
     }
 
