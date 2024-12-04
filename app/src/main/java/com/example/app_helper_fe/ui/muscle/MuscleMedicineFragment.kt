@@ -58,7 +58,7 @@ class MuscleMedicineFragment : Fragment(), MuscleItemClickListener,MedicineDetai
     }
 
 
-    override fun onMuscleClick(medicine: Medicine.Body.Item) {
+    override fun onMuscleClick(medicine: Medicine) {
 
     }
 

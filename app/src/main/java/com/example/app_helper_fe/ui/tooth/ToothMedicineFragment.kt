@@ -57,7 +57,7 @@ class ToothMedicineFragment : Fragment(), ToothItemClickListener,MedicineDetailC
         _binding = null
     }
 
-    override fun onToothClick(medicine: Medicine.Body.Item)  {
+    override fun onToothClick(medicine: Medicine)  {
 
     }
 

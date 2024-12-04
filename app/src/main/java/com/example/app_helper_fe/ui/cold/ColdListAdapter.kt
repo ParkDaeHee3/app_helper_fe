@@ -10,7 +10,7 @@ import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class ColdListAdapter(
-    private val items: List<Medicine.Body.Item>,
+    private val items: List<Medicine>,
     private val coldClickListener: ColdItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.Adapter<ColdItemViewHolder>() {
@@ -38,7 +38,7 @@ class ColdItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(medicine: Medicine.Body.Item) {
+    fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             coldClickListener.onColdClick(medicine)
             //activity medicine detail를 통한
@@ -57,7 +57,7 @@ class ColdItemViewHolder(
             ivColdImage.setImageResource(R.drawable.cold)
             tvColdMedicineName.text = medicine.itemName
             tvPharmacyName.text = medicine.entpName
-            tvPharmacyNumber.text = medicine.itemSeq
+            tvPharmacyNumber.text = medicine.id.toString()
         }
     }
 

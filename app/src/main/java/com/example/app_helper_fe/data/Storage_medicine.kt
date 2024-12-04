@@ -25,11 +25,11 @@ object Storage_medicine {
     val medService = retrofit.create(MedicineService::class.java)
 
     //단일 약품 데이터
-    fun getOneData(itemSeq : Int,callback: (List<Medicine.Body.Item>?) -> Unit) {
-        medService.getMedicine(itemSeq).enqueue(object : Callback<Medicine> {
-            override fun onResponse(call: Call<Medicine>, response: Response<Medicine>) {
+    fun getOneData(itemSeq : Int,callback: (List<Medicine>?) -> Unit) {
+        medService.getMedicine(itemSeq).enqueue(object : Callback<List<Medicine>> {
+            override fun onResponse(call: Call<List<Medicine>>, response: Response<List<Medicine>>) {
                 if (response.isSuccessful) {
-                    val items = response.body()?.body?.items
+                    val items = response.body()
                     if (!items.isNullOrEmpty()) {
                         callback(items)
                     } else {
@@ -42,7 +42,7 @@ object Storage_medicine {
                 }
             }
 
-            override fun onFailure(call: Call<Medicine>, t: Throwable) {
+            override fun onFailure(call: Call<List<Medicine>>, t: Throwable) {
                 Log.d("abcde", "Request failed: $t")
                 callback(null)
             }
@@ -50,11 +50,11 @@ object Storage_medicine {
     }
 
     //감기 데이터
-    fun getMedicineListData(num: Int,callback: (List<Medicine.Body.Item>?) -> Unit) {
-        medService.getMedicineList(num).enqueue(object : Callback<Medicine> {
-            override fun onResponse(call: Call<Medicine>, response: Response<Medicine>) {
+    fun getMedicineListData(num: Int,callback: (List<Medicine>?) -> Unit) {
+        medService.getMedicineList(num).enqueue(object : Callback<List<Medicine>> {
+            override fun onResponse(call: Call<List<Medicine>>, response: Response<List<Medicine>>) {
                 if (response.isSuccessful) {
-                    val items = response.body()?.body?.items
+                    val items = response.body()
                     if (!items.isNullOrEmpty()) {
                         callback(items)
                     } else {
@@ -67,19 +67,19 @@ object Storage_medicine {
                 }
             }
 
-            override fun onFailure(call: Call<Medicine>, t: Throwable) {
+            override fun onFailure(call: Call<List<Medicine>>, t: Throwable) {
                 Log.d("abcde", "Request failed: $t")
                 callback(null)
             }
         })
     }
 
-    fun getQueryMedicineData(query: String,callback: (List<Medicine.Body.Item>?) -> Unit) {
+    fun getQueryMedicineData(query: String,callback: (List<Medicine>?) -> Unit) {
         val encodedQuery = URLEncoder.encode(query, "UTF-8")
-        medService.getQueryMedicineList(encodedQuery).enqueue(object : Callback<Medicine> {
-            override fun onResponse(call: Call<Medicine>, response: Response<Medicine>) {
+        medService.getQueryMedicineList(encodedQuery).enqueue(object : Callback<List<Medicine>> {
+            override fun onResponse(call: Call<List<Medicine>>, response: Response<List<Medicine>>) {
                 if (response.isSuccessful) {
-                    val items = response.body()?.body?.items
+                    val items = response.body()
                     if (!items.isNullOrEmpty()) {
                         callback(items)
                     } else {
@@ -92,7 +92,7 @@ object Storage_medicine {
                 }
             }
 
-            override fun onFailure(call: Call<Medicine>, t: Throwable) {
+            override fun onFailure(call: Call<List<Medicine>>, t: Throwable) {
                 Log.d("abcde", "Request failed: $t")
                 callback(null)
             }

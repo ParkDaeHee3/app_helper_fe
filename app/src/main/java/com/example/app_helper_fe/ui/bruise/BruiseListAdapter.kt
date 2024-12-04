@@ -10,7 +10,7 @@ import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class BruiseListAdapter(
-    private val items: List<Medicine.Body.Item>,
+    private val items: List<Medicine>,
     private val bruiseClicklistener: BruiseItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 
@@ -39,7 +39,7 @@ class BruiseItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(medicine: Medicine.Body.Item) {
+    fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             bruiseClicklistener.onBruiseClick(medicine) // click listener를 통해 타박상으로 이동
             detailClickListener.onMedicineDetailClick() // click listener를 통해약품 상세로 이동
@@ -48,7 +48,7 @@ class BruiseItemViewHolder(
             ivBruiseImage.setImageResource(R.drawable.muscle)
             tvBruiseMedicineName.text = medicine.itemName
             tvPharmacyName.text = medicine.entpName
-            tvPharmacyNumber.text = medicine.itemSeq
+            tvPharmacyNumber.text = medicine.id.toString()
         }
     }
 

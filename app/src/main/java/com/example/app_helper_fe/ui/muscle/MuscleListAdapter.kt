@@ -9,7 +9,7 @@ import com.example.app_helper_fe.databinding.ItemMuscleListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 class MuscleListAdapter(
-    private val items: List<Medicine.Body.Item>,
+    private val items: List<Medicine>,
     private val muscleClicklistener: MuscleItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.Adapter<MuscleItemViewHolder>() {
@@ -37,7 +37,7 @@ class MuscleItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(medicine: Medicine.Body.Item) {
+    fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             muscleClicklistener.onMuscleClick(medicine)
             detailClickListener.onMedicineDetailClick()
@@ -46,7 +46,7 @@ class MuscleItemViewHolder(
             ivMuscleImage.setImageResource(R.drawable.muscle)
             tvMuscleMedicineName.text = medicine.itemName
             tvPharmacyName.text = medicine.entpName
-            tvPharmacyNumber.text = medicine.itemSeq
+            tvPharmacyNumber.text = medicine.id.toString()
         }
     }
 
