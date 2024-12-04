@@ -64,7 +64,7 @@ class HeadacheMedicineFragment : Fragment(), HeadacheItemClickListener,MedicineD
     }
 
 
-    override fun onHeadacheClick(medicine: Medicine.Body.Item) {
+    override fun onHeadacheClick(medicine: Medicine) {
 
     }
 

@@ -5,5 +5,5 @@ import com.example.app_helper_fe.data.Stomach
 
 interface StomachItemClickListener {
 
-    fun onStomachClick(medicine: Medicine.Body.Item)
+    fun onStomachClick(medicine: Medicine)
 }

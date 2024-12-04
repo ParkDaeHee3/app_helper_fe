@@ -11,7 +11,7 @@ import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 
 class ToothListAdapter(
-    private val items: List<Medicine.Body.Item>,
+    private val items: List<Medicine>,
     private val toothClicklistener: ToothItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.Adapter<ToothItemViewHolder>() {
@@ -40,7 +40,7 @@ class ToothItemViewHolder(
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(medicine: Medicine.Body.Item) {
+    fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             toothClicklistener.onToothClick(medicine)
             detailClickListener.onMedicineDetailClick()
@@ -50,7 +50,7 @@ class ToothItemViewHolder(
             ivToothImage.setImageResource(R.drawable.tooth)
             tvToothMedicineName.text = medicine.itemName
             tvPharmacyName.text = medicine.entpName
-            tvPharmacyNumber.text = medicine.itemSeq
+            tvPharmacyNumber.text = medicine.id.toString()
         }
     }
 

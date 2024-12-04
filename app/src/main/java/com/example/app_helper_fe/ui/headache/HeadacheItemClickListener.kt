@@ -5,5 +5,5 @@ import com.example.app_helper_fe.data.Medicine
 
 interface HeadacheItemClickListener {
 
-    fun onHeadacheClick(medicine: Medicine.Body.Item)
+    fun onHeadacheClick(medicine: Medicine)
 }

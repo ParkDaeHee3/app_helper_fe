@@ -5,5 +5,5 @@ import com.example.app_helper_fe.data.Muscle
 
 interface MuscleItemClickListener {
 
-    fun onMuscleClick(medicine: Medicine.Body.Item)
+    fun onMuscleClick(medicine: Medicine)
 }

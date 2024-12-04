@@ -5,5 +5,5 @@ import com.example.app_helper_fe.data.Medicine
 
 interface FeverItemClickListener {
 
-    fun onFeverClick(medicine: Medicine.Body.Item)
+    fun onFeverClick(medicine: Medicine)
 }

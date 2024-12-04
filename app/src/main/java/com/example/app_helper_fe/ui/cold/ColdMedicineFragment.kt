@@ -59,7 +59,7 @@ class ColdMedicineFragment : Fragment(),ColdItemClickListener, MedicineDetailCli
     }
 
 
-    override fun onColdClick(medicine: Medicine.Body.Item) {
+    override fun onColdClick(medicine: Medicine) {
 
 
     }
