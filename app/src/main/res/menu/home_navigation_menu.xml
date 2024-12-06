@@ -8,12 +8,6 @@
         android:id="@+id/navigation_search_medicine"
         android:icon="@drawable/ic_search"
         android:title="@string/label_search_screen" />
-    <item
-        android:id="@+id/navigation_map"
-        android:icon="@drawable/ic_map"
-        android:title="@string/label_map_screen" />
-    <item
-        android:id="@+id/navigation_maypage"
-        android:icon="@drawable/ic_mypage2"
-        android:title="@string/label_mypage_screen" />
+
+
 </menu>

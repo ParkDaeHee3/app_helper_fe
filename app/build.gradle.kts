@@ -16,12 +16,12 @@ val properties = Properties().apply {
 
 android {
     namespace = "com.example.app_helper_fe"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.app_helper_fe"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
         ndk {

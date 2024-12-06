@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                app:constraint_referenced_ids="view_card_area,tv_add_card,iv_view_card_map" />
+                app:constraint_referenced_ids="view_card_area,tv_add_card" />
 
             <View
                 android:id="@+id/view_card_area"
@@ -83,7 +83,6 @@
                 android:layout_marginBottom="30dp"
                 android:layout_marginStart="20dp"
                 android:text="@string/text_mainpage_title"
-                app:layout_constraintBottom_toTopOf="@+id/iv_view_card_map"
                 app:layout_constraintEnd_toEndOf="@id/view_card_area"
                 app:layout_constraintStart_toEndOf="@id/Logo_helper"
                 app:layout_constraintTop_toTopOf="@id/view_card_area" />
@@ -104,7 +103,7 @@
                 app:layout_constraintTop_toTopOf="@id/view_card_area" />
 
 
-            <!--메이페이지 지도 그림-->
+            <!--메이페이지 지도 그림
             <ImageView
                 android:id="@+id/iv_view_card_map"
                 android:layout_width="0dp"
@@ -119,7 +118,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/view_card_area"
                 app:layout_constraintVertical_chainStyle="packed" />
-            <!--메이페이지 지도 그림 끝-->
+            -->
 
 
             <!--카드섹션 질문  -->
