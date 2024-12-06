@@ -36,9 +36,6 @@
             android:id="@+id/action_home_to_view_card_tooth_area"
             app:destination="@id/view_card_tooth_area" />
         <action
-            android:id="@+id/action_home_to_maypage"
-            app:destination="@id/navigation_maypage" />
-        <action
             android:id="@+id/action_home_to_search_medicine"
             app:destination="@id/navigation_search_medicine" />
     </fragment>
@@ -70,15 +67,6 @@
     </fragment>
 
     <!-- 하단바 mypage-->
-    <fragment
-        android:id="@+id/navigation_maypage"
-        android:name="com.example.app_helper_fe.ui.mypage.MypageFragment"
-        android:label="@string/label_mypage_screen"
-        tools:layout="@layout/fragment_mypage">
-        <action
-            android:id="@+id/action_maypage_to_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
 
 
     <!--감기 약 카드 -->
