@@ -10,7 +10,7 @@
 
     <!--  Home  -->
     <string name="description_main_logo">메인 페이지의 로고 이미지</string>
-    <string name="text_mainpage_title">상비약 처방은 헬 퍼</string>
+    <string name="text_mainpage_title">일반약 처방은 헬 퍼</string>
     <!-- Home body -->
     <string name="text_mainpage_body">내 주변 가장 가까운 판매점을 찾아보세요!</string>
     <string name="text_mainpage_card_section">어디가 아프세요?</string>
