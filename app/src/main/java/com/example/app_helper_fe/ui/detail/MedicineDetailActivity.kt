@@ -2,23 +2,39 @@ package com.example.app_helper_fe.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.app_helper_fe.R
 import com.example.app_helper_fe.databinding.ActivityMedicineDetailBinding
+import com.example.app_helper_fe.ui.map.MapFragment
 import com.google.android.material.tabs.TabLayout
+
 
 class MedicineDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMedicineDetailBinding
     private lateinit var adapter: MedicineDetailAdapter
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMedicineDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // btnMap 클릭 리스너 추가
+        binding.btnmap.setOnClickListener {
+            // FragmentTransaction을 통해 MapFragment로 이동
+            supportFragmentManager.beginTransaction()
+                .replace(android.R.id.content, MapFragment()) // 전체 화면을 MapFragment로 대체
+                .addToBackStack(null) // 뒤로 가기 버튼으로 이전 화면으로 돌아갈 수 있게 설정
+                .commit()
+        }
+
 
 
         //////임의의 데이터 추가
@@ -80,7 +96,12 @@ class MedicineDetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+
+
     }
+
+
+
 
     private fun loadImage(url: String) {
         // Glide, Picasso 등 이미지 로딩 라이브러리를 사용
