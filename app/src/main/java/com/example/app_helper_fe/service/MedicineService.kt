@@ -9,7 +9,7 @@ interface MedicineService {
     @GET("/getmedicine")
     fun getMedicine(
         @Query("itemSeq") itemSeq: Int? = null,
-    ): Call<List<Medicine>>
+    ): Call<Medicine>
 
     @GET("/getmedicinelist")
     fun getMedicineList(
