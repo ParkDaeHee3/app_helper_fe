@@ -129,7 +129,6 @@ class HomeFragment : Fragment(), MapClickListener {
     }
 
 
-
     //메모리 관리를 위해서
     override fun onDestroyView() {
         super.onDestroyView()
