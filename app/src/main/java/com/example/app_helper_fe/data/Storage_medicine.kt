@@ -25,12 +25,12 @@ object Storage_medicine {
     val medService = retrofit.create(MedicineService::class.java)
 
     //단일 약품 데이터
-    fun getOneData(itemSeq : Int,callback: (List<Medicine>?) -> Unit) {
-        medService.getMedicine(itemSeq).enqueue(object : Callback<List<Medicine>> {
-            override fun onResponse(call: Call<List<Medicine>>, response: Response<List<Medicine>>) {
+    fun getOneData(itemSeq : Int,callback: (Medicine?) -> Unit) {
+        medService.getMedicine(itemSeq).enqueue(object : Callback<Medicine> {
+            override fun onResponse(call: Call<Medicine>, response: Response<Medicine>) {
                 if (response.isSuccessful) {
                     val items = response.body()
-                    if (!items.isNullOrEmpty()) {
+                    if (items != null) {
                         callback(items)
                     } else {
                         Log.d("abcde", "Items are empty")
@@ -42,7 +42,7 @@ object Storage_medicine {
                 }
             }
 
-            override fun onFailure(call: Call<List<Medicine>>, t: Throwable) {
+            override fun onFailure(call: Call<Medicine>, t: Throwable) {
                 Log.d("abcde", "Request failed: $t")
                 callback(null)
             }
