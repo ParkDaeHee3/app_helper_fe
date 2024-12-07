@@ -1,15 +1,11 @@
 package com.example.app_helper_fe.ui.map;
 
+// 필요한 패키지 및 상수 임포트
 import static android.content.Context.LOCATION_SERVICE;
-import static androidx.core.content.ContextCompat.getSystemService;
 import static com.example.app_helper_fe.ConstantKt.KAKAO_MAP_KEY;
 
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -23,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+
 import com.example.app_helper_fe.R;
 import com.example.app_helper_fe.data.Pharmacy;
 import com.example.app_helper_fe.data.Storage_pharmacy;
@@ -52,149 +49,136 @@ import org.locationtech.proj4j.ProjCoordinate;
 
 import java.util.List;
 
-import retrofit2.Retrofit;
-
-
 public class MapFragment extends Fragment {
 
-    private FragmentMapBinding binding;
-    MapView mapView;
-    KakaoMap kakaoMap;
-    double lat;
-    double lon;
+    private FragmentMapBinding binding; // View Binding
+    private MapView mapView; // 지도 View
+    private KakaoMap kakaoMap; // Kakao 지도 객체
+    private double lat; // 현재 위치 위도
+    private double lon; // 현재 위치 경도
+    private FusedLocationProviderClient fusedLocationProviderClient; // 위치 제공 클라이언트
 
-    private FusedLocationProviderClient fusedLocationProviderClient;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // View Binding 초기화
         binding = FragmentMapBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         // FusedLocationProviderClient 초기화
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext());
 
-        // 위치 정보 가져오기
+        // 현재 위치 가져오기
         getCurrentLocation();
 
+        // Kakao Map 초기화
         mapView = binding.mapView;
+        KakaoMapSdk.init(requireContext(), KAKAO_MAP_KEY); // Kakao Map SDK 초기화
 
-        KakaoMapSdk.init(requireContext(), KAKAO_MAP_KEY);
+        // MapView의 라이프사이클 콜백 설정
         mapView.start(new MapLifeCycleCallback() {
             @Override
             public void onMapDestroy() {
-                // 지도 API가 정상적으로 종료될 때 호출
-                Log.d("KakaoMap", "onMapDestroy: ");
+                Log.d("KakaoMap", "onMapDestroy: "); // 지도 종료 시 로그 출력
             }
 
             @Override
             public void onMapError(Exception error) {
-                // 인증 실패 및 지도 사용 중 에러가 발생할 때 호출
-                Log.e("KakaoMap", "onMapError: ", error);
+                Log.e("KakaoMap", "onMapError: ", error); // 지도 오류 발생 시 로그 출력
             }
         }, new KakaoMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull KakaoMap map) {
-                // 정상적으로 인증이 완료되었을 때 호출
-                // KakaoMap 객체를 얻어 옵니다.
+                // Kakao Map 준비 완료 시 호출
                 kakaoMap = map;
 
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(lat,lon));//35.967922, 126.958637));
+                // 현재 위치로 카메라 이동
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(lat, lon));
                 kakaoMap.moveCamera(cameraUpdate);
 
+                // 지도 마커 스타일 설정
                 LabelStyle style = LabelStyle.from(R.drawable.map_marker)
                         .setTextStyles(LabelTextStyle.from(37, Color.parseColor("#DB5461"), 2, Color.DKGRAY))
                         .setApplyDpScale(true);
 
-
-                Storage_pharmacy.INSTANCE.getPharmacyList(lat,lon,pharmacies -> {
+                // 약국 데이터를 가져와 지도에 표시
+                Storage_pharmacy.INSTANCE.getPharmacyList(lat, lon, pharmacies -> {
                     if (pharmacies != null) {
                         for (Pharmacy pharmacy : pharmacies) {
-                            Pair<Double,Double> a = transformCoordinates(pharmacy.getLon(),pharmacy.getLat());
+                            // 약국 좌표 변환
+                            Pair<Double, Double> coords = transformCoordinates(pharmacy.getLon(), pharmacy.getLat());
                             Log.e("Name", pharmacy.getName());
+
+                            // 마커 생성 및 추가
                             LabelTextBuilder labelTextBuilder = new LabelTextBuilder();
                             labelTextBuilder.setTexts(pharmacy.getName());
-                            LabelOptions options = LabelOptions.from(LatLng.from(a.first, a.second))
+                            LabelOptions options = LabelOptions.from(LatLng.from(coords.first, coords.second))
                                     .setStyles(style).setTexts(labelTextBuilder);
 
-// 3. LabelLayer 가져오기 (또는 커스텀 Layer 생성)
+                            // 지도에 레이블 추가
                             LabelLayer layer = kakaoMap.getLabelManager().getLayer();
-
-// 4. LabelLayer 에 LabelOptions 을 넣어 Label 생성하기
                             layer.addLabel(options);
                         }
                     } else {
                         Log.d("pharmacy", "No pharmacies found");
                     }
                 });
-
-// 2. LabelOptions 생성하기
-
             }
         });
+
         return root;
     }
 
-    //위치 불러오기
+    /**
+     * 현재 위치 정보를 가져오는 메서드
+     */
     private void getCurrentLocation() {
+        // 위치 권한 확인
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             fusedLocationProviderClient.getLastLocation()
                     .addOnSuccessListener(location -> {
                         if (location != null) {
-                            double latitude = location.getLatitude();
-                            double longitude = location.getLongitude();
-                            Toast.makeText(requireContext(),
-                                    "위도: " + latitude + ", 경도: " + longitude,
-                                    Toast.LENGTH_SHORT).show();
-                            lat = latitude;
-                            lon = longitude;
+                            // 위치 정보를 변수에 저장
+                            lat = location.getLatitude();
+                            lon = location.getLongitude();
+                            Toast.makeText(requireContext(), "위도: " + lat + ", 경도: " + lon, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(requireContext(), "위치를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(e -> Toast.makeText(requireContext(),
-                            "위치 가져오기 실패: " + e.getMessage(),
-                            Toast.LENGTH_SHORT).show());
+                            "위치 가져오기 실패: " + e.getMessage(), Toast.LENGTH_SHORT).show());
         }
     }
 
-
-    //위도경도 계산기
+    /**
+     * 좌표 변환 (TM 좌표계 -> WGS84 좌표계)
+     */
     public static Pair<Double, Double> transformCoordinates(double x, double y) {
-        // CRS 설정
         CRSFactory crsFactory = new CRSFactory();
         String epsg2097 = "+proj=tmerc +lat_0=38 +lon_0=127 +k=1.0 +x_0=200000 +y_0=500000 +ellps=bessel +units=m";
-        CoordinateReferenceSystem sourceCRS = crsFactory.createFromParameters("EPSG:2097",epsg2097); // TM 중부 좌표계
-        CoordinateReferenceSystem targetCRS = crsFactory.createFromName("EPSG:4326"); // WGS84 (위도/경도)
+        CoordinateReferenceSystem sourceCRS = crsFactory.createFromParameters("EPSG:2097", epsg2097);
+        CoordinateReferenceSystem targetCRS = crsFactory.createFromName("EPSG:4326");
 
-        // 변환기 생성
         CoordinateTransformFactory transformFactory = new CoordinateTransformFactory();
         CoordinateTransform transform = transformFactory.createTransform(sourceCRS, targetCRS);
 
-        // 입력 좌표 (TM)
         ProjCoordinate srcCoord = new ProjCoordinate(x, y);
         ProjCoordinate destCoord = new ProjCoordinate();
-
-        // 변환 수행
         transform.transform(srcCoord, destCoord);
 
-        // 보정값 계산
-        double latOffset = 0.69747461314009;  // 위도 보정값
-        double lngOffset = -0.84281021637214; // 경도 보정값
-
-        // 보정 적용
+        // 보정값 적용
+        double latOffset = 0.69747461314009;
+        double lngOffset = -0.84281021637214;
         double correctedLat = destCoord.y + latOffset;
         double correctedLng = destCoord.x + lngOffset;
 
         Log.e("LONLAT", correctedLat + "::" + correctedLng);
-
-        // 결과 반환 (위도, 경도)
-        return new Pair<>(correctedLat, correctedLng); // WGS84: (위도, 경도)
+        return new Pair<>(correctedLat, correctedLng);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        binding = null; // View Binding 해제
     }
 }
