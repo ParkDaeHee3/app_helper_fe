@@ -31,8 +31,8 @@ data class Medicine(
     @SerializedName("depositMethod")
     val depositMethod: String,
 
-    @SerializedName("itemImage")
-    val itemImage: String,
+    @SerializedName("image")
+    val image: String
 
 )
 //    @SerializedName("header")
