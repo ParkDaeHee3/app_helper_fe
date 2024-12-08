@@ -6,7 +6,6 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.app_helper_fe.R
 import com.example.app_helper_fe.data.Medicine
 import com.example.app_helper_fe.databinding.ItemFeverListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
@@ -60,7 +59,7 @@ class FeverItemViewHolder(
             }
             tvFeverMedicineName.text = medicine.itemName
             tvPharmacyName.text = medicine.entpName
-            tvPharmacyNumber.text = medicine.id.toString()
+           // tvPharmacyNumber.text = medicine.id.toString()
         }
     }
     private fun decodeBase64ToBitmap(base64String: String): Bitmap? {

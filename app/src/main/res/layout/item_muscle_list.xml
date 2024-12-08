@@ -40,11 +40,12 @@
         style="@style/AppTextTitle.S14"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="@id/border_line"
         app:layout_constraintStart_toEndOf="@id/iv_muscle_image"
         app:layout_constraintTop_toTopOf="@id/border_line"
+        app:layout_constraintBottom_toTopOf="@id/tv_pharmacy_name"
         tools:text="약품명" />
 
     <TextView
@@ -52,27 +53,27 @@
         style="@style/AppTextCaption.S12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="@id/border_line"
         app:layout_constraintStart_toEndOf="@id/iv_muscle_image"
         app:layout_constraintTop_toBottomOf="@id/tv_muscle_medicine_name"
         tools:text="판매점 이름" />
 
-    <TextView
-        android:id="@+id/tv_pharmacy_number"
-        style="@style/AppTextCaption.S12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="@id/border_line"
-        app:layout_constraintEnd_toEndOf="@id/border_line"
-        app:layout_constraintStart_toEndOf="@id/tv_pharmacy_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_muscle_medicine_name"
-        tools:text="000-111-222222" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_pharmacy_number"-->
+<!--        style="@style/AppTextCaption.S12"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:layout_marginBottom="5dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/border_line"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/border_line"-->
+<!--        app:layout_constraintStart_toEndOf="@id/tv_pharmacy_name"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tv_muscle_medicine_name"-->
+<!--        tools:text="000-111-222222" />-->
 
     <ImageView
         android:id="@+id/image_vi_muscle_arrow"
@@ -82,7 +83,7 @@
         android:contentDescription="@string/description_pharmacy_location"
         android:src="@drawable/ic_arrow_outward"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/border_line"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

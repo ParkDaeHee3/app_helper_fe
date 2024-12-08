@@ -58,7 +58,7 @@ class OtherItemViewHolder(
             }
             tvOtherMedicineName.text = medicine.itemName
             tvPharmacyName.text = medicine.entpName
-            tvPharmacyNumber.text = medicine.id.toString()
+           // tvPharmacyNumber.text = medicine.id.toString()
         }
     }
 
