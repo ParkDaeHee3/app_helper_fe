@@ -5,5 +5,5 @@ import com.example.app_helper_fe.data.Tooth
 
 interface ToothItemClickListener {
 
-    fun onToothClick(medicine: Medicine.Body.Item)
+    fun onToothClick(medicine: Medicine)
 }

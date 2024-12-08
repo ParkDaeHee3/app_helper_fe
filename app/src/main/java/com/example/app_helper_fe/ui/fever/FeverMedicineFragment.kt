@@ -59,7 +59,7 @@ class FeverMedicineFragment : Fragment(), FeverItemClickListener,MedicineDetailC
     }
 
 
-    override fun onFeverClick(medicine: Medicine.Body.Item) {
+    override fun onFeverClick(medicine: Medicine) {
 
     }
 

@@ -20,7 +20,7 @@ class SearchFragment : Fragment(), SearchMedicineItemClickListener, MedicineDeta
     private val binding get() = _binding!!
 
     private lateinit var adapter: SearchMedicineListAdapter //검색 기능 추가
-    private lateinit var filteredList: ArrayList<Medicine.Body.Item> //검색 기능 추가
+    private lateinit var filteredList: ArrayList<Medicine> //검색 기능 추가
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -83,7 +83,7 @@ class SearchFragment : Fragment(), SearchMedicineItemClickListener, MedicineDeta
         _binding = null
     }
 
-    override fun onSearchMedicineClick(medicine: Medicine.Body.Item) {
+    override fun onSearchMedicineClick(medicine: Medicine) {
 
     }
 

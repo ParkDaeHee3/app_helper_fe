@@ -5,5 +5,5 @@ import com.example.app_helper_fe.data.Medicine
 
 interface ColdItemClickListener {
 
-    fun onColdClick(medicine: Medicine.Body.Item)
+    fun onColdClick(medicine: Medicine)
 }

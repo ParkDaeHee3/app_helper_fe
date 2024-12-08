@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingTop="7dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="7dp">
+
+
+
+    <View
+        android:id="@+id/view_card_other_area_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:background="@drawable/border_green"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_other_image"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="13dp"
+        android:contentDescription="구내염 약품 이미지 안내 "
+        app:layout_constraintBottom_toBottomOf="@id/view_card_other_area_detail"
+        app:layout_constraintStart_toStartOf="@id/view_card_other_area_detail"
+        app:layout_constraintTop_toTopOf="@+id/view_card_other_area_detail"
+        app:shapeAppearanceOverlay="@style/AppRoundedImage"
+        tools:background="@color/gray_300" />
+
+
+    <TextView
+        android:id="@+id/tv_other_medicine_name"
+        style="@style/AppTextTitle.S14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="@id/view_card_other_area_detail"
+        app:layout_constraintStart_toEndOf="@id/iv_other_image"
+        app:layout_constraintTop_toTopOf="@id/view_card_other_area_detail"
+        tools:text="약품명" />
+
+    <TextView
+        android:id="@+id/tv_pharmacy_name"
+        style="@style/AppTextCaption.S12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_card_other_area_detail"
+        app:layout_constraintStart_toEndOf="@id/iv_other_image"
+        app:layout_constraintTop_toBottomOf="@id/tv_other_medicine_name"
+        tools:text="판매점 이름" />
+
+    <TextView
+        android:id="@+id/tv_pharmacy_number"
+        style="@style/AppTextCaption.S12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_card_other_area_detail"
+        app:layout_constraintEnd_toEndOf="@id/view_card_other_area_detail"
+        app:layout_constraintStart_toEndOf="@id/tv_pharmacy_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_other_medicine_name"
+        tools:text="000-111-222222" />
+
+    <ImageView
+        android:id="@+id/image_vi_other_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:src="@drawable/ic_arrow_outward"
+        app:layout_constraintBottom_toBottomOf="@id/view_card_other_area_detail"
+        app:layout_constraintEnd_toEndOf="@id/view_card_other_area_detail"
+        app:layout_constraintStart_toStartOf="@id/view_card_other_area_detail"
+        app:layout_constraintTop_toTopOf="@id/view_card_other_area_detail" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

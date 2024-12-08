@@ -5,5 +5,5 @@ import com.example.app_helper_fe.data.Medicine
 
 interface BruiseItemClickListener {
 
-    fun onBruiseClick(medicine: Medicine.Body.Item)
+    fun onBruiseClick(medicine: Medicine)
 }

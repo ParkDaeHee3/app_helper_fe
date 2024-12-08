@@ -29,7 +29,7 @@ class HomeFragment : Fragment(), MapClickListener {
     }
 
     private fun setLayout() {
-        setMapCard() // map destination 지도로 이동
+        //setMapCard() // map destination 지도로 이동
         setColdCard() //cold destination 감기 카드 목록 이동
         setHeadacheCard()// headache destination 두통 카드 목록 이동
         setMuscleCard()//muscle destination 근육통 카드 목록 이동
@@ -37,18 +37,19 @@ class HomeFragment : Fragment(), MapClickListener {
         setStomachCard()//stomach destination 복통 카드 목록 이동
         setFeverCard() //fever destination 온열 카드 목록 이동
         setToothCard() // tooth destination 치통 카드 목록 이동
+        setOtherCard() // other destination 치통 카드 목록 이동
     }
 
 //감기 카드 섹션 이동
-private fun setMapCard() {
-    with(binding) {
-        groupAddCard.visibility = View.VISIBLE
-        ivViewCardMap.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeToMap()
-            findNavController().navigate(action)
-        }
-    }
-}
+//private fun setMapCard() {
+//    with(binding) {
+//        groupAddCard.visibility = View.VISIBLE
+//        ivViewCardMap.setOnClickListener {
+//            val action = HomeFragmentDirections.actionHomeToMap()
+//            findNavController().navigate(action)
+//       }
+//    }
+//}
 
 
     //감기 카드 섹션 이동
@@ -128,6 +129,16 @@ private fun setMapCard() {
         }
     }
 
+    //치통 카드 섹션 이동
+    private fun setOtherCard() {
+        with(binding) {
+            groupAddCard.visibility = View.VISIBLE
+            viewCardOtherArea.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeToViewCardOtherArea()
+                findNavController().navigate(action)
+            }
+        }
+    }
 
 
     //메모리 관리를 위해서

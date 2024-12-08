@@ -1,5 +1,8 @@
 package com.example.app_helper_fe.ui.muscle
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +12,7 @@ import com.example.app_helper_fe.databinding.ItemMuscleListBinding
 import com.example.app_helper_fe.ui.detail.MedicineDetailClickListener
 
 class MuscleListAdapter(
-    private val items: List<Medicine.Body.Item>,
+    private val items: List<Medicine>,
     private val muscleClicklistener: MuscleItemClickListener,
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.Adapter<MuscleItemViewHolder>() {
@@ -37,16 +40,38 @@ class MuscleItemViewHolder(
     private val detailClickListener: MedicineDetailClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(medicine: Medicine.Body.Item) {
+    fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             muscleClicklistener.onMuscleClick(medicine)
             detailClickListener.onMedicineDetailClick()
         }
         with(binding) {
-            ivMuscleImage.setImageResource(R.drawable.muscle)
+
+            // Base64 문자열 (예시)
+            val base64Image = medicine.image;
+
+            // Base64 문자열을 Bitmap으로 디코딩
+            val bitmap = decodeBase64ToBitmap(base64Image)
+
+            bitmap?.let {
+                binding.ivMuscleImage.setImageBitmap(it)
+            }
             tvMuscleMedicineName.text = medicine.itemName
             tvPharmacyName.text = medicine.entpName
-            tvPharmacyNumber.text = medicine.itemSeq
+            tvPharmacyNumber.text = medicine.id.toString()
+        }
+    }
+
+    private fun decodeBase64ToBitmap(base64String: String): Bitmap? {
+        return try {
+            // Base64 문자열을 바이트 배열로 디코딩
+            val decodedString = Base64.decode(base64String, Base64.DEFAULT)
+
+            // 바이트 배열을 Bitmap으로 디코딩
+            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
         }
     }
 

@@ -13,11 +13,11 @@ interface MedicineService {
 
     @GET("/getmedicinelist")
     fun getMedicineList(
-        @Query("eff") eff: Int? = null,
-    ): Call<Medicine>
+        @Query("efcy") eff: Int? = null,
+    ): Call<List<Medicine>>
 
     @GET("/getquerymedicine")
     fun getQueryMedicineList(
         @Query("query") query: String? = null,
-    ): Call<Medicine>
+    ): Call<List<Medicine>>
 }

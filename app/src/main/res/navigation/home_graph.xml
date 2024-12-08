@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_graph.xml"
-    app:startDestination="@id/introFragment">
-
+    app:startDestination="@id/navigation_home">
 
     <!-- home -->
     <fragment
@@ -37,11 +36,11 @@
             android:id="@+id/action_home_to_view_card_tooth_area"
             app:destination="@id/view_card_tooth_area" />
         <action
-            android:id="@+id/action_home_to_maypage"
-            app:destination="@id/navigation_maypage" />
-        <action
             android:id="@+id/action_home_to_search_medicine"
             app:destination="@id/navigation_search_medicine" />
+        <action
+            android:id="@+id/action_home_to_view_card_other_area"
+            app:destination="@id/view_card_other_area" />
     </fragment>
 
 
@@ -71,18 +70,6 @@
     </fragment>
 
     <!-- 하단바 mypage-->
-    <fragment
-        android:id="@+id/navigation_maypage"
-        android:name="com.example.app_helper_fe.ui.mypage.MypageFragment"
-        android:label="@string/label_mypage_screen"
-        tools:layout="@layout/fragment_mypage">
-        <action
-            android:id="@+id/action_maypage_to_home"
-            app:destination="@id/navigation_home" />
-        <action
-            android:id="@+id/action_mypageFragment_to_myinfoFragment"
-            app:destination="@id/myinfoFragment" />
-    </fragment>
 
 
     <!--감기 약 카드 -->
@@ -159,7 +146,7 @@
     </fragment>
 
 
-    <!--tooth 온열 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
+    <!--tooth  약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
     <fragment
         android:id="@+id/view_card_tooth_area"
         android:name="com.example.app_helper_fe.ui.tooth.ToothMedicineFragment"
@@ -177,51 +164,16 @@
         android:label="MedicineDetailActivity"
         tools:layout="@layout/activity_medicine_detail" />
 
-    <!--login page -->
+    <!--other 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.app_helper_fe.ui.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:id="@+id/view_card_other_area"
+        android:name="com.example.app_helper_fe.ui.other.OtherMedicineFragment"
+        android:label="OtherFragment"
+        tools:layout="@layout/fragment_other_medicine">
         <action
-            android:id="@+id/action_loginFragment_to_home"
-            app:destination="@id/navigation_home" />
+            android:id="@+id/action_view_card_other_area_to_medicine_detail"
+            app:destination="@id/navigation_medicine_detail" />
     </fragment>
-    <!--intro page -->
-    <fragment
-        android:id="@+id/introFragment"
-        android:name="com.example.app_helper_fe.ui.intro.IntroFragment"
-        android:label="IntroFragment"
-        tools:layout="@layout/fragment_intro">
-        <action
-            android:id="@+id/action_introFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_introFragment_to_joinFragment"
-            app:destination="@id/joinFragment" />
-
-    </fragment>
-    <!--join page -->
-    <fragment
-        android:id="@+id/joinFragment"
-        android:name="com.example.app_helper_fe.ui.join.JoinFragment"
-        android:label="JoinFragment" />
-
-    <fragment
-        android:id="@+id/myinfoFragment"
-        android:name="com.example.app_helper_fe.ui.mypage.MyinfoFragment"
-        android:label="MyinfoFragment" >
-        <action
-            android:id="@+id/action_myinfoFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/navigation_medicine_detail_fragment"
-        android:name="com.example.app_helper_fe.ui.detail.MedicineDetailFragment"
-        android:label="fragment_medicine_detail"
-        tools:layout="@layout/fragment_medicine_detail" />
 
 
 </navigation>
