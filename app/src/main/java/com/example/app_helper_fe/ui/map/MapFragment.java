@@ -26,6 +26,7 @@ import com.example.app_helper_fe.data.Storage_pharmacy;
 import com.example.app_helper_fe.databinding.FragmentMapBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.kakao.vectormap.KakaoMap;
 import com.kakao.vectormap.KakaoMapReadyCallback;
 import com.kakao.vectormap.KakaoMapSdk;
@@ -63,6 +64,16 @@ public class MapFragment extends Fragment {
         // View Binding 초기화
         binding = FragmentMapBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        // 툴바 설정
+        MaterialToolbar toolbar = binding.toolbarBtnBack;
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back); // 뒤로 가기 아이콘 설정
+        toolbar.setNavigationOnClickListener(v -> {
+            // 뒤로 가기 아이콘 클릭 시 이전 화면으로 돌아가기
+            requireActivity().onBackPressed(); // 기본 뒤로가기 동작 실행
+            // 또는 NavController 사용
+            // findNavController().navigateUp();
+        });
 
         // FusedLocationProviderClient 초기화
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext());
