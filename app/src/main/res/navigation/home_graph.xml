@@ -2,171 +2,108 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_graph.xml"
+    android:id="@+id/home_graph"
     app:startDestination="@id/navigation_home">
 
-    <!-- home -->
+    <!-- 홈 화면 -->
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.app_helper_fe.ui.home.HomeFragment"
         android:label="@string/label_home_screen"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_home_to_view_card_cold_area"
-            app:destination="@id/view_card_cold_area" />
-        <action
-            android:id="@+id/action_home_to_map"
-            app:destination="@id/navigation_map" />
-        <action
-            android:id="@+id/action_home_to_view_card_muscle_area"
-            app:destination="@id/view_card_muscle_area" />
-        <action
-            android:id="@+id/action_home_to_view_card_headache_area"
-            app:destination="@id/view_card_headache_area" />
-        <action
-            android:id="@+id/action_home_to_view_card_bruise_area"
-            app:destination="@id/view_card_bruise_area" />
-        <action
-            android:id="@+id/action_home_to_view_card_stomach_area"
-            app:destination="@id/view_card_stomach_area" />
-        <action
-            android:id="@+id/action_home_to_view_card_fever_area"
-            app:destination="@id/view_card_fever_area" />
-        <action
-            android:id="@+id/action_home_to_view_card_tooth_area"
-            app:destination="@id/view_card_tooth_area" />
-        <action
-            android:id="@+id/action_home_to_search_medicine"
-            app:destination="@id/navigation_search_medicine" />
+        <!-- 홈에서 연결되는 주요 액션 -->
+        <action android:id="@+id/action_home_to_map" app:destination="@id/navigation_map" />
+        <action android:id="@+id/action_home_to_search_medicine" app:destination="@id/navigation_search_medicine" />
+        <!-- 카드 영역 이동 -->
+        <action android:id="@+id/action_home_to_view_card_cold_area" app:destination="@id/view_card_cold_area" />
+        <action android:id="@+id/action_home_to_view_card_headache_area" app:destination="@id/view_card_headache_area" />
+        <action android:id="@+id/action_home_to_view_card_muscle_area" app:destination="@id/view_card_muscle_area" />
+        <action android:id="@+id/action_home_to_view_card_bruise_area" app:destination="@id/view_card_bruise_area" />
+        <action android:id="@+id/action_home_to_view_card_stomach_area" app:destination="@id/view_card_stomach_area" />
+        <action android:id="@+id/action_home_to_view_card_fever_area" app:destination="@id/view_card_fever_area" />
+        <action android:id="@+id/action_home_to_view_card_tooth_area" app:destination="@id/view_card_tooth_area" />
     </fragment>
 
-
-    <!--하단바에 있는 검색을 누르면 검색 페이지로 이동 -->
+    <!-- 검색 -->
     <fragment
         android:id="@+id/navigation_search_medicine"
         android:name="com.example.app_helper_fe.ui.search.SearchFragment"
         android:label="@string/label_search_screen"
         tools:layout="@layout/fragment_search">
-        <action
-            android:id="@+id/action_search_medicine_to_home"
-            app:destination="@id/navigation_home" />
-        <action
-            android:id="@+id/action_search_medicine_to_medicine_detail"
-            app:destination="@id/navigation_medicine_detail" />
+        <action android:id="@+id/action_search_medicine_to_home" app:destination="@id/navigation_home" />
+        <action android:id="@+id/action_search_medicine_to_medicine_detail" app:destination="@id/navigation_medicine_detail" />
     </fragment>
 
-    <!-- 하단바 지도-->
+    <!-- 지도 -->
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.example.app_helper_fe.ui.map.MapFragment"
         android:label="@string/label_map_screen"
         tools:layout="@layout/fragment_map">
-        <action
-            android:id="@+id/action_map_to_home"
-            app:destination="@id/navigation_home" />
+        <action android:id="@+id/action_map_to_home" app:destination="@id/navigation_home" />
     </fragment>
 
-    <!-- 하단바 mypage-->
-
-
-    <!--감기 약 카드 -->
+    <!-- 카드 영역 -->
     <fragment
         android:id="@+id/view_card_cold_area"
         android:name="com.example.app_helper_fe.ui.cold.ColdMedicineFragment"
         android:label="ColdFragment"
         tools:layout="@layout/fragment_cold_medicine">
-        <action
-            android:id="@+id/action_view_card_cold_area_to_home"
-            app:destination="@id/navigation_home" />
-        <action
-            android:id="@+id/action_view_card_cold_area_to_medicine_detail"
-            app:destination="@id/navigation_medicine_detail" />
+        <action android:id="@+id/action_view_card_cold_area_to_home" app:destination="@id/navigation_home" />
+        <action android:id="@+id/action_view_card_cold_area_to_medicine_detail" app:destination="@id/navigation_medicine_detail" />
     </fragment>
-
-    <!--headache 두통 약 카드 -->
     <fragment
         android:id="@+id/view_card_headache_area"
         android:name="com.example.app_helper_fe.ui.headache.HeadacheMedicineFragment"
         android:label="HeadacheFragment"
         tools:layout="@layout/fragment_headache_medicine">
-
-        <action
-            android:id="@+id/action_view_card_headache_area_to_medicine_detail"
-            app:destination="@id/navigation_medicine_detail" />
+        <action android:id="@+id/action_view_card_headache_area_to_medicine_detail" app:destination="@id/navigation_medicine_detail" />
     </fragment>
-
-    <!--muscle pain 근육통 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
     <fragment
         android:id="@+id/view_card_muscle_area"
         android:name="com.example.app_helper_fe.ui.muscle.MuscleMedicineFragment"
         android:label="MuscleFragment"
         tools:layout="@layout/fragment_muscle_medicine">
-
-
-        <!--bruise 타박상 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
-        <action
-            android:id="@+id/action_view_card_muscle_area_to_medicine_detail"
-            app:destination="@id/navigation_medicine_detail" />
+        <action android:id="@+id/action_view_card_muscle_area_to_medicine_detail" app:destination="@id/navigation_medicine_detail" />
     </fragment>
     <fragment
         android:id="@+id/view_card_bruise_area"
         android:name="com.example.app_helper_fe.ui.bruise.BruiseMedicineFragment"
         android:label="BruiseFragment"
-        tools:layout="@layout/fragment_bruise_medicine" >
-        <action
-            android:id="@+id/action_view_card_bruise_area_to_medicine_detail"
-            app:destination="@id/navigation_medicine_detail" />
+        tools:layout="@layout/fragment_bruise_medicine">
+        <action android:id="@+id/action_view_card_bruise_area_to_medicine_detail" app:destination="@id/navigation_medicine_detail" />
     </fragment>
-
-
-    <!--stomach 복통 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
     <fragment
         android:id="@+id/view_card_stomach_area"
         android:name="com.example.app_helper_fe.ui.stomach.StomachMedicineFragment"
         android:label="StomachFragment"
-        tools:layout="@layout/fragment_stomach_medicine" >
-        <action
-            android:id="@+id/action_view_card_stomach_area_to_medicine_detail"
-            app:destination="@id/navigation_medicine_detail" />
+        tools:layout="@layout/fragment_stomach_medicine">
+        <action android:id="@+id/action_view_card_stomach_area_to_medicine_detail" app:destination="@id/navigation_medicine_detail" />
     </fragment>
-
-
-    <!--fever 온열 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
     <fragment
         android:id="@+id/view_card_fever_area"
         android:name="com.example.app_helper_fe.ui.fever.FeverMedicineFragment"
         android:label="FeverFragment"
-        tools:layout="@layout/fragment_fever_medicine" >
-        <action
-            android:id="@+id/action_view_card_fever_area_to_medicine_detail"
-            app:destination="@id/navigation_medicine_detail" />
+        tools:layout="@layout/fragment_fever_medicine">
+        <action android:id="@+id/action_view_card_fever_area_to_medicine_detail" app:destination="@id/navigation_medicine_detail" />
     </fragment>
-
-
-    <!--tooth 온열 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
     <fragment
         android:id="@+id/view_card_tooth_area"
         android:name="com.example.app_helper_fe.ui.tooth.ToothMedicineFragment"
         android:label="ToothFragment"
-        tools:layout="@layout/fragment_tooth_medicine" >
-        <action
-            android:id="@+id/action_view_card_tooth_area_to_medicine_detail"
-            app:destination="@id/navigation_medicine_detail" />
+        tools:layout="@layout/fragment_tooth_medicine">
+        <action android:id="@+id/action_view_card_tooth_area_to_medicine_detail" app:destination="@id/navigation_medicine_detail2" />
     </fragment>
 
-    <!--medicine detail page -->
+    <!-- 약 상세 화면 -->
     <activity
         android:id="@+id/navigation_medicine_detail"
         android:name="com.example.app_helper_fe.ui.detail.MedicineDetailActivity"
         android:label="MedicineDetailActivity"
         tools:layout="@layout/activity_medicine_detail" />
-
-
-    <fragment
-        android:id="@+id/navigation_medicine_detail_fragment"
-        android:name="com.example.app_helper_fe.ui.detail.MedicineDetailFragment"
-        android:label="fragment_medicine_detail"
-        tools:layout="@layout/fragment_medicine_detail" />
-
-
+    <activity
+        android:id="@+id/navigation_medicine_detail2"
+        android:name="com.example.app_helper_fe.ui.detail.DetailActivity"
+        android:label="DetailActivity"
+        tools:layout="@layout/activity_medicine_detail2" />
 </navigation>

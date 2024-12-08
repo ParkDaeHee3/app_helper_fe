@@ -73,6 +73,16 @@
     <string name="searchbar_hint">약품 검색</string>
 
     <!-- medicine detail -->
+    <string-array name="search_options">
+        <item>제품명</item>
+        <item>업체명</item>
+        <item>효능</item>
+    </string-array>
+
+    <string name="nav_detail_label">상세 정보</string>
+
+
+
     <string name="tab1">효능</string>
     <string name="tab2">사용법</string>
     <string name="tab3">보관</string>
