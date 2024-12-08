@@ -40,6 +40,7 @@
 
     <!-- 제목 레이아웃이 들어와야해요 -->
 
+
     <!-- FragmentContainerView: 동적 콘텐츠를 위한 컨테이너 -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container2"
@@ -50,6 +51,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- TabLayout -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tv_medicine_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@color/black" />
     <!-- 이미지 표시 -->
     <ImageView
         android:id="@+id/img_data"
