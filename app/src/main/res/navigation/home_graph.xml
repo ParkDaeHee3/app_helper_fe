@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_home_to_search_medicine"
             app:destination="@id/navigation_search_medicine" />
+        <action
+            android:id="@+id/action_home_to_view_card_other_area"
+            app:destination="@id/view_card_other_area" />
     </fragment>
 
 
@@ -143,7 +146,7 @@
     </fragment>
 
 
-    <!--tooth 온열 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
+    <!--tooth  약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
     <fragment
         android:id="@+id/view_card_tooth_area"
         android:name="com.example.app_helper_fe.ui.tooth.ToothMedicineFragment"
@@ -161,12 +164,16 @@
         android:label="MedicineDetailActivity"
         tools:layout="@layout/activity_medicine_detail" />
 
-
+    <!--other 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
     <fragment
-        android:id="@+id/navigation_medicine_detail_fragment"
-        android:name="com.example.app_helper_fe.ui.detail.MedicineDetailFragment"
-        android:label="fragment_medicine_detail"
-        tools:layout="@layout/fragment_medicine_detail" />
+        android:id="@+id/view_card_other_area"
+        android:name="com.example.app_helper_fe.ui.other.OtherMedicineFragment"
+        android:label="OtherFragment"
+        tools:layout="@layout/fragment_other_medicine">
+        <action
+            android:id="@+id/action_view_card_other_area_to_medicine_detail"
+            app:destination="@id/navigation_medicine_detail" />
+    </fragment>
 
 
 </navigation>

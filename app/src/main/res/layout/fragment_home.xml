@@ -499,8 +499,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_card_stomach_area" />
 
-
-
             <TextView
                 android:id="@+id/tv_card_tooth"
                 style="@style/AppTextOnPrimary.S24.Bold"
@@ -559,7 +557,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/view_card_tooth_area"
                 app:layout_constraintTop_toBottomOf="@+id/view_card_fever_area" />
-
 
 
             <TextView

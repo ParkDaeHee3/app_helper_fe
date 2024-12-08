@@ -37,6 +37,7 @@ class HomeFragment : Fragment(), MapClickListener {
         setStomachCard()//stomach destination 복통 카드 목록 이동
         setFeverCard() //fever destination 온열 카드 목록 이동
         setToothCard() // tooth destination 치통 카드 목록 이동
+        setOtherCard() // other destination 치통 카드 목록 이동
     }
 
 //감기 카드 섹션 이동
@@ -123,6 +124,17 @@ class HomeFragment : Fragment(), MapClickListener {
             groupAddCard.visibility = View.VISIBLE
             viewCardToothArea.setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeToViewCardToothArea()
+                findNavController().navigate(action)
+            }
+        }
+    }
+
+    //치통 카드 섹션 이동
+    private fun setOtherCard() {
+        with(binding) {
+            groupAddCard.visibility = View.VISIBLE
+            viewCardOtherArea.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeToViewCardOtherArea()
                 findNavController().navigate(action)
             }
         }
