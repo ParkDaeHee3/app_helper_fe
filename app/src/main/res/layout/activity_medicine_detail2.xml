@@ -12,7 +12,8 @@
         android:id="@+id/toolbar_medicine_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:title="@string/appbar_title_medicinedetail">
 
 
         <!-- 뒤로가기 버튼 -->
@@ -20,7 +21,6 @@
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:layout_gravity="start"
             android:layout_marginStart="8dp" />
@@ -37,6 +37,8 @@
             android:layout_gravity="end"
             android:layout_marginEnd="8dp" />
     </com.google.android.material.appbar.MaterialToolbar>
+
+    <!-- 제목 레이아웃이 들어와야해요 -->
 
     <!-- FragmentContainerView: 동적 콘텐츠를 위한 컨테이너 -->
     <androidx.fragment.app.FragmentContainerView
