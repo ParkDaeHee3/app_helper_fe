@@ -49,7 +49,8 @@ object Storage_medicine {
         })
     }
 
-    //감기 데이터
+    //아래 번호로 서버 호출
+    //0.감기 1.두통 2.복통 3.피부상처및화상 4.소화불량 5.근육통 6.해열 7.치통,구내염
     fun getMedicineListData(num: Int,callback: (List<Medicine>?) -> Unit) {
         medService.getMedicineList(num).enqueue(object : Callback<List<Medicine>> {
             override fun onResponse(call: Call<List<Medicine>>, response: Response<List<Medicine>>) {
