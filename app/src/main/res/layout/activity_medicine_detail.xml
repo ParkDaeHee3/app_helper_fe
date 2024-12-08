@@ -3,23 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- 최상위 스크롤 가능한 뷰 -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- 콘텐츠를 감싸는 ConstraintLayout -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- 상단 툴바 -->
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_medicine_detail"
                 style="@style/AppToolbar.Navigation"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <!-- 지도 버튼 -->
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnmap"
                     android:layout_width="wrap_content"
@@ -27,9 +31,9 @@
                     android:layout_gravity="end"
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/ic_map" />
-
             </com.google.android.material.appbar.MaterialToolbar>
 
+            <!-- 대표 이미지 -->
             <ImageView
                 android:id="@+id/iv_medicine_detail_image"
                 android:layout_width="0dp"
@@ -44,6 +48,7 @@
                 app:layout_constraintTop_toBottomOf="@id/toolbar_medicine_detail"
                 android:src="@drawable/ic_image_not_supported" />
 
+            <!-- 약품의 질병 카테고리 -->
             <TextView
                 android:id="@+id/tv_medicine_detail_category"
                 style="@style/App.TextTitle16"
@@ -58,6 +63,7 @@
                 app:layout_constraintTop_toBottomOf="@id/iv_medicine_detail_image"
                 android:text="질병 종류 - 감기" />
 
+            <!-- 약품 이름 -->
             <TextView
                 android:id="@+id/tv_medicine_detail_title"
                 style="@style/App.TextTitle26"
@@ -73,6 +79,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_medicine_detail_category"
                 android:text=" 약품 이름 " />
 
+            <!-- 탭 레이아웃 -->
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs_medicine_detail"
                 android:layout_width="match_parent"
@@ -84,28 +91,32 @@
                 app:tabContentStart="56dp"
                 app:tabMode="fixed">
 
+                <!-- 탭 항목: 효능 -->
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tab1" />
 
+                <!-- 탭 항목: 사용법 -->
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tab2" />
 
+                <!-- 탭 항목: 보관 -->
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tab3" />
 
+                <!-- 탭 항목: 주의 -->
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tab4" />
-
             </com.google.android.material.tabs.TabLayout>
 
+            <!-- ViewPager2: 탭과 연동된 페이지 표시 -->
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager_medicine_detail"
                 android:layout_width="match_parent"
@@ -113,6 +124,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tabs_medicine_detail"
                 app:layout_constraintBottom_toTopOf="@id/recycler_medicine_detail" />
 
+            <!-- FragmentContainerView: 동적 콘텐츠를 위한 컨테이너 -->
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragment_container"
                 android:layout_width="match_parent"
@@ -122,7 +134,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- RecyclerView 추가 -->
+            <!-- RecyclerView: 추가 정보 리스트 -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_medicine_detail"
                 android:layout_width="match_parent"

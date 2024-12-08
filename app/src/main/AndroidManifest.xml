@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.detail.MedicineDetailActivity"/><!--activity를 사용하면 androidmanifest.xml에 추가를 해줘야 이동이 가능하다.   -->
+        <activity android:name=".ui.detail.DetailActivity"/><!--activity를 사용하면 androidmanifest.xml에 추가를 해줘야 이동이 가능하다.   -->
     </application>
 
 </manifest>
