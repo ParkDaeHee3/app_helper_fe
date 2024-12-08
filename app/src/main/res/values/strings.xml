@@ -38,34 +38,34 @@
     <string name="description_pharmacy_map_image">내 주변 판매점 지도 이미지</string>
 
     <!--  cold medicine 감기  -->
-    <string name="text_card_cough_body">기침이 나와요</string>
+    <string name="text_card_cough_body">감기</string>
 
     <!--headache medicine 두통 -->
-    <string name="appbar_title_headache_medicine">두통 약 목록</string>
+    <string name="appbar_title_headache_medicine">약 목록</string>
     <string name="description_headache_medicine_image">두통 약품 이미지 안내</string>
 
     <!-- muscle medicine 근육통-->
-    <string name="appbar_title_muscle_medicine">근육 약 목록</string>
+    <string name="appbar_title_muscle_medicine">약 목록</string>
     <string name="description_muscle_medicine_image">근육 약품 이미지 안내</string>
 
     <!-- bruise medicine-->
-    <string name="appbar_title_bruise_medicine">타박상 약 목록</string>
+    <string name="appbar_title_bruise_medicine">약 목록</string>
     <string name="description_bruise_medicine_image">타박상 약품 이미지 안내</string>
 
     <!-- stomach medicine-->
-    <string name="appbar_title_stomach_medicine">복통 약 목록</string>
+    <string name="appbar_title_stomach_medicine">약 목록</string>
     <string name="description_stomach_medicine_image">복통 약품 이미지 안내</string>
 
     <!-- fever medicine-->
-    <string name="appbar_title_fever_medicine">온열 약 목록</string>
+    <string name="appbar_title_fever_medicine">약 목록</string>
     <string name="description_fever_medicine_image">온열 약품 이미지 안내</string>
 
     <!-- tooth medicine-->
-    <string name="appbar_title_tooth_medicine">치통 약 목록</string>
+    <string name="appbar_title_tooth_medicine">약 목록</string>
     <string name="description_tooth_medicine_image">치통 약품 이미지 안내</string>
 
     <!-- other medicine-->
-    <string name="appbar_title_other_medicine">기타 약 목록</string>
+    <string name="appbar_title_other_medicine">약 목록</string>
     <string name="description_other_medicine_image">기타 약품 이미지 안내</string>
 
 

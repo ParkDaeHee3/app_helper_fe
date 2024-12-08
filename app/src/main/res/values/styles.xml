@@ -64,7 +64,7 @@
 
     <style name="AppButtonOnPrimary" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">@drawable/background_button_on_primary</item>
-        <item name="android:textAppearance">@style/AppTextOnPrimary.S14</item>
+        <item name="android:textAppearance">@style/AppTextOnPrimary.S24.Bold</item>
     </style>
 
     <style name="AppButtonCancel" parent="Widget.AppCompat.Button.Borderless">
@@ -203,6 +203,7 @@
     <style name="AppTextOnPrimary.S24.Bold">
         <item name="android:textStyle">bold</item>
     </style>
+
 
     <!-- app text place holder -->
     <style name="AppTextPlaceHolder">
