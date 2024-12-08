@@ -68,6 +68,8 @@
     <string name="appbar_title_other_medicine">기타 약 목록</string>
     <string name="description_other_medicine_image">기타 약품 이미지 안내</string>
 
+    <string name="appbar_title_medicinedetail">약품 상세</string>
+
 
     <!-- search bar -->
     <string name="searchbar_hint">약품 검색</string>
