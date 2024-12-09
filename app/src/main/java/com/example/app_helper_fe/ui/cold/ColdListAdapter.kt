@@ -45,7 +45,7 @@ class ColdItemViewHolder(
             coldClickListener.onColdClick(medicine)
             //activity medicine detail를 통한
            coldClickListener.onColdClick(medicine)
-            detailClickListener.onMedicineDetailClick()
+            detailClickListener.onMedicineDetailClick(medicine.id)
 
 /*
             //activity medicine detail로 이동 하는 기능 (adapter 및 listener를 사용 않고 이동 => 여기 viewholder에서 바로 이동 )

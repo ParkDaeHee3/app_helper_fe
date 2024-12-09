@@ -44,7 +44,7 @@ class BruiseItemViewHolder(
     fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             bruiseClicklistener.onBruiseClick(medicine) // click listener를 통해 타박상으로 이동
-            detailClickListener.onMedicineDetailClick() // click listener를 통해약품 상세로 이동
+            detailClickListener.onMedicineDetailClick(medicine.id) // click listener를 통해약품 상세로 이동
         }
         with(binding) {
             // Base64 문자열 (예시)

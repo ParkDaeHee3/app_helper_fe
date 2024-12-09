@@ -43,7 +43,7 @@ class OtherItemViewHolder(
     fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             otherClicklistener.onOtherClick(medicine)
-            detailClickListener.onMedicineDetailClick()
+            detailClickListener.onMedicineDetailClick(medicine.id)
 
         }
         with(binding) {

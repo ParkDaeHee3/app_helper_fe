@@ -63,8 +63,9 @@ class StomachMedicineFragment : Fragment(), StomachItemClickListener,MedicineDet
     }
 
     // medicine detail page 약품 상세 정보 이동 기능
-    override fun onMedicineDetailClick() {
-        val action = StomachMedicineFragmentDirections.actionViewCardStomachAreaToMedicineDetail()
+    override fun onMedicineDetailClick(id:Int) {
+        val itemSeq = id.toString()
+        val action = StomachMedicineFragmentDirections.actionViewCardStomachAreaToMedicineDetail(itemSeq)
         findNavController().navigate(action)
 
     }

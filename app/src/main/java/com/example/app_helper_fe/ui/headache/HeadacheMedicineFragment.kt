@@ -64,8 +64,9 @@ class HeadacheMedicineFragment : Fragment(), HeadacheItemClickListener,MedicineD
     }
 
     // medicine detail page 약품 상세 정보 이동 기능
-    override fun onMedicineDetailClick() {
-        val action = HeadacheMedicineFragmentDirections.actionViewCardHeadacheAreaToMedicineDetail()
+    override fun onMedicineDetailClick(id:Int) {
+        val itemSeq = id.toString()
+        val action = HeadacheMedicineFragmentDirections.actionViewCardHeadacheAreaToMedicineDetail(itemSeq)
         findNavController().navigate(action)
 
     }

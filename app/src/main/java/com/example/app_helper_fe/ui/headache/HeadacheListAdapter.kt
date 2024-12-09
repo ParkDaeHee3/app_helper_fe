@@ -43,7 +43,7 @@ class HeadacheItemViewHolder(
         itemView.setOnClickListener {
             headacheClicklistener.onHeadacheClick(medicine)
             headacheClicklistener.onHeadacheClick(medicine)
-            detailClickListener.onMedicineDetailClick()
+            detailClickListener.onMedicineDetailClick(medicine.id)
         }
         with(binding) {
             // Base64 문자열 (예시)

@@ -44,7 +44,7 @@ class FeverItemViewHolder(
     fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             feverClicklistener.onFeverClick(medicine)
-            detailClickListener.onMedicineDetailClick()
+            detailClickListener.onMedicineDetailClick(medicine.id)
 
         }
         with(binding) {
