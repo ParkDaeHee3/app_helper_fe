@@ -160,6 +160,13 @@
     <!--medicine detail page -->
     <activity
         android:id="@+id/navigation_medicine_detail"
+        android:name="com.example.app_helper_fe.ui.detail.MedicineDetailActivity"
+        android:label="MedicineDetailActivity"
+        tools:layout="@layout/activity_medicine_detail"/>
+
+    <!-- medicine detail page 교체중... -->
+    <activity
+        android:id="@+id/navigation_medicine_detail2"
         android:name="com.example.app_helper_fe.ui.detail.DetailActivity"
         android:label="MedicineDetailActivity"
         tools:layout="@layout/activity_medicine_detail2"/>
