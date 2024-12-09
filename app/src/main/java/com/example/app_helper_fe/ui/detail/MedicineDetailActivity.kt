@@ -1,12 +1,19 @@
 package com.example.app_helper_fe.ui.detail
 
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.app_helper_fe.R
+import com.example.app_helper_fe.data.Storage_medicine
 import com.example.app_helper_fe.databinding.ActivityMedicineDetailBinding
 import com.example.app_helper_fe.ui.map.MapFragment
 import com.google.android.material.tabs.TabLayout
@@ -16,6 +23,7 @@ class MedicineDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMedicineDetailBinding
     private lateinit var adapter: MedicineDetailAdapter
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +41,9 @@ class MedicineDetailActivity : AppCompatActivity() {
         }
 
 
+
         //////임의의 데이터 추가
-        val medicine = Medicine(
+        var medicine = Medicine(
             imageUrl = "https://example.com/medicine.jpg",
             diseaseType = "감기",
             name = "타이레놀",
@@ -51,44 +60,75 @@ class MedicineDetailActivity : AppCompatActivity() {
         Toast.makeText(this,itemSeq, Toast.LENGTH_SHORT).show()
 
 
+        var medic : com.example.app_helper_fe.data.Medicine
+        itemSeq?.let {
+            Storage_medicine.getOneData(it.toInt()) { mede ->
+                if (mede != null) {
+                    Log.d("final", "Data loaded: ${mede}")
+                    medicine.name = mede.itemName
+                    medicine.imageUrl = mede.image
+                    medicine.diseaseType = ""
+                    medicine.details.get(0).content = mede.efcyQesitm
+                    medicine.details.get(1).content = mede.useMethod
+                    medicine.details.get(2).content = mede.depositMethod
+                    medicine.details.get(3).content = mede.atpnQesitm
+
+                    medicine?.let { med ->
+                        // 데이터 설정
+                        binding.tvMedicineDetailCategory.text = med.diseaseType
+                        binding.tvMedicineDetailTitle.text = med.name
+                        val base64Image = medicine.imageUrl;
+
+                        // Base64 문자열을 Bitmap으로 디코딩
+                        val bitmap = decodeBase64ToBitmap(base64Image)
+
+                        bitmap?.let {
+                            binding.ivMedicineDetailImage.setImageBitmap(it)
+                        }
+
+                        // RecyclerView 설정
+                        adapter = MedicineDetailAdapter(med.details)
+                        binding.recyclerMedicineDetail.layoutManager = LinearLayoutManager(this)
+                        binding.recyclerMedicineDetail.adapter = adapter
+
+                        // 기본 탭 데이터 표시
+                        val initialDetails = med.details.filter { it.category == "효능" }
+                        updateRecyclerView(initialDetails)
+
+                        // 탭 리스너 설정
+                        binding.tabsMedicineDetail.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                            override fun onTabSelected(tab: TabLayout.Tab?) {
+                                tab?.let {
+                                    val filteredDetails = when (it.position) {
+                                        0 -> med.details.filter { detail -> detail.category == "효능" }
+                                        1 -> med.details.filter { detail -> detail.category == "사용법" }
+                                        2 -> med.details.filter { detail -> detail.category == "보관" }
+                                        3 -> med.details.filter { detail -> detail.category == "주의" }
+                                        else -> med.details
+                                    }
+                                    updateRecyclerView(filteredDetails)
+                                }
+                            }
+
+                            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+                            override fun onTabReselected(tab: TabLayout.Tab?) {}
+                        })
+                    }
+
+                    //binding.rvColdMedicineList.adapter = ColdListAdapter(medicine, this, this)
+                } else {
+                    Log.d("final", "No data available or failed to fetch data")
+                }
+            }
+        }
+
+
+
+
         //////
 
         // 전달받은 데이터 처리
         //val medicine = intent.getParcelableExtra<Medicine>("medicine_data")
-
-        medicine?.let { med ->
-            // 데이터 설정
-            binding.tvMedicineDetailCategory.text = med.diseaseType
-            binding.tvMedicineDetailTitle.text = med.name
-            loadImage(med.imageUrl)
-
-            // RecyclerView 설정
-            adapter = MedicineDetailAdapter(med.details)
-            binding.recyclerMedicineDetail.layoutManager = LinearLayoutManager(this)
-            binding.recyclerMedicineDetail.adapter = adapter
-
-            // 기본 탭 데이터 표시
-            val initialDetails = med.details.filter { it.category == "효능" }
-            updateRecyclerView(initialDetails)
-
-            // 탭 리스너 설정
-            binding.tabsMedicineDetail.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    tab?.let {
-                        val filteredDetails = when (it.position) {
-                            0 -> med.details.filter { detail -> detail.category == "효능" }
-                            1 -> med.details.filter { detail -> detail.category == "사용법" }
-                            2 -> med.details.filter { detail -> detail.category == "보관" }
-                            3 -> med.details.filter { detail -> detail.category == "주의" }
-                            else -> med.details
-                        }
-                        updateRecyclerView(filteredDetails)
-                    }
-                }
-                override fun onTabUnselected(tab: TabLayout.Tab?) {}
-                override fun onTabReselected(tab: TabLayout.Tab?) {}
-            })
-        }
 
         // 툴바 설정
         val toolbar = findViewById<Toolbar>(R.id.toolbar_medicine_detail)
@@ -99,8 +139,18 @@ class MedicineDetailActivity : AppCompatActivity() {
 
     }
 
+    private fun decodeBase64ToBitmap(base64String: String): Bitmap? {
+        return try {
+            // Base64 문자열을 바이트 배열로 디코딩
+            val decodedString = Base64.decode(base64String, Base64.DEFAULT)
 
-
+            // 바이트 배열을 Bitmap으로 디코딩
+            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
 
     private fun loadImage(url: String) {
         // Glide, Picasso 등 이미지 로딩 라이브러리를 사용
