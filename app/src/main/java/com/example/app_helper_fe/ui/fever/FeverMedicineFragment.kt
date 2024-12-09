@@ -29,7 +29,7 @@ class FeverMedicineFragment : Fragment(), FeverItemClickListener,MedicineDetailC
     //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Storage_medicine.getMedicineListData(3) { medicine ->
+        Storage_medicine.getMedicineListData(6) { medicine ->
             if (medicine != null && medicine.isNotEmpty()) {
                 Log.d("final", "Data loaded: ${medicine}")
                 binding.rvFeverMedicineList.adapter = FeverListAdapter(medicine, this, this)

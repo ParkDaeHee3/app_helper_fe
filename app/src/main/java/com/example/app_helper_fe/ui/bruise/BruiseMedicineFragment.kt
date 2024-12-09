@@ -30,7 +30,7 @@ class BruiseMedicineFragment : Fragment(), BruiseItemClickListener,MedicineDetai
     //여기서 setlayout을 선언 해줘야 뒤로 가기 아이콘 버튼이 활성화 됨
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Storage_medicine.getMedicineListData(1) { medicine ->
+        Storage_medicine.getMedicineListData(3) { medicine ->
             if (medicine != null && medicine.isNotEmpty()) {
                 Log.d("final", "Data loaded: ${medicine}")
                 binding.rvBruiseMedicineList.adapter = BruiseListAdapter(medicine, this, this)
