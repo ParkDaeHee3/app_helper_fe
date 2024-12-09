@@ -20,6 +20,12 @@
             android:name="com.kakao.vectormap.KAKAO_MAP_KEY"
             android:value="KAKAO_MAP_KEY"/>
         <activity
+            android:name=".ui.login.IntroFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.splash.SplashFragment"
+            android:exported="false" />
+        <activity
             android:name=".ui.HomeActivity"
             android:exported="true">
             <intent-filter>
@@ -28,8 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.detail.MedicineDetailActivity"/><!--activity를 사용하면 androidmanifest.xml에 추가를 해줘야 이동이 가능하다.   -->
-        <activity android:name=".ui.detail.DetailActivity"/><!--activity를 사용하면 androidmanifest.xml에 추가를 해줘야 이동이 가능하다.   -->
+        <activity android:name=".ui.detail.MedicineDetailActivity" />
     </application>
 
 </manifest>
