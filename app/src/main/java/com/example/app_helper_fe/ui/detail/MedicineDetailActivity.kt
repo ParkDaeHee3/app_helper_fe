@@ -18,7 +18,6 @@ class MedicineDetailActivity : AppCompatActivity() {
     private lateinit var adapter: MedicineDetailAdapter
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMedicineDetailBinding.inflate(layoutInflater)
@@ -32,9 +31,6 @@ class MedicineDetailActivity : AppCompatActivity() {
                 .addToBackStack(null) // 뒤로 가기 버튼으로 이전 화면으로 돌아갈 수 있게 설정
                 .commit()
         }
-
-
-
 
 
         //////임의의 데이터 추가
