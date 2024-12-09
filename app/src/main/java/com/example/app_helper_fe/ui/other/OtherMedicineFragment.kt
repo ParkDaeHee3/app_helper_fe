@@ -62,8 +62,9 @@ class OtherMedicineFragment : Fragment(), OtherItemClickListener,MedicineDetailC
     }
 
     // medicine detail page 약품 상세 정보 이동 기능
-    override fun onMedicineDetailClick() {
-        val action = OtherMedicineFragmentDirections.actionViewCardOtherAreaToMedicineDetail()
+    override fun onMedicineDetailClick(id:Int) {
+        val itemSeq = id.toString()
+        val action = OtherMedicineFragmentDirections.actionViewCardOtherAreaToMedicineDetail(itemSeq)
         findNavController().navigate(action)
 
     }

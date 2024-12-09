@@ -45,7 +45,7 @@ class SearchMedicineItemViewHolder(
     fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             searchmedicinelistener.onSearchMedicineClick(medicine)
-            detailClickListener.onMedicineDetailClick()
+            detailClickListener.onMedicineDetailClick(medicine.id)
         }
         with(binding) {
 

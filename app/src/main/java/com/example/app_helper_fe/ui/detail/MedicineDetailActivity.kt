@@ -1,11 +1,9 @@
 package com.example.app_helper_fe.ui.detail
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.app_helper_fe.R
@@ -37,6 +35,8 @@ class MedicineDetailActivity : AppCompatActivity() {
 
 
 
+
+
         //////임의의 데이터 추가
         val medicine = Medicine(
             imageUrl = "https://example.com/medicine.jpg",
@@ -50,6 +50,9 @@ class MedicineDetailActivity : AppCompatActivity() {
             )
         )
 
+
+        val itemSeq = intent?.getStringExtra("itemSeq")
+        Toast.makeText(this,itemSeq, Toast.LENGTH_SHORT).show()
 
 
         //////

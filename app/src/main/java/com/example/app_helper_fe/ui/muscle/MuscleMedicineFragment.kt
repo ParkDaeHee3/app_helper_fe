@@ -63,8 +63,9 @@ class MuscleMedicineFragment : Fragment(), MuscleItemClickListener,MedicineDetai
     }
 
     // medicine detail page 약품 상세 정보 이동 기능
-    override fun onMedicineDetailClick() {
-        val action = MuscleMedicineFragmentDirections.actionViewCardMuscleAreaToMedicineDetail()
+    override fun onMedicineDetailClick(id:Int) {
+        val itemSeq = id.toString()
+        val action = MuscleMedicineFragmentDirections.actionViewCardMuscleAreaToMedicineDetail(itemSeq)
         findNavController().navigate(action)
 
     }

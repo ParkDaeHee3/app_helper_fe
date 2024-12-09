@@ -162,7 +162,13 @@
         android:id="@+id/navigation_medicine_detail"
         android:name="com.example.app_helper_fe.ui.detail.MedicineDetailActivity"
         android:label="MedicineDetailActivity"
-        tools:layout="@layout/activity_medicine_detail" />
+        tools:layout="@layout/activity_medicine_detail" >
+        <argument
+            android:name="itemSeq"
+            app:argType="string"
+            android:defaultValue="-1"/>
+
+    </activity>
 
     <!--other 약 카드(id를 fragment_home.xml에서 찾아서 하기) -->
     <fragment

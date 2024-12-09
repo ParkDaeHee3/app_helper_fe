@@ -64,8 +64,9 @@ class FeverMedicineFragment : Fragment(), FeverItemClickListener,MedicineDetailC
     }
 
     // medicine detail page 약품 상세 정보 이동 기능
-    override fun onMedicineDetailClick() {
-        val action = FeverMedicineFragmentDirections.actionViewCardFeverAreaToMedicineDetail()
+    override fun onMedicineDetailClick(id:Int) {
+        val itemSeq = id.toString()
+        val action = FeverMedicineFragmentDirections.actionViewCardFeverAreaToMedicineDetail(itemSeq)
         findNavController().navigate(action)
 
     }

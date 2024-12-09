@@ -88,8 +88,9 @@ class SearchFragment : Fragment(), SearchMedicineItemClickListener, MedicineDeta
     }
 
     // medicine detail page 약품 상세 정보 이동 기능
-    override fun onMedicineDetailClick() {
-        val action = SearchFragmentDirections.actionSearchMedicineToMedicineDetail()
+    override fun onMedicineDetailClick(id:Int) {
+        val itemSeq = id.toString()
+        val action = SearchFragmentDirections.actionSearchMedicineToMedicineDetail(itemSeq)
         findNavController().navigate(action)
 
     }

@@ -44,7 +44,7 @@ class StomachItemViewHolder(
     fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             stomachClicklistener.onStomachClick(medicine)
-            detailClickListener.onMedicineDetailClick()
+            detailClickListener.onMedicineDetailClick(medicine.id)
         }
         with(binding) {
 

@@ -65,8 +65,9 @@ class ColdMedicineFragment : Fragment(),ColdItemClickListener, MedicineDetailCli
     }
 
     // medicine detail page 약품 상세 정보 이동 기능
-    override fun onMedicineDetailClick() {
-        val action = ColdMedicineFragmentDirections.actionViewCardColdAreaToMedicineDetail()
+    override fun onMedicineDetailClick(id:Int) {
+        val itemSeq = id.toString()
+        val action = ColdMedicineFragmentDirections.actionViewCardColdAreaToMedicineDetail(itemSeq)
         findNavController().navigate(action)
 
     }

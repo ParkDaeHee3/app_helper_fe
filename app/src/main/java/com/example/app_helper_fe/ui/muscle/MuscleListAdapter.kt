@@ -42,7 +42,7 @@ class MuscleItemViewHolder(
     fun bind(medicine: Medicine) {
         itemView.setOnClickListener {
             muscleClicklistener.onMuscleClick(medicine)
-            detailClickListener.onMedicineDetailClick()
+            detailClickListener.onMedicineDetailClick(medicine.id)
         }
         with(binding) {
 
