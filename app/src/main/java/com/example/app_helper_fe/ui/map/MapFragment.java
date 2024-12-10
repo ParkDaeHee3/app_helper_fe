@@ -36,6 +36,7 @@ import com.kakao.vectormap.MapView;
 import com.kakao.vectormap.camera.CameraUpdate;
 import com.kakao.vectormap.camera.CameraUpdateFactory;
 import com.kakao.vectormap.label.Label;
+import com.kakao.vectormap.label.LabelStyles;
 import com.kakao.vectormap.label.LabelTextBuilder;
 import com.kakao.vectormap.label.LabelLayer;
 import com.kakao.vectormap.label.LabelOptions;
@@ -48,7 +49,9 @@ import org.locationtech.proj4j.CoordinateTransform;
 import org.locationtech.proj4j.CoordinateTransformFactory;
 import org.locationtech.proj4j.ProjCoordinate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MapFragment extends Fragment {
 
@@ -59,6 +62,8 @@ public class MapFragment extends Fragment {
     private double lon; // 현재 위치 경도
     private FusedLocationProviderClient fusedLocationProviderClient; // 위치 제공 클라이언트
 
+    private Map<Label, Pharmacy> labelPharmacyMap = new HashMap<>(); // Map to store Label-Pharmacy association
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // View Binding 초기화
@@ -68,12 +73,7 @@ public class MapFragment extends Fragment {
         // 툴바 설정
         MaterialToolbar toolbar = binding.toolbarBtnBack;
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back); // 뒤로 가기 아이콘 설정
-        toolbar.setNavigationOnClickListener(v -> {
-            // 뒤로 가기 아이콘 클릭 시 이전 화면으로 돌아가기
-            requireActivity().onBackPressed(); // 기본 뒤로가기 동작 실행
-            // 또는 NavController 사용
-            // findNavController().navigateUp();
-        });
+        toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed()); // 뒤로 가기 동작
 
         // FusedLocationProviderClient 초기화
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext());
@@ -84,54 +84,74 @@ public class MapFragment extends Fragment {
         // Kakao Map 초기화
         mapView = binding.mapView;
         KakaoMapSdk.init(requireContext(), KAKAO_MAP_KEY); // Kakao Map SDK 초기화
+        Log.d("MapFragment", "Kakao Map SDK 초기화 완료");
 
         // MapView의 라이프사이클 콜백 설정
         mapView.start(new MapLifeCycleCallback() {
             @Override
             public void onMapDestroy() {
-                Log.d("KakaoMap", "onMapDestroy: "); // 지도 종료 시 로그 출력
+                Log.d("KakaoMap", "onMapDestroy 호출됨");
             }
-
 
             @Override
             public void onMapError(Exception error) {
-                Log.e("KakaoMap", "onMapError: ", error); // 지도 오류 발생 시 로그 출력
+                Log.e("KakaoMap", "onMapError 발생", error);
             }
         }, new KakaoMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull KakaoMap map) {
-                // Kakao Map 준비 완료 시 호출
                 kakaoMap = map;
+                Log.d("KakaoMap", "onMapReady 호출됨");
 
                 // 현재 위치로 카메라 이동
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(lat, lon));
                 kakaoMap.moveCamera(cameraUpdate);
 
-                // 지도 마커 스타일 설정
+                // 마커 스타일 설정
                 LabelStyle style = LabelStyle.from(R.drawable.map_marker)
                         .setTextStyles(LabelTextStyle.from(37, Color.parseColor("#DB5461"), 2, Color.DKGRAY))
                         .setApplyDpScale(true);
 
-                // 약국 데이터를 가져와 지도에 표시
+                // 약국 데이터를 지도에 표시
                 Storage_pharmacy.INSTANCE.getPharmacyList(lat, lon, pharmacies -> {
                     if (pharmacies != null) {
                         for (Pharmacy pharmacy : pharmacies) {
                             // 약국 좌표 변환
                             Pair<Double, Double> coords = transformCoordinates(pharmacy.getLon(), pharmacy.getLat());
-                            Log.e("Name", pharmacy.getName());
+                            Log.d("LatLng", "변환된 좌표: " + coords.first + ", " + coords.second);
 
-                            // 마커 생성 및 추가
+                            // 마커 생성
                             LabelTextBuilder labelTextBuilder = new LabelTextBuilder();
                             labelTextBuilder.setTexts(pharmacy.getName());
                             LabelOptions options = LabelOptions.from(LatLng.from(coords.first, coords.second))
-                                    .setStyles(style).setTexts(labelTextBuilder);
+                                    .setStyles(style)
+                                    .setTexts(labelTextBuilder);
 
-                            // 지도에 레이블 추가
+                            // 레이블 추가
                             LabelLayer layer = kakaoMap.getLabelManager().getLayer();
-                            layer.addLabel(options);
+                            Label label = layer.addLabel(options);
+                            Log.d("LabelAdd", "Label 추가됨: " + label);
 
-
+                            // 레이블과 약국 데이터 매핑
+                            labelPharmacyMap.put(label, pharmacy);
                         }
+
+                        // 지도 클릭 이벤트 처리
+                        kakaoMap.setOnLabelClickListener(new KakaoMap.OnLabelClickListener() {
+                            @Override
+                            public boolean onLabelClicked(KakaoMap kakaoMap, LabelLayer labelLayer, Label clickedLabel) {
+                                Log.d("LabelClick", "onLabelClicked 호출됨");
+                                // 클릭된 레이블이 labelPharmacyMap에 있는지 확인
+                                if (labelPharmacyMap.containsKey(clickedLabel)) {
+                                    Pharmacy pharmacy = labelPharmacyMap.get(clickedLabel);
+                                    showPharmacyInfo(pharmacy); // 약국 정보 표시
+                                    Toast.makeText(requireContext(), "레이블 클릭 완료!", Toast.LENGTH_SHORT).show();
+                                    return true; // 클릭 이벤트 처리 완료
+                                }
+                                return false; // 클릭 이벤트 처리되지 않음
+                            }
+                        });
+
                     } else {
                         Log.d("pharmacy", "No pharmacies found");
                     }
@@ -146,12 +166,10 @@ public class MapFragment extends Fragment {
      * 현재 위치 정보를 가져오는 메서드
      */
     private void getCurrentLocation() {
-        // 위치 권한 확인
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             fusedLocationProviderClient.getLastLocation()
                     .addOnSuccessListener(location -> {
                         if (location != null) {
-                            // 위치 정보를 변수에 저장
                             lat = location.getLatitude();
                             lon = location.getLongitude();
                             Toast.makeText(requireContext(), "위도: " + lat + ", 경도: " + lon, Toast.LENGTH_SHORT).show();
@@ -180,14 +198,21 @@ public class MapFragment extends Fragment {
         ProjCoordinate destCoord = new ProjCoordinate();
         transform.transform(srcCoord, destCoord);
 
-        // 보정값 적용
         double latOffset = 0.69747461314009;
         double lngOffset = -0.84281021637214;
         double correctedLat = destCoord.y + latOffset;
         double correctedLng = destCoord.x + lngOffset;
 
-        Log.e("LONLAT", correctedLat + "::" + correctedLng);
+        Log.d("CoordinateTransform", "변환된 좌표: " + correctedLat + ", " + correctedLng);
         return new Pair<>(correctedLat, correctedLng);
+    }
+
+    /**
+     * 약국 정보를 표시하는 메서드
+     */
+    private void showPharmacyInfo(Pharmacy pharmacy) {
+        PharmacyInfoDialog dialog = new PharmacyInfoDialog(requireContext(), pharmacy);
+        dialog.show();
     }
 
     @Override
