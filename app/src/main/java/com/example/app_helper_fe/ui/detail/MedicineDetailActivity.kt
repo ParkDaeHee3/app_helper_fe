@@ -156,7 +156,7 @@ class MedicineDetailActivity : AppCompatActivity() {
         // Glide, Picasso 등 이미지 로딩 라이브러리를 사용
         Glide.with(this)
             .load(url)
-            .placeholder(R.drawable.ic_image_not_supported)
+            //.placeholder(R.drawable.ic_image_not_supported)
             .into(binding.ivMedicineDetailImage)
     }
 
