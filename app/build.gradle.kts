@@ -65,7 +65,15 @@ android {
 dependencies {
     implementation ("com.google.android.gms:play-services-location:21.0.1")
     implementation("org.locationtech.proj4j:proj4j:1.1.1")
-    implementation ("com.kakao.maps.open:android:2.11.9")
+
+
+    //kakao
+    implementation ("com.kakao.maps.open:android:2.12.8")
+    implementation ("com.kakao.sdk:v2-all:2.20.6")
+
+
+
+
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("androidx.core:core-ktx:1.13.1")
