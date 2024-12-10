@@ -178,8 +178,8 @@ public class MapFragment extends Fragment {
             fusedLocationProviderClient.getLastLocation()
                     .addOnSuccessListener(location -> {
                         if (location != null) {
-                            lat = 35.96346701;
-                            lon = 126.9583982;
+                            lat = location.getLatitude();//35.96346701
+                            lon = location.getLongitude();//126.9583982;
                             Toast.makeText(requireContext(), "위도: " + lat + ", 경도: " + lon, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(requireContext(), "위치를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show();
