@@ -108,7 +108,7 @@ public class MapFragment extends Fragment {
                 kakaoMap.moveCamera(cameraUpdate);
 
                 // 마커 스타일 설정
-                LabelStyle style = LabelStyle.from(R.drawable.map_marker)
+                LabelStyle style = LabelStyle.from(R.drawable.marker)
                         .setTextStyles(LabelTextStyle.from(37, Color.parseColor("#DB5461"), 2, Color.DKGRAY))
                         .setApplyDpScale(true);
 
