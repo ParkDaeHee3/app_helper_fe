@@ -32,8 +32,8 @@ public class PharmacyInfoDialog extends Dialog {
 
         // 약국 데이터 설정
         nameTextView.setText(pharmacy.getName());
-        addressTextView.setText(pharmacy.getAddress());
-        phoneTextView.setText(pharmacy.getTel());
+        addressTextView.setText("주소: " + pharmacy.getAddress());
+        phoneTextView.setText("번호: " +pharmacy.getTel());
 
         Button closeButton = findViewById(R.id.button_close);
         closeButton.setOnClickListener(v -> dismiss());
