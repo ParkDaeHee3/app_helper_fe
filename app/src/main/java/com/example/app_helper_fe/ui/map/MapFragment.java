@@ -2,6 +2,7 @@ package com.example.app_helper_fe.ui.map;
 
 // 필요한 패키지 및 상수 임포트
 import static android.content.Context.LOCATION_SERVICE;
+import static android.content.Intent.getIntent;
 import static com.example.app_helper_fe.ConstantKt.KAKAO_MAP_KEY;
 
 import android.content.pm.PackageManager;
@@ -78,6 +79,13 @@ public class MapFragment extends Fragment {
         // FusedLocationProviderClient 초기화
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext());
 
+        // Fragment에서 Intent 데이터 가져오기
+        String itemSeq = requireActivity().getIntent().getStringExtra("itemSeq");
+        Toast.makeText(requireContext(), itemSeq, Toast.LENGTH_SHORT).show();
+
+
+
+
         // 현재 위치 가져오기
         getCurrentLocation();
 
@@ -107,6 +115,8 @@ public class MapFragment extends Fragment {
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(lat, lon));
                 kakaoMap.moveCamera(cameraUpdate);
 
+
+
                 // 마커 스타일 설정
                 LabelStyle style = LabelStyle.from(R.drawable.ic_mapmarker_nonselect2 )
                         .setTextStyles(LabelTextStyle.from(37, Color.parseColor("#DB5461"), 2, Color.DKGRAY))
@@ -120,8 +130,16 @@ public class MapFragment extends Fragment {
                             Pair<Double, Double> coords = transformCoordinates(pharmacy.getLon(), pharmacy.getLat());
                             Log.d("LatLng", "변환된 좌표: " + coords.first + ", " + coords.second);
 
+
+
+
                             // 마커 생성
                             LabelTextBuilder labelTextBuilder = new LabelTextBuilder();
+
+                            //약품 제고
+                            labelTextBuilder.setTexts(String.valueOf(pharmacy.getMedicationIds()));
+                            //약품 제고
+
                             labelTextBuilder.setTexts(pharmacy.getName());
                             LabelOptions options = LabelOptions.from(LatLng.from(coords.first, coords.second))
                                     .setStyles(style)
@@ -138,6 +156,7 @@ public class MapFragment extends Fragment {
 
                         // 지도 클릭 이벤트 처리
                         kakaoMap.setOnLabelClickListener(new KakaoMap.OnLabelClickListener() {
+
                             @Override
                             public boolean onLabelClicked(KakaoMap kakaoMap, LabelLayer labelLayer, Label clickedLabel) {
                                 Log.d("LabelClick", "onLabelClicked 호출됨");
@@ -145,7 +164,7 @@ public class MapFragment extends Fragment {
                                 if (labelPharmacyMap.containsKey(clickedLabel)) {
                                     Pharmacy pharmacy = labelPharmacyMap.get(clickedLabel);
                                     showPharmacyInfo(pharmacy); // 약국 정보 표시
-                                    Toast.makeText(requireContext(), "레이블 클릭 완료!", Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(requireContext(), "약품 ID: pharmacy?.medicationIds?.joinToString()", Toast.LENGTH_SHORT).show();
                                     return true; // 클릭 이벤트 처리 완료
                                 }
                                 return false; // 클릭 이벤트 처리되지 않음

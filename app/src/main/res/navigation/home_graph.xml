@@ -64,6 +64,10 @@
         android:name="com.example.app_helper_fe.ui.map.MapFragment"
         android:label="@string/label_map_screen"
         tools:layout="@layout/fragment_map">
+        <argument
+            android:name="itemSeq"
+            app:argType="string"
+            android:defaultValue="-1"/>
         <action
             android:id="@+id/action_map_to_home"
             app:destination="@id/navigation_home" />

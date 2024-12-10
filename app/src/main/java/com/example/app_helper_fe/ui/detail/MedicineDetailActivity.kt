@@ -1,6 +1,5 @@
 package com.example.app_helper_fe.ui.detail
 
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -9,7 +8,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.app_helper_fe.R
@@ -33,6 +31,7 @@ class MedicineDetailActivity : AppCompatActivity() {
 
         // btnMap 클릭 리스너 추가
         binding.btnmap.setOnClickListener {
+
             // FragmentTransaction을 통해 MapFragment로 이동
             supportFragmentManager.beginTransaction()
                 .replace(android.R.id.content, MapFragment()) // 전체 화면을 MapFragment로 대체

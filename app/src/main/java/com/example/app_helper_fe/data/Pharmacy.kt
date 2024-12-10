@@ -28,6 +28,9 @@ class Pharmacy (
     val lat: Double,
 
     @SerializedName("lon")
-    val lon: Double
+    val lon: Double,
+
+    @SerializedName("medication_ids") // 약품 ID 목록 추가
+    val medicationIds: List<String> // 예: ["123", "456", "789"]
 
 )
