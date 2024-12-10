@@ -36,6 +36,7 @@ import com.kakao.vectormap.MapView;
 import com.kakao.vectormap.camera.CameraUpdate;
 import com.kakao.vectormap.camera.CameraUpdateFactory;
 import com.kakao.vectormap.label.Label;
+import com.kakao.vectormap.label.LabelStyles;
 import com.kakao.vectormap.label.LabelTextBuilder;
 import com.kakao.vectormap.label.LabelLayer;
 import com.kakao.vectormap.label.LabelOptions;
@@ -48,7 +49,9 @@ import org.locationtech.proj4j.CoordinateTransform;
 import org.locationtech.proj4j.CoordinateTransformFactory;
 import org.locationtech.proj4j.ProjCoordinate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MapFragment extends Fragment {
 
@@ -58,6 +61,8 @@ public class MapFragment extends Fragment {
     private double lat; // 현재 위치 위도
     private double lon; // 현재 위치 경도
     private FusedLocationProviderClient fusedLocationProviderClient; // 위치 제공 클라이언트
+
+    private Map<Label, Pharmacy> labelPharmacyMap = new HashMap<>(); // Map to store Label-Pharmacy association
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,55 +94,100 @@ public class MapFragment extends Fragment {
         mapView.start(new MapLifeCycleCallback() {
             @Override
             public void onMapDestroy() {
-                Log.d("KakaoMap", "onMapDestroy: "); // 지도 종료 시 로그 출력
+                Log.d("KakaoMap", "onMapDestroy: ");
             }
-
 
             @Override
             public void onMapError(Exception error) {
-                Log.e("KakaoMap", "onMapError: ", error); // 지도 오류 발생 시 로그 출력
+                Log.e("KakaoMap", "onMapError: ", error);
             }
         }, new KakaoMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull KakaoMap map) {
-                // Kakao Map 준비 완료 시 호출
                 kakaoMap = map;
 
                 // 현재 위치로 카메라 이동
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(lat, lon));
                 kakaoMap.moveCamera(cameraUpdate);
 
-                // 지도 마커 스타일 설정
+                // 마커 스타일 설정
                 LabelStyle style = LabelStyle.from(R.drawable.map_marker)
                         .setTextStyles(LabelTextStyle.from(37, Color.parseColor("#DB5461"), 2, Color.DKGRAY))
                         .setApplyDpScale(true);
 
-                // 약국 데이터를 가져와 지도에 표시
+                // 약국 데이터를 지도에 표시
                 Storage_pharmacy.INSTANCE.getPharmacyList(lat, lon, pharmacies -> {
                     if (pharmacies != null) {
                         for (Pharmacy pharmacy : pharmacies) {
                             // 약국 좌표 변환
                             Pair<Double, Double> coords = transformCoordinates(pharmacy.getLon(), pharmacy.getLat());
-                            Log.e("Name", pharmacy.getName());
 
-                            // 마커 생성 및 추가
+                            // 마커 생성
                             LabelTextBuilder labelTextBuilder = new LabelTextBuilder();
                             labelTextBuilder.setTexts(pharmacy.getName());
                             LabelOptions options = LabelOptions.from(LatLng.from(coords.first, coords.second))
-                                    .setStyles(style).setTexts(labelTextBuilder);
+                                    .setStyles(style)
+                                    .setTexts(labelTextBuilder);
 
-                            // 지도에 레이블 추가
+                            // 레이블 추가
                             LabelLayer layer = kakaoMap.getLabelManager().getLayer();
-                            layer.addLabel(options);
+                            Label label = layer.addLabel(options);
 
-
+                            // 레이블과 약국 데이터 매핑
+                            labelPharmacyMap.put(label, pharmacy);
                         }
+
+
+                        // 지도 클릭 이벤트 처리
+                        kakaoMap.setOnLabelClickListener(new KakaoMap.OnLabelClickListener() {
+                            @Override
+                            public boolean onLabelClicked(KakaoMap kakaoMap, LabelLayer labelLayer, Label label) {
+                                return false;
+                            }
+                            public boolean onLabelClick(@NonNull Label clickedLabel) {
+                                // 클릭된 레이블이 labelPharmacyMap에 있는지 확인
+                                if (labelPharmacyMap.containsKey(clickedLabel)) {
+                                    Pharmacy pharmacy = labelPharmacyMap.get(clickedLabel);
+                                    showPharmacyInfo(pharmacy); // 약국 정보 표시
+                                    return true; // 클릭 이벤트 처리 완료
+                                }
+                                return false; // 클릭 이벤트 처리되지 않음
+                            }
+                        });
+
+
                     } else {
                         Log.d("pharmacy", "No pharmacies found");
                     }
                 });
             }
+
+            /**
+             * 특정 위치에서 클릭된 레이블을 반환하는 메서드
+             */
+            private Label getClickedLabel(LatLng clickedLatLng) {
+                for (Map.Entry<Label, Pharmacy> entry : labelPharmacyMap.entrySet()) {
+                    Label label = entry.getKey();
+                    LatLng labelPosition = label.getPosition();
+
+                    // 클릭된 위치와 레이블 위치가 근접한지 확인
+                    if (Math.abs(labelPosition.getLatitude() - clickedLatLng.getLatitude()) < 0.0001 &&
+                            Math.abs(labelPosition.getLongitude() - clickedLatLng.getLongitude()) < 0.0001) {
+                        return label;
+                    }
+                }
+                return null;
+            }
+
+            /**
+             * 약국 정보를 표시하는 메서드
+             */
+            private void showPharmacyInfo(Pharmacy pharmacy) {
+                PharmacyInfoDialog dialog = new PharmacyInfoDialog(requireContext(), pharmacy);
+                dialog.show();
+            }
         });
+
 
         return root;
     }
@@ -189,6 +239,10 @@ public class MapFragment extends Fragment {
         Log.e("LONLAT", correctedLat + "::" + correctedLng);
         return new Pair<>(correctedLat, correctedLng);
     }
+
+
+
+
 
     @Override
     public void onDestroyView() {
