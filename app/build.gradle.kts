@@ -47,6 +47,8 @@ android {
             )
         }
     }
+
+    // Java 8 사용을 위한 build.gradle.kts 설정
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -65,7 +67,7 @@ android {
 dependencies {
     implementation ("com.google.android.gms:play-services-location:21.0.1")
     implementation("org.locationtech.proj4j:proj4j:1.1.1")
-    implementation ("com.kakao.maps.open:android:2.11.9")
+    implementation ("com.kakao.maps.open:android:2.11.9") // 최신버전
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("androidx.core:core-ktx:1.13.1")
@@ -78,6 +80,14 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment:2.8.4")
     implementation("androidx.navigation:navigation-ui:$2.8.4")
+
+    implementation("com.kakao.sdk:v2-all:2.20.1") // 전체 모듈 설치, 2.11.0 버전부터 지원
+    implementation("com.kakao.sdk:v2-friend:2.20.1") // 피커 API 모듈
+    implementation("com.kakao.sdk:v2-navi:2.20.1") // 카카오내비 API 모듈
+    implementation("com.kakao.sdk:v2-cert:2.20.1") // 카카오톡 인증 서비스 API 모듈
+
+    implementation ("com.kakao.maps.open:android:2.9.5") // 카카오톡 맵 API 모듈
+
 
 
     testImplementation("junit:junit:4.13.2")

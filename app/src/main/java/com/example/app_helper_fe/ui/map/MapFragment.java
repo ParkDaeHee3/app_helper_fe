@@ -92,6 +92,7 @@ public class MapFragment extends Fragment {
                 Log.d("KakaoMap", "onMapDestroy: "); // 지도 종료 시 로그 출력
             }
 
+
             @Override
             public void onMapError(Exception error) {
                 Log.e("KakaoMap", "onMapError: ", error); // 지도 오류 발생 시 로그 출력
@@ -128,6 +129,8 @@ public class MapFragment extends Fragment {
                             // 지도에 레이블 추가
                             LabelLayer layer = kakaoMap.getLabelManager().getLayer();
                             layer.addLabel(options);
+
+
                         }
                     } else {
                         Log.d("pharmacy", "No pharmacies found");
