@@ -29,11 +29,13 @@ public class PharmacyInfoDialog extends Dialog {
         TextView nameTextView = findViewById(R.id.text_pharmacy_name);
         TextView addressTextView = findViewById(R.id.text_pharmacy_address);
         TextView phoneTextView = findViewById(R.id.text_pharmacy_phone);
+        TextView medicationIds = findViewById(R.id.text_pharmacy_medication_ids);
 
         // 약국 데이터 설정
         nameTextView.setText(pharmacy.getName());
         addressTextView.setText("주소: " + pharmacy.getAddress());
         phoneTextView.setText("번호: " +pharmacy.getTel());
+        medicationIds.setText("제고: "+ pharmacy.getMedicationIds());
 
         Button closeButton = findViewById(R.id.button_close);
         closeButton.setOnClickListener(v -> dismiss());
