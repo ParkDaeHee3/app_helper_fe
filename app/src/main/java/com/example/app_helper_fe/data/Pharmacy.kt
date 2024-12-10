@@ -6,31 +6,33 @@ class Pharmacy (
     @SerializedName("id")
     val id: Int,
 
-    @SerializedName("tel")
-    val tel: String,
+    @SerializedName("pharm")
+    val pharm: Pharm,
 
-    @SerializedName("name")
-    val name: String,
+    @SerializedName("remain")
+    val remain: Int
 
-    @SerializedName("post")
-    val post: String,
+) {
+    data class Pharm(
+        @SerializedName("id")
+        val id: Int,
 
-    @SerializedName("road_post")
-    val road_post: String,
+        @SerializedName("name")
+        val name: String,
 
-    @SerializedName("address")
-    val address: String,
+        @SerializedName("lat")
+        val lat: Double,
 
-    @SerializedName("road_address")
-    val road_address: String,
+        @SerializedName("lon")
+        val lon: Double,
 
-    @SerializedName("lat")
-    val lat: Double,
+        @SerializedName("phone")
+        val phone: String,
 
-    @SerializedName("lon")
-    val lon: Double,
+        @SerializedName("daytime")
+        val daytime: String,
 
-    @SerializedName("medication_ids") // 약품 ID 목록 추가
-    val medicationIds: List<String> // 예: ["123", "456", "789"]
-
-)
+        @SerializedName("address")
+        val address: String
+    )
+}

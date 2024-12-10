@@ -83,9 +83,6 @@ public class MapFragment extends Fragment {
         String itemSeq = requireActivity().getIntent().getStringExtra("itemSeq");
         Toast.makeText(requireContext(), itemSeq, Toast.LENGTH_SHORT).show();
 
-
-
-
         // 현재 위치 가져오기
         getCurrentLocation();
 
@@ -115,33 +112,25 @@ public class MapFragment extends Fragment {
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(lat, lon));
                 kakaoMap.moveCamera(cameraUpdate);
 
-
-
                 // 마커 스타일 설정
                 LabelStyle style = LabelStyle.from(R.drawable.ic_mapmarker_nonselect2 )
                         .setTextStyles(LabelTextStyle.from(37, Color.parseColor("#DB5461"), 2, Color.DKGRAY))
                         .setApplyDpScale(true);
 
                 // 약국 데이터를 지도에 표시
-                Storage_pharmacy.INSTANCE.getPharmacyList(lat, lon, pharmacies -> {
+                Storage_pharmacy.INSTANCE.getPharmacyList(Integer.parseInt(itemSeq), pharmacies -> {
                     if (pharmacies != null) {
                         for (Pharmacy pharmacy : pharmacies) {
-                            // 약국 좌표 변환
-                            Pair<Double, Double> coords = transformCoordinates(pharmacy.getLon(), pharmacy.getLat());
-                            Log.d("LatLng", "변환된 좌표: " + coords.first + ", " + coords.second);
-
-
-
 
                             // 마커 생성
                             LabelTextBuilder labelTextBuilder = new LabelTextBuilder();
 
                             //약품 제고
-                            labelTextBuilder.setTexts(String.valueOf(pharmacy.getMedicationIds()));
+                            labelTextBuilder.setTexts(String.valueOf(pharmacy.getPharm().getId()));
                             //약품 제고
 
-                            labelTextBuilder.setTexts(pharmacy.getName());
-                            LabelOptions options = LabelOptions.from(LatLng.from(coords.first, coords.second))
+                            labelTextBuilder.setTexts(pharmacy.getPharm().getName());
+                            LabelOptions options = LabelOptions.from(LatLng.from(pharmacy.getPharm().getLat(), pharmacy.getPharm().getLon()))
                                     .setStyles(style)
                                     .setTexts(labelTextBuilder);
 
@@ -189,8 +178,8 @@ public class MapFragment extends Fragment {
             fusedLocationProviderClient.getLastLocation()
                     .addOnSuccessListener(location -> {
                         if (location != null) {
-                            lat = location.getLatitude();
-                            lon = location.getLongitude();
+                            lat = 35.96346701;
+                            lon = 126.9583982;
                             Toast.makeText(requireContext(), "위도: " + lat + ", 경도: " + lon, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(requireContext(), "위치를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show();

@@ -9,7 +9,6 @@ interface PharmacyService {
 
     @GET("/getpharmacy")
     fun getPharmacyList(
-        @Query("lat") lat: Double? = null,
-        @Query("lon") lon: Double? = null,
+        @Query("id") id: Int? = null
     ): Call<List<Pharmacy>>
 }
