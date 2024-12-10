@@ -41,8 +41,7 @@
                 app:layout_constraintDimensionRatio="w, 8:4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_medicine_detail"
-                android:src="@drawable/ic_image_not_supported" />
+                app:layout_constraintTop_toBottomOf="@id/toolbar_medicine_detail" />
 
             <TextView
                 android:id="@+id/tv_medicine_detail_category"
@@ -55,8 +54,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/tv_medicine_detail_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_medicine_detail_image"
-                android:text="질병 종류 - 감기" />
+                app:layout_constraintTop_toBottomOf="@id/iv_medicine_detail_image" />
 
             <TextView
                 android:id="@+id/tv_medicine_detail_title"
@@ -70,8 +68,7 @@
                 app:layout_constraintEnd_toEndOf="@id/iv_medicine_detail_image"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/iv_medicine_detail_image"
-                app:layout_constraintTop_toBottomOf="@id/tv_medicine_detail_category"
-                android:text=" 약품 이름 " />
+                app:layout_constraintTop_toBottomOf="@id/tv_medicine_detail_category" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs_medicine_detail"
