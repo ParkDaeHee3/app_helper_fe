@@ -122,6 +122,7 @@ public class MapFragment extends Fragment {
 
 
         // MapView의 라이프사이클 콜백 설정
+        //Map의 마커와 제고 정보 출력 표시 기능
         mapView.start(new MapLifeCycleCallback() {
             @Override
             public void onMapDestroy() {
