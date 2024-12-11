@@ -142,30 +142,30 @@ public class MapFragment extends Fragment {
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newCenterPosition(LatLng.from(lat, lon));
                 kakaoMap.moveCamera(cameraUpdate);
 
-
-                // 마커 스타일 설정
-                LabelStyle style = LabelStyle.from(R.drawable.ic_mapmarker_nonselect2 )
-                        .setTextStyles(LabelTextStyle.from(37, Color.parseColor("#DB5461"), 2, Color.DKGRAY))
-                        .setApplyDpScale(true);
-
-
-
                 // 약국 데이터를 지도에 표시
                 Storage_pharmacy.INSTANCE.getPharmacyList(Integer.parseInt(itemSeq), pharmacies -> {
                     if (pharmacies != null) {
                         for (Pharmacy pharmacy : pharmacies) {
-
                             // 재고량 텍스트 설정
                             String stockInfo = String.valueOf(pharmacy.getRemain());
+
+                            // 약국 이름을 텍스트로 설정
+                            String pharmacyName = pharmacy.getPharm().getName();
 
                             // 커스텀 마커 생성
                             Bitmap customMarker = createCustomMarker(stockInfo);
 
+                            // 약국 이름을 마커 아래에 추가하는 텍스트
+                            LabelTextBuilder labelTextBuilder = new LabelTextBuilder();
+                            labelTextBuilder.setTexts(pharmacyName); // 약국 이름을 텍스트로 설정
+
                             // 커스텀 스타일로 마커 설정
-                            LabelStyle customStyle = LabelStyle.from(customMarker);
+                            LabelStyle customStyle = LabelStyle.from(customMarker)
+                                    .setTextStyles(LabelTextStyle.from(40, Color.BLACK, 2, Color.GRAY));
 
                             // LabelOptions 설정
                             LabelOptions options = LabelOptions.from(LatLng.from(pharmacy.getPharm().getLat(), pharmacy.getPharm().getLon()))
+                                    .setTexts(labelTextBuilder)  // 텍스트에 약국 이름 추가
                                     .setStyles(customStyle);
 
                             // 레이블 추가
@@ -191,8 +191,9 @@ public class MapFragment extends Fragment {
                         Log.d("pharmacy", "No pharmacies found");
                     }
                 });
-
             }
+
+
         });
 
         return root;
