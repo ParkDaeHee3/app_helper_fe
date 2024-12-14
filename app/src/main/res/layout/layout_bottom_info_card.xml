@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:text="Open/Close Info"
         android:textSize="14sp"
-        android:textColor="@color/lime_7" />
+        android:textColor="@color/blue_A400" />
 
     <!-- Distance -->
     <TextView
