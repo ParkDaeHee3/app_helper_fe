@@ -26,6 +26,11 @@
     <color name="lime_8">#66a80f</color>
     <color name="lime_9">#5c940d</color>
 
+    <!-- Example of a primary color -->
+    <color name="gray">#CCCCCC</color>
+    <color name="primary">#6200EE</color>
+
+
 
 
 
