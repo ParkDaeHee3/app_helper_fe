@@ -1,55 +1,78 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/border_popup"
     android:orientation="vertical"
-    android:paddingStart="8dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp">
-
+    android:background="@drawable/border_popup"
+    android:padding="16dp"
+    android:layout_margin="8dp"
+    android:elevation="4dp">
 
     <TextView
         android:id="@+id/text_pharmacy_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:text="Pharmacy Name"
         android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="12dp" />
 
-    <TextView
-        android:id="@+id/text_pharmacy_address"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="8dp"
-        android:text="Address"
-        android:textColor="@color/black" />
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp">
 
-    <TextView
-        android:id="@+id/text_pharmacy_phone"
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:text="장소"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/text_pharmacy_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서울특별시 강남구 여삼동 123-45"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="8dp"
-        android:text="Phone"
-        android:textColor="@color/black" />
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="24dp"
+            android:text="전화번호"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/text_pharmacy_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="02-123-4567"
+            android:textColor="@color/black" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text_pharmacy_medication_ids"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="약품 ID: "
-        android:textColor="@color/black" />
-
+        android:layout_marginTop="12dp"
+        android:text="약품 ID: 123456"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button_close"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="Close" />
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:text="닫기" />
 </LinearLayout>
