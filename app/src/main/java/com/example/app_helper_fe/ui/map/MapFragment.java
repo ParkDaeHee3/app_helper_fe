@@ -5,18 +5,22 @@ import static android.content.Context.LOCATION_SERVICE;
 import static android.content.Intent.getIntent;
 import static com.example.app_helper_fe.ConstantKt.KAKAO_MAP_KEY;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,6 +51,11 @@ import com.kakao.vectormap.label.LabelLayer;
 import com.kakao.vectormap.label.LabelOptions;
 import com.kakao.vectormap.label.LabelStyle;
 import com.kakao.vectormap.label.LabelTextStyle;
+import com.kakao.vectormap.mapwidget.InfoWindowOptions;
+import com.kakao.vectormap.mapwidget.component.GuiImage;
+import com.kakao.vectormap.mapwidget.component.GuiLayout;
+import com.kakao.vectormap.mapwidget.component.GuiText;
+import com.kakao.vectormap.mapwidget.component.Orientation;
 
 import org.locationtech.proj4j.CRSFactory;
 import org.locationtech.proj4j.CoordinateReferenceSystem;
@@ -70,32 +79,44 @@ public class MapFragment extends Fragment {
     private Map<Label, Pharmacy> labelPharmacyMap = new HashMap<>(); // Map to store Label-Pharmacy association
 
     private Bitmap createCustomMarker(String text) {
-        Drawable drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_mapmarker_selected);
-        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Drawable drawable = ContextCompat.getDrawable(requireContext().getApplicationContext(), R.drawable.ic_mapmarker_nonclicked);
+        if (drawable == null) {
+            Log.e("CustomMarker", "마커 이미지를 로드하지 못했습니다.");
+            return null;
+        }
 
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
 
-        // 텍스트 그리기 설정
         Paint paint = new Paint();
         paint.setColor(Color.BLUE);
         paint.setTextSize(50);
         paint.setAntiAlias(true);
         paint.setTextAlign(Paint.Align.CENTER);
 
-
-        // 텍스트를 마커 중앙에 그리기
         canvas.drawText(text, canvas.getWidth() / 2, canvas.getHeight() / 2, paint);
-
         return bitmap;
     }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // View Binding 초기화
         binding = FragmentMapBinding.inflate(inflater, container, false);
+        // <include> 태그로 추가된 레이아웃은 binding.bottomInfoCard가 LayoutBottomInfoCardBinding 타입일 수 있음
+
+
+        // <include> 태그로 추가된 레이아웃은 LayoutBottomInfoCardBinding 타입으로 생성됩니다.
+        // getRoot()를 사용하여 루트 View를 가져옵니다.
+        View bottomCard = binding.bottomInfoCard.getRoot();
+
+        // 기본적으로 숨김 처리
+        bottomCard.setVisibility(View.GONE);
+
         View root = binding.getRoot();
+
 
         // 툴바 설정
         MaterialToolbar toolbar = binding.toolbarBtnBack;
@@ -174,20 +195,19 @@ public class MapFragment extends Fragment {
                             labelPharmacyMap.put(label, pharmacy);
                         }
 
-                        // 지도 클릭 이벤트 처리
-                        kakaoMap.setOnLabelClickListener(new KakaoMap.OnLabelClickListener() {
-                            @Override
-                            public boolean onLabelClicked(KakaoMap kakaoMap, LabelLayer labelLayer, Label clickedLabel) {
-                                Log.d("LabelClick", "onLabelClicked 호출됨");
-                                // 클릭된 레이블이 labelPharmacyMap에 있는지 확인
-                                if (labelPharmacyMap.containsKey(clickedLabel)) {
-                                    Pharmacy pharmacy = labelPharmacyMap.get(clickedLabel);
-                                    showPharmacyInfo(pharmacy); // 약국 정보 표시
-                                    return true; // 클릭 이벤트 처리 완료
-                                }
-                                return false; // 클릭 이벤트 처리되지 않음
+                        // 레이블 클릭 이벤트 처리
+                        kakaoMap.setOnLabelClickListener((kakaoMap, labelLayer, clickedLabel) -> {
+                            if (labelPharmacyMap.containsKey(clickedLabel)) {
+                                Pharmacy pharmacy = labelPharmacyMap.get(clickedLabel);
+
+                                // Bottom Card 표시 및 업데이트
+                                updateBottomCard(pharmacy, bottomCard);
+
+                                return true;
                             }
+                            return false;
                         });
+
                     } else {
                         Log.d("pharmacy", "No pharmacies found");
                     }
@@ -199,6 +219,40 @@ public class MapFragment extends Fragment {
 
         return root;
     }
+
+
+    /**
+     * Bottom Card 업데이트
+     */
+    private void updateBottomCard(Pharmacy pharmacy, View bottomCard) {
+        bottomCard.setVisibility(View.VISIBLE);
+
+        TextView textPlaceName = bottomCard.findViewById(R.id.text_place_name);
+        TextView textPlaceType = bottomCard.findViewById(R.id.text_place_type);
+        TextView textPlaceStatus = bottomCard.findViewById(R.id.text_place_status);
+        TextView textPlaceDistance = bottomCard.findViewById(R.id.text_place_distance);
+
+        textPlaceName.setText(pharmacy.getPharm().getName());
+        textPlaceType.setText("Pharmacy");
+        textPlaceStatus.setText(pharmacy.getId());
+        textPlaceDistance.setText("39m");
+
+        Button navigateButton = bottomCard.findViewById(R.id.button_navigate);
+        Button directionsButton = bottomCard.findViewById(R.id.button_directions);
+
+        navigateButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("geo:" + pharmacy.getPharm().getLat() + "," + pharmacy.getPharm().getLon()));
+            startActivity(intent);
+        });
+
+        directionsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("google.navigation:q=" + pharmacy.getPharm().getLat() + "," + pharmacy.getPharm().getLon()));
+            startActivity(intent);
+        });
+    }
+
 
     /**
      * 현재 위치 정보를 가져오는 메서드
@@ -246,12 +300,63 @@ public class MapFragment extends Fragment {
     }
 
     /**
-     * 약국 정보를 표시하는 메서드
+     * 약국 정보를 표시하는 InfoWindow 생성
      */
     private void showPharmacyInfo(Pharmacy pharmacy) {
-        PharmacyInfoDialog dialog = new PharmacyInfoDialog(requireContext(), pharmacy);
-        dialog.show();
+        if (getActivity() == null || isDetached()) {
+            Log.e("InfoWindow", "Activity가 종료되었거나 Fragment가 분리되었습니다.");
+            return; // InfoWindow를 생성하지 않음
+        }
+
+        GuiLayout body = new GuiLayout(Orientation.Vertical);
+        body.setPadding(20, 20, 20, 20);
+
+        GuiImage bgImage = new GuiImage(R.drawable.window_body, true);
+        bgImage.setFixedArea(7, 7, 7, 7);
+        body.setBackground(bgImage);
+
+        GuiText pharmacyNameText = new GuiText(pharmacy.getPharm().getName());
+        pharmacyNameText.setTextSize(24);
+        pharmacyNameText.setTextColor(Color.BLACK);
+        body.addView(pharmacyNameText);
+
+        GuiText stockText = new GuiText("재고 수량: " + pharmacy.getRemain());
+        stockText.setTextSize(18);
+        stockText.setTextColor(Color.DKGRAY);
+        body.addView(stockText);
+
+        InfoWindowOptions options = InfoWindowOptions.from(LatLng.from(
+                pharmacy.getPharm().getLat(),
+                pharmacy.getPharm().getLon()
+        ));
+        options.setBody(body);
+        options.setBodyOffset(0, -20);
+        options.setTail(new GuiImage(R.drawable.window_tail, false));
+
+        if (kakaoMap != null) {
+            kakaoMap.getMapWidgetManager().getInfoWindowLayer().addInfoWindow(options);
+        } else {
+            Log.e("InfoWindow", "KakaoMap 객체가 null입니다.");
+        }
     }
+
+
+
+
+    private void showBottomCard(View card) {
+        card.setVisibility(View.VISIBLE);
+        card.setTranslationY(card.getHeight());
+        card.animate().translationY(0).setDuration(300).start();
+    }
+
+    private void hideBottomCard(View card) {
+        card.animate().translationY(card.getHeight()).setDuration(300)
+                .withEndAction(() -> card.setVisibility(View.GONE)).start();
+    }
+
+
+
+
 
     @Override
     public void onDestroyView() {
